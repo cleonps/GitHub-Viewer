@@ -1,0 +1,140 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15705" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="1go-6f-7tJ">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15706"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--Otro-->
+        <scene sceneID="SVW-bP-RW9">
+            <objects>
+                <viewController id="Ter-UJ-zXC" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="hK0-2h-5bK">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <viewLayoutGuide key="safeArea" id="jq9-Mh-uJc"/>
+                    </view>
+                    <navigationItem key="navigationItem" title="Otro" id="QE1-xI-TOa"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="E8p-7n-Yhz" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2586" y="-358"/>
+        </scene>
+        <!--Gists-->
+        <scene sceneID="39Z-J5-wzM">
+            <objects>
+                <viewController storyboardIdentifier="GistList" id="2bi-Ug-FtO" customClass="GistsViewController" customModule="GitHub_Viewer" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="1CB-tu-S2Z">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="VbB-3Y-nBz">
+                                <rect key="frame" x="0.0" y="88" width="414" height="725"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                <connections>
+                                    <outlet property="dataSource" destination="2bi-Ug-FtO" id="aUr-vV-Z1D"/>
+                                    <outlet property="delegate" destination="2bi-Ug-FtO" id="YW6-Ys-QvM"/>
+                                </connections>
+                            </tableView>
+                        </subviews>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <constraints>
+                            <constraint firstItem="77t-hI-NaF" firstAttribute="trailing" secondItem="VbB-3Y-nBz" secondAttribute="trailing" id="2Zw-At-6O5"/>
+                            <constraint firstItem="77t-hI-NaF" firstAttribute="bottom" secondItem="VbB-3Y-nBz" secondAttribute="bottom" id="LDq-SJ-fCE"/>
+                            <constraint firstItem="VbB-3Y-nBz" firstAttribute="leading" secondItem="77t-hI-NaF" secondAttribute="leading" id="MtR-DJ-Htk"/>
+                            <constraint firstItem="VbB-3Y-nBz" firstAttribute="top" secondItem="77t-hI-NaF" secondAttribute="top" id="yjS-c9-HkS"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="77t-hI-NaF"/>
+                    </view>
+                    <navigationItem key="navigationItem" title="Gists" id="5vd-52-zEj">
+                        <barButtonItem key="backBarButtonItem" title="Atrás" id="DDw-J8-cCy"/>
+                    </navigationItem>
+                    <connections>
+                        <outlet property="gistListTableView" destination="VbB-3Y-nBz" id="DjD-NP-ZgJ"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="44Z-hT-2pU" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2586" y="-1031"/>
+        </scene>
+        <!--View Controller-->
+        <scene sceneID="6eU-2c-xfN">
+            <objects>
+                <viewController id="Zsg-DW-NYk" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="3Ta-qG-392">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <viewLayoutGuide key="safeArea" id="EW3-UK-CSa"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="to1-iX-Cp3" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3295" y="-1032"/>
+        </scene>
+        <!--Gists Tab Bar Controller-->
+        <scene sceneID="20K-cs-YFv">
+            <objects>
+                <tabBarController storyboardIdentifier="GistsTabBar" automaticallyAdjustsScrollViewInsets="NO" id="1go-6f-7tJ" customClass="GistsTabBarController" customModule="GitHub_Viewer" customModuleProvider="target" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <tabBar key="tabBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="TDF-mY-BAY">
+                        <rect key="frame" x="0.0" y="0.0" width="1000" height="1000"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </tabBar>
+                    <connections>
+                        <segue destination="xub-RE-pbN" kind="relationship" relationship="viewControllers" id="7Kf-gp-IZI"/>
+                        <segue destination="J2o-jL-fV2" kind="relationship" relationship="viewControllers" id="suB-cI-Uje"/>
+                    </connections>
+                </tabBarController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="os5-9G-Zbs" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="919" y="-709"/>
+        </scene>
+        <!--Gists-->
+        <scene sceneID="B9i-b3-Dnn">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="xub-RE-pbN" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="Gists" image="gists" selectedImage="gists" id="gTc-5d-1Qf"/>
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="RbU-GC-huu">
+                        <rect key="frame" x="0.0" y="44" width="414" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="2bi-Ug-FtO" kind="relationship" relationship="rootViewController" id="uaJ-MT-iya"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="a3l-T1-YoU" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1860.8695652173915" y="-1030.5803571428571"/>
+        </scene>
+        <!--Item 2-->
+        <scene sceneID="laP-8P-uqe">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="J2o-jL-fV2" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="Item 2" image="github" selectedImage="github" id="Wi9-UC-bNR"/>
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="3Nt-YV-8jj">
+                        <rect key="frame" x="0.0" y="44" width="414" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="Ter-UJ-zXC" kind="relationship" relationship="rootViewController" id="xzv-HW-2vA"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="LHz-T2-3W0" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1861" y="-358"/>
+        </scene>
+    </scenes>
+    <resources>
+        <image name="gists" width="23" height="23"/>
+        <image name="github" width="23" height="23"/>
+    </resources>
+</document>
