@@ -9,6 +9,7 @@
 import UIKit
 
 class GistsViewController: UIViewController {
+    let refresher = UIRefreshControl()
     var gists: [GistResponse] = []
     var username = ""
     var isLoginDismissed = false
@@ -19,6 +20,8 @@ class GistsViewController: UIViewController {
         super.viewDidLoad()
         
         gistListTableView.register(nibName: .gist, cellName: .gist)
+        gistListTableView.refreshControl = refresher
+        refresher.addTarget(self, action: #selector(refresData(_:)), for: .valueChanged)
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -34,6 +37,10 @@ class GistsViewController: UIViewController {
                 self.tabBarController!.view.isHidden = false
             }
         }
+    }
+    
+    @objc private func refresData(_ sender: Any) {
+        callAPI()
     }
     
     public func callAPI() {
@@ -98,6 +105,7 @@ extension GistsViewController: LoginDelegate {
 extension GistsViewController: NetworkManagerDelegate {
     
     func response<T: Codable>(dataModel: T, endpoint: Router, code: StatusCodes) {
+        self.refresher.endRefreshing()
         switch code {
         case .success, .accepted:
             gists = dataModel as! [GistResponse]
@@ -109,6 +117,7 @@ extension GistsViewController: NetworkManagerDelegate {
     }
     
     func unparseableResponse(error message: String, endpoint: Router, code: StatusCodes) {
+        self.refresher.endRefreshing()
         presentSimpleAlert(title: "Error", message: "Unparseable Response: \(message)")
     }
     
