@@ -11,21 +11,10 @@ import Alamofire
 
 protocol NetworkManagerDelegate {
     func response<T: Codable>(dataModel: T, endpoint: Router, code: StatusCodes)
-    func unparseableResponse(error message: String, endpoint: Router, code: StatusCodes)
-    func connectionFailed(error message: String?, delay: Int?, newTitle: String?)
+    func response(withError error: String, endpoint: Router)
 }
 
 extension NetworkManagerDelegate {
-    func connectionFailed(error message: String? = nil, delay: Int? = 0, newTitle: String? = nil) {
-        DispatchQueue.main.asyncAfter(deadline: .now() + .seconds(delay!), execute: {
-            let msg = message ?? "Verifique que cuente con conexión a internet."
-            let title = newTitle ?? "Error"
-            let alert = UIAlertController(title: title, message: msg, preferredStyle: .alert)
-            let action = UIAlertAction(title: "OK", style: .default)
-            alert.addAction(action)
-            (self as! UIViewController).present(alert, animated: true)
-        })
-    }
 }
 
 class NetworkManager {
@@ -61,7 +50,8 @@ extension NetworkManager {
             case .success:
                 self.parseResponse(response, validModel: validModel.self, endpoint: route)
             case .failure(let error):
-                self.displayErrorResponse(error)
+                let message = self.getNetworkError(error.localizedDescription)
+                self.delegate!.response(withError: message, endpoint: route)
             }
         }
     }
@@ -81,13 +71,14 @@ extension NetworkManager {
                 self.delegate!.response(dataModel: error, endpoint: endpoint, code: statusCode)
             }
         } catch {
-            let errorMessage = response.value ?? "Undefined Error"
-            self.delegate!.unparseableResponse(error: errorMessage, endpoint: endpoint, code: statusCode)
+            let errorMessage = response.value ?? "Error indefinido"
+            self.delegate!.response(withError: errorMessage, endpoint: endpoint)
         }
     }
     
-    func displayErrorResponse(_ error: AFError) {
-        let errorMessage = NetworkReachabilityManager()!.isReachable ? error.localizedDescription : nil
-        self.delegate?.connectionFailed(error: errorMessage)
+    func getNetworkError(_ error: String) -> String {
+        let noNetworkMessage = "Verifique que cuente con conexión a internet"
+        let errorMessage = NetworkReachabilityManager()!.isReachable ? error : noNetworkMessage
+        return errorMessage
     }
 }

@@ -72,6 +72,14 @@ extension MainViewController: UITextFieldDelegate {
 }
 
 extension MainViewController: NetworkManagerDelegate {
+    func response(withError error: String, endpoint: Router) {
+        switch endpoint {
+        case .login:
+            presentSimpleAlert(title: "Error", message: error)
+        default:
+            break
+        }
+    }
     
     func response<T: Codable>(dataModel: T, endpoint: Router, code: StatusCodes) {
         switch code {
@@ -94,7 +102,4 @@ extension MainViewController: NetworkManagerDelegate {
         }
     }
     
-    func unparseableResponse(error message: String, endpoint: Router, code: StatusCodes) {
-        presentSimpleAlert(title: "Error", message: message)
-    }
 }

@@ -103,22 +103,31 @@ extension GistsViewController: LoginDelegate {
 }
 
 extension GistsViewController: NetworkManagerDelegate {
-    
-    func response<T: Codable>(dataModel: T, endpoint: Router, code: StatusCodes) {
+    func response(withError error: String, endpoint: Router) {
         self.refresher.endRefreshing()
-        switch code {
-        case .success, .accepted:
-            gists = dataModel as! [GistResponse]
-            gistListTableView.reloadData()
+        switch endpoint {
+        case .getGists:
+            presentSimpleAlert(title: "Error", message: error)
         default:
-            let error = dataModel as! ErrorResponse
-            presentSimpleAlert(title: "Error", message: "\(error.message)")
+            break
         }
     }
     
-    func unparseableResponse(error message: String, endpoint: Router, code: StatusCodes) {
+    func response<T: Codable>(dataModel: T, endpoint: Router, code: StatusCodes) {
         self.refresher.endRefreshing()
-        presentSimpleAlert(title: "Error", message: "Unparseable Response: \(message)")
+        switch endpoint {
+        case .getGists:
+            switch code {
+            case .success, .accepted:
+                gists = dataModel as! [GistResponse]
+                gistListTableView.reloadData()
+            default:
+                let error = dataModel as! ErrorResponse
+                presentSimpleAlert(title: "Error", message: "\(error.message)")
+            }
+        default:
+            break
+        }
     }
     
 }
