@@ -77,11 +77,20 @@
                     <connections>
                         <outlet property="emailTextField" destination="4q2-PW-ygu" id="2UQ-Xc-exB"/>
                         <outlet property="passwordTextField" destination="Jfn-Td-seq" id="RW1-67-pfc"/>
+                        <segue destination="NGE-JE-mNb" kind="presentation" identifier="loginHomeSegue" modalPresentationStyle="fullScreen" id="Ofo-ww-pqU"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-1138" y="66"/>
+        </scene>
+        <!--Home-->
+        <scene sceneID="R5x-iR-Qv8">
+            <objects>
+                <viewControllerPlaceholder storyboardName="Home" id="NGE-JE-mNb" sceneMemberID="viewController"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="aGJ-J2-0VU" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-624" y="66"/>
         </scene>
     </scenes>
 </document>

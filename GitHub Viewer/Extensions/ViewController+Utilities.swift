@@ -12,16 +12,23 @@ extension UIViewController {
     
     public enum Storyboards: String {
         case login = "Main"
+        case home = "Home"
         case gists = "Gists"
+        case profile = "Profile"
     }
     
     public enum ViewIdentifiers: String {
         // Main
         case login = "Login"
         
+        // Home
+        case gistTabBar = "GistsTabBar"
+        
         // Gists
-        case gistTabBar = "GistsTabBarController"
-        case gistList = "GistList"
+        case gistsList = "GistsList"
+        
+        // Profile
+        case profile = "Profile"
     }
     
     /// Returns an instance of UIViewController subclass

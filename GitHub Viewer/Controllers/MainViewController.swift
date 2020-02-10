@@ -7,18 +7,17 @@
 //
 
 import UIKit
+import Alamofire
 
 fileprivate enum Field: Int {
     case email = 1
     case password = 2
 }
 
-protocol LoginDelegate {
-    func updateUsername(_ username: String)
-}
-
 class MainViewController: UIViewController {
-    var delegate: LoginDelegate?
+    let userDefaults = UserDefaults.standard
+    
+    var shouldCallAPI = true
     
     @IBOutlet var emailTextField: UITextField!
     @IBOutlet var passwordTextField: UITextField!
@@ -26,18 +25,47 @@ class MainViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        view.isHidden = true
+    }
+    
+    override func viewDidDisappear(_ animated: Bool) {
+        view.isHidden = false
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(false)
         
-        setupDelegates()
-        setupTextFields()
-        hideKeyboardOnTap()
+        if checkIfUserExists() {
+            let user = userDefaults.string(forKey: UserDefaults.Keys.User)!
+            let password = userDefaults.string(forKey: UserDefaults.Keys.Password)!
+            UIView.setAnimationsEnabled(false)
+            NetworkManager.shared.authorization = HTTPHeader.authorization(username: user, password: password)
+            self.performSegue(withIdentifier: "loginHomeSegue", sender: nil)
+        } else {
+            view.isHidden = false
+            setupTextFields()
+            setupDelegates()
+            hideKeyboardOnTap()
+        }
     }
     
     @IBAction func loginButtonPressed(_ sender: UIButton) {
-        if validateData() {
-            NetworkManager.shared.login(email: emailTextField.text!, password: passwordTextField.text!)
-        } else {
-            presentSimpleAlert(title: "Error", message: "Por favor llene todos los campos")
+        if shouldCallAPI {
+            shouldCallAPI = false
+            
+            if validateData() {
+                NetworkManager.shared.login(email: emailTextField.text!, password: passwordTextField.text!)
+            } else {
+                presentSimpleAlert(title: "Error", message: "Por favor llene todos los campos")
+                shouldCallAPI = true
+            }
         }
+    }
+    
+    private func checkIfUserExists() -> Bool {
+        guard   let _ = userDefaults.string(forKey: UserDefaults.Keys.User),
+                let _ = userDefaults.string(forKey: UserDefaults.Keys.Password) else { return false }
+        return true
     }
     
     private func setupDelegates() {
@@ -75,6 +103,7 @@ extension MainViewController: NetworkManagerDelegate {
     func response(withError error: String, endpoint: Router) {
         switch endpoint {
         case .login:
+            shouldCallAPI = true
             presentSimpleAlert(title: "Error", message: error)
         default:
             break
@@ -85,16 +114,15 @@ extension MainViewController: NetworkManagerDelegate {
         switch code {
         case .success, .accepted:
             let user = dataModel as! UserResponse
+            self.shouldCallAPI = true
             presentSimpleAlert(title: "Sesión Iniciada", message: "Bienvenido \(user.login)") {
-                self.delegate?.updateUsername(user.login)
-                
-//                let transition: CATransition = CATransition()
-//                transition.duration = 0.5
-//                transition.timingFunction = CAMediaTimingFunction(name: CAMediaTimingFunctionName.easeInEaseOut)
-//                transition.type = CATransitionType.push
-//                transition.subtype = CATransitionSubtype.fromBottom
-//                self.view.window!.layer.add(transition, forKey: nil)
-                self.dismiss(animated: true)
+                let user = user.login
+                let password = self.passwordTextField.text!
+                self.emailTextField.text = ""
+                self.passwordTextField.text = ""
+                self.userDefaults.setValue(user, forKey: UserDefaults.Keys.User)
+                self.userDefaults.setValue(password, forKey: UserDefaults.Keys.Password)
+                self.performSegue(withIdentifier: "loginHomeSegue", sender: nil)
             }
         default:
             let error = dataModel as! ErrorResponse

@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		35034E7123F0A1D100FA12E0 /* Gists.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 35034E7023F0A1D100FA12E0 /* Gists.storyboard */; };
+		35034E7323F0A21800FA12E0 /* Profile.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 35034E7223F0A21800FA12E0 /* Profile.storyboard */; };
 		35058C2123D3D20C0015A90B /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35058C2023D3D20C0015A90B /* NetworkManager.swift */; };
 		35058C2323D3D3540015A90B /* Router.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35058C2223D3D3540015A90B /* Router.swift */; };
 		352F011523D3740800177F99 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 352F011423D3740800177F99 /* AppDelegate.swift */; };
@@ -16,16 +18,17 @@
 		352F011E23D3740900177F99 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 352F011D23D3740900177F99 /* Assets.xcassets */; };
 		352F012123D3740900177F99 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 352F011F23D3740900177F99 /* LaunchScreen.storyboard */; };
 		352F012C23D3740900177F99 /* GitHub_ViewerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 352F012B23D3740900177F99 /* GitHub_ViewerTests.swift */; };
-		352F013C23D393AC00177F99 /* Gists.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 352F013B23D393AC00177F99 /* Gists.storyboard */; };
+		352F013C23D393AC00177F99 /* Home.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 352F013B23D393AC00177F99 /* Home.storyboard */; };
 		352F013E23D3954200177F99 /* GistsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 352F013D23D3954200177F99 /* GistsViewController.swift */; };
 		357BB5EA23D3DAEB00605AA8 /* StatusCodes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 357BB5E923D3DAEB00605AA8 /* StatusCodes.swift */; };
 		357BB5EC23D3DE7400605AA8 /* UserResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 357BB5EB23D3DE7400605AA8 /* UserResponse.swift */; };
 		357BB5EE23D3DEA700605AA8 /* ErrorResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 357BB5ED23D3DEA700605AA8 /* ErrorResponse.swift */; };
 		358D074123D3BF360097BF02 /* ViewController+Utilities.swift in Sources */ = {isa = PBXBuildFile; fileRef = 358D074023D3BF360097BF02 /* ViewController+Utilities.swift */; };
+		35A046B623EFC34E00695516 /* UserDefaults+Keys.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35A046B523EFC34E00695516 /* UserDefaults+Keys.swift */; };
+		35A046B823EFCD7D00695516 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35A046B723EFCD7D00695516 /* ProfileViewController.swift */; };
 		3AB199D79F385D285273D07C /* Pods_GitHub_ViewerTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 23F33C50D93622F7F46C3CC2 /* Pods_GitHub_ViewerTests.framework */; };
 		56FA0BBC86171E76E487559D /* Pods_GitHub_Viewer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7A0EC630EFBA15F85261CB11 /* Pods_GitHub_Viewer.framework */; };
 		B6EB182F23D78F01002607BF /* GistResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6EB182E23D78F01002607BF /* GistResponse.swift */; };
-		B6EB183123D798BF002607BF /* GistsTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6EB183023D798BF002607BF /* GistsTabBarController.swift */; };
 		B6EB183323D7AD9B002607BF /* UITableView+Names.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6EB183223D7AD9B002607BF /* UITableView+Names.swift */; };
 		B6EB183623D7AF21002607BF /* GistTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6EB183423D7AF21002607BF /* GistTableViewCell.swift */; };
 		B6EB183723D7AF21002607BF /* GistTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = B6EB183523D7AF21002607BF /* GistTableViewCell.xib */; };
@@ -43,6 +46,8 @@
 
 /* Begin PBXFileReference section */
 		23F33C50D93622F7F46C3CC2 /* Pods_GitHub_ViewerTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_GitHub_ViewerTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		35034E7023F0A1D100FA12E0 /* Gists.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Gists.storyboard; sourceTree = "<group>"; };
+		35034E7223F0A21800FA12E0 /* Profile.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Profile.storyboard; sourceTree = "<group>"; };
 		35058C2023D3D20C0015A90B /* NetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkManager.swift; sourceTree = "<group>"; };
 		35058C2223D3D3540015A90B /* Router.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Router.swift; sourceTree = "<group>"; };
 		352F011123D3740800177F99 /* GitHub Viewer.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "GitHub Viewer.app"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -56,17 +61,18 @@
 		352F012723D3740900177F99 /* GitHub ViewerTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "GitHub ViewerTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		352F012B23D3740900177F99 /* GitHub_ViewerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GitHub_ViewerTests.swift; sourceTree = "<group>"; };
 		352F012D23D3740900177F99 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		352F013B23D393AC00177F99 /* Gists.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Gists.storyboard; sourceTree = "<group>"; };
+		352F013B23D393AC00177F99 /* Home.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Home.storyboard; sourceTree = "<group>"; };
 		352F013D23D3954200177F99 /* GistsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GistsViewController.swift; sourceTree = "<group>"; };
 		357BB5E923D3DAEB00605AA8 /* StatusCodes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatusCodes.swift; sourceTree = "<group>"; };
 		357BB5EB23D3DE7400605AA8 /* UserResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserResponse.swift; sourceTree = "<group>"; };
 		357BB5ED23D3DEA700605AA8 /* ErrorResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ErrorResponse.swift; sourceTree = "<group>"; };
 		358D074023D3BF360097BF02 /* ViewController+Utilities.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ViewController+Utilities.swift"; sourceTree = "<group>"; };
+		35A046B523EFC34E00695516 /* UserDefaults+Keys.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UserDefaults+Keys.swift"; sourceTree = "<group>"; };
+		35A046B723EFCD7D00695516 /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
 		7A0EC630EFBA15F85261CB11 /* Pods_GitHub_Viewer.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_GitHub_Viewer.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		9D58476241FA177BA0D0079A /* Pods-GitHub Viewer.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GitHub Viewer.debug.xcconfig"; path = "Target Support Files/Pods-GitHub Viewer/Pods-GitHub Viewer.debug.xcconfig"; sourceTree = "<group>"; };
 		9FB06091C6A0BE02790924B7 /* Pods-GitHub ViewerTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GitHub ViewerTests.release.xcconfig"; path = "Target Support Files/Pods-GitHub ViewerTests/Pods-GitHub ViewerTests.release.xcconfig"; sourceTree = "<group>"; };
 		B6EB182E23D78F01002607BF /* GistResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GistResponse.swift; sourceTree = "<group>"; };
-		B6EB183023D798BF002607BF /* GistsTabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GistsTabBarController.swift; sourceTree = "<group>"; };
 		B6EB183223D7AD9B002607BF /* UITableView+Names.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITableView+Names.swift"; sourceTree = "<group>"; };
 		B6EB183423D7AF21002607BF /* GistTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GistTableViewCell.swift; sourceTree = "<group>"; };
 		B6EB183523D7AF21002607BF /* GistTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = GistTableViewCell.xib; sourceTree = "<group>"; };
@@ -164,9 +170,11 @@
 		352F013723D378D200177F99 /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				B6EB183923D7AF3C002607BF /* GistList */,
 				352F011A23D3740800177F99 /* Main.storyboard */,
-				352F013B23D393AC00177F99 /* Gists.storyboard */,
+				352F013B23D393AC00177F99 /* Home.storyboard */,
+				35034E7023F0A1D100FA12E0 /* Gists.storyboard */,
+				B6EB183923D7AF3C002607BF /* GistList */,
+				35034E7223F0A21800FA12E0 /* Profile.storyboard */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -177,7 +185,7 @@
 				B6EB183823D7AF30002607BF /* GistList */,
 				352F011823D3740800177F99 /* MainViewController.swift */,
 				352F013D23D3954200177F99 /* GistsViewController.swift */,
-				B6EB183023D798BF002607BF /* GistsTabBarController.swift */,
+				35A046B723EFCD7D00695516 /* ProfileViewController.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -197,6 +205,7 @@
 			children = (
 				358D074023D3BF360097BF02 /* ViewController+Utilities.swift */,
 				B6EB183223D7AD9B002607BF /* UITableView+Names.swift */,
+				35A046B523EFC34E00695516 /* UserDefaults+Keys.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -311,9 +320,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				352F012123D3740900177F99 /* LaunchScreen.storyboard in Resources */,
-				352F013C23D393AC00177F99 /* Gists.storyboard in Resources */,
+				35034E7123F0A1D100FA12E0 /* Gists.storyboard in Resources */,
+				352F013C23D393AC00177F99 /* Home.storyboard in Resources */,
 				352F011E23D3740900177F99 /* Assets.xcassets in Resources */,
 				352F011C23D3740800177F99 /* Main.storyboard in Resources */,
+				35034E7323F0A21800FA12E0 /* Profile.storyboard in Resources */,
 				B6EB183723D7AF21002607BF /* GistTableViewCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -402,12 +413,13 @@
 				352F011923D3740800177F99 /* MainViewController.swift in Sources */,
 				35058C2323D3D3540015A90B /* Router.swift in Sources */,
 				352F013E23D3954200177F99 /* GistsViewController.swift in Sources */,
+				35A046B823EFCD7D00695516 /* ProfileViewController.swift in Sources */,
 				B6EB183623D7AF21002607BF /* GistTableViewCell.swift in Sources */,
 				357BB5EE23D3DEA700605AA8 /* ErrorResponse.swift in Sources */,
 				352F011523D3740800177F99 /* AppDelegate.swift in Sources */,
 				B6EB183323D7AD9B002607BF /* UITableView+Names.swift in Sources */,
-				B6EB183123D798BF002607BF /* GistsTabBarController.swift in Sources */,
 				357BB5EA23D3DAEB00605AA8 /* StatusCodes.swift in Sources */,
+				35A046B623EFC34E00695516 /* UserDefaults+Keys.swift in Sources */,
 				352F011723D3740800177F99 /* SceneDelegate.swift in Sources */,
 				357BB5EC23D3DE7400605AA8 /* UserResponse.swift in Sources */,
 			);
@@ -584,7 +596,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "pro.christianleon.GitHub-Viewer";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
@@ -607,7 +619,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "pro.christianleon.GitHub-Viewer";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
 		};

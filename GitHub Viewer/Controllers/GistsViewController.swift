@@ -10,54 +10,40 @@ import UIKit
 
 class GistsViewController: UIViewController {
     let refresher = UIRefreshControl()
+    let userDefaults = UserDefaults.standard
+    
     var gists: [GistResponse] = []
     var username = ""
-    var isLoginDismissed = false
     
     @IBOutlet var gistListTableView: UITableView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        guard let user = userDefaults.value(forKey: UserDefaults.Keys.User) else {
+            dismiss(animated: true)
+            return
+        }
+        
+        username = user as! String
+        
         gistListTableView.register(nibName: .gist, cellName: .gist)
         gistListTableView.refreshControl = refresher
-        refresher.addTarget(self, action: #selector(refresData(_:)), for: .valueChanged)
+        refresher.addTarget(self, action: #selector(refreshData(_:)), for: .valueChanged)
     }
     
     override func viewDidAppear(_ animated: Bool) {
-        if isLoginDismissed {
-            tabBarController!.view.isHidden = false
-            if gists.isEmpty {
-                callAPI()
-            }
-        } else {
-            let vc = instantiateVC(storyboard: .login, identifier: .login, controller:  MainViewController.self, presentation: .fullScreen)
-            vc.delegate = self
-            present(vc, animated: false) {
-                self.tabBarController!.view.isHidden = false
-            }
+        NetworkManager.shared.delegate = self
+        
+        if gists.isEmpty {
+            NetworkManager.shared.getGists(user: username)
         }
     }
     
-    @objc private func refresData(_ sender: Any) {
-        callAPI()
+    @objc private func refreshData(_ sender: Any) {
+        NetworkManager.shared.getGists(user: username)
     }
     
-    public func callAPI() {
-        NetworkManager.shared.delegate = self
-        NetworkManager.shared.getGists(user: self.username)
-    }
-    
-    /*
-    // MARK: - Navigation
-     
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
-    }
-    */
-
 }
 
 extension GistsViewController: UITableViewDelegate, UITableViewDataSource {
@@ -92,14 +78,6 @@ extension GistsViewController: UITableViewDelegate, UITableViewDataSource {
         return gistListTableView.rowHeight
     }
     
-}
-
-extension GistsViewController: LoginDelegate {
-    func updateUsername(_ username: String) {
-        self.isLoginDismissed = true
-        self.username = username
-        self.callAPI()
-    }
 }
 
 extension GistsViewController: NetworkManagerDelegate {
