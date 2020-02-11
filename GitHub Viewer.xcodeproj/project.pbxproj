@@ -593,10 +593,6 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 9D58476241FA177BA0D0079A /* Pods-GitHub Viewer.debug.xcconfig */;
 			buildSettings = {
-				ARCHS = (
-					"$(ARCHS_STANDARD)",
-					armv7,
-				);
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = V22P2982D3;
@@ -616,10 +612,6 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = D0ACD439D5F4CEE335B92F0B /* Pods-GitHub Viewer.release.xcconfig */;
 			buildSettings = {
-				ARCHS = (
-					"$(ARCHS_STANDARD)",
-					armv7,
-				);
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = V22P2982D3;

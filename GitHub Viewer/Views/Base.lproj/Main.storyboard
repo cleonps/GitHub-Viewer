@@ -16,10 +16,17 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="logo" translatesAutoresizingMaskIntoConstraints="NO" id="ra9-vh-j15">
+                                <rect key="frame" x="107" y="94" width="200" height="200"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="200" id="o0l-dT-1p7"/>
+                                    <constraint firstAttribute="width" secondItem="ra9-vh-j15" secondAttribute="height" multiplier="1:1" id="oOD-NH-iuK"/>
+                                </constraints>
+                            </imageView>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="fcO-GA-RnT">
-                                <rect key="frame" x="20.5" y="144" width="373" height="59.5"/>
+                                <rect key="frame" x="20.5" y="344" width="373" height="59.5"/>
                                 <subviews>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Correo" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="HaY-53-6r9">
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Usuario o correo" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="HaY-53-6r9">
                                         <rect key="frame" x="0.0" y="0.0" width="373" height="20.5"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                         <nil key="textColor"/>
@@ -33,7 +40,7 @@
                                 </subviews>
                             </stackView>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="voy-71-i04">
-                                <rect key="frame" x="20.5" y="218.5" width="373" height="59.5"/>
+                                <rect key="frame" x="20.5" y="418.5" width="373" height="59.5"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Contraseña" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ce9-Mj-F3Q">
                                         <rect key="frame" x="0.0" y="0.0" width="373" height="20.5"/>
@@ -49,7 +56,7 @@
                                 </subviews>
                             </stackView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7dg-9r-E1L">
-                                <rect key="frame" x="107" y="328" width="200" height="30"/>
+                                <rect key="frame" x="107" y="508" width="200" height="30"/>
                                 <color key="backgroundColor" systemColor="systemGrayColor" red="0.5568627451" green="0.5568627451" blue="0.57647058819999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="200" id="Gvi-dS-YqW"/>
@@ -66,9 +73,11 @@
                             <constraint firstItem="fcO-GA-RnT" firstAttribute="width" secondItem="8bC-Xf-vdC" secondAttribute="width" multiplier="0.9" id="FjT-72-kcG"/>
                             <constraint firstItem="voy-71-i04" firstAttribute="top" secondItem="fcO-GA-RnT" secondAttribute="bottom" constant="15" id="K6u-fV-sW0"/>
                             <constraint firstItem="7dg-9r-E1L" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="PmC-Vn-mt3"/>
+                            <constraint firstItem="ra9-vh-j15" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="50" id="QgA-M6-Xfu"/>
+                            <constraint firstItem="ra9-vh-j15" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="WkQ-Ax-wIW"/>
                             <constraint firstItem="voy-71-i04" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="Xop-cO-CV4"/>
-                            <constraint firstItem="fcO-GA-RnT" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="100" id="YzR-7x-bYM"/>
-                            <constraint firstItem="7dg-9r-E1L" firstAttribute="top" secondItem="voy-71-i04" secondAttribute="bottom" constant="50" id="bXY-PI-2SV"/>
+                            <constraint firstItem="7dg-9r-E1L" firstAttribute="top" secondItem="voy-71-i04" secondAttribute="bottom" constant="30" id="bXY-PI-2SV"/>
+                            <constraint firstItem="fcO-GA-RnT" firstAttribute="top" secondItem="ra9-vh-j15" secondAttribute="bottom" constant="50" id="d0x-KQ-oK2"/>
                             <constraint firstItem="fcO-GA-RnT" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="gze-zO-2BP"/>
                             <constraint firstItem="voy-71-i04" firstAttribute="width" secondItem="8bC-Xf-vdC" secondAttribute="width" multiplier="0.9" id="mS4-ye-2g7"/>
                         </constraints>
@@ -82,7 +91,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-1138" y="66"/>
+            <point key="canvasLocation" x="-1139.1304347826087" y="65.625"/>
         </scene>
         <!--Home-->
         <scene sceneID="R5x-iR-Qv8">
@@ -93,4 +102,7 @@
             <point key="canvasLocation" x="-624" y="66"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="logo" width="170.5" height="170.5"/>
+    </resources>
 </document>
