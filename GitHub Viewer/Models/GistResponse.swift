@@ -14,7 +14,7 @@ struct GistResponse: Codable {
     let description: String
     
     struct FileList: Codable {
-        let files: [String: FileFields]
+        let files: [String: GistFile]
         
         struct DetailKey: CodingKey {
             var stringValue: String
@@ -31,9 +31,9 @@ struct GistResponse: Codable {
         init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: DetailKey.self)
             
-            var files = [String: FileFields]()
+            var files = [String: GistFile]()
             for key in container.allKeys {
-                if let fields = try? container.decode(FileFields.self, forKey: key) {
+                if let fields = try? container.decode(GistFile.self, forKey: key) {
                     files[key.stringValue] = fields
                 }
             }
@@ -42,9 +42,4 @@ struct GistResponse: Codable {
         }
     }
     
-    struct FileFields: Codable {
-        let filename: String
-        let type: String
-        let size: Int
-    }
 }

@@ -11,10 +11,12 @@ import UIKit
 class GistTableViewCell: UITableViewCell {
     
     @IBOutlet var fileNameLabel: UILabel!
+    @IBOutlet var backgroundCellView: UIView!
     
     override func awakeFromNib() {
         super.awakeFromNib()
         
+        backgroundCellView.viewStyle()
     }
     
     override func setSelected(_ selected: Bool, animated: Bool) {

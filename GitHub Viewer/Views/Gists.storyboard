@@ -16,8 +16,8 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="VbB-3Y-nBz">
-                                <rect key="frame" x="0.0" y="88" width="414" height="774"/>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="VbB-3Y-nBz">
+                                <rect key="frame" x="0.0" y="98" width="414" height="764"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                 <connections>
                                     <outlet property="dataSource" destination="2bi-Ug-FtO" id="aUr-vV-Z1D"/>
@@ -30,35 +30,85 @@
                             <constraint firstItem="77t-hI-NaF" firstAttribute="trailing" secondItem="VbB-3Y-nBz" secondAttribute="trailing" id="2Zw-At-6O5"/>
                             <constraint firstItem="77t-hI-NaF" firstAttribute="bottom" secondItem="VbB-3Y-nBz" secondAttribute="bottom" id="LDq-SJ-fCE"/>
                             <constraint firstItem="VbB-3Y-nBz" firstAttribute="leading" secondItem="77t-hI-NaF" secondAttribute="leading" id="MtR-DJ-Htk"/>
-                            <constraint firstItem="VbB-3Y-nBz" firstAttribute="top" secondItem="77t-hI-NaF" secondAttribute="top" id="yjS-c9-HkS"/>
+                            <constraint firstItem="VbB-3Y-nBz" firstAttribute="top" secondItem="77t-hI-NaF" secondAttribute="top" constant="10" id="yjS-c9-HkS"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="77t-hI-NaF"/>
                     </view>
                     <navigationItem key="navigationItem" title="Gists" id="5vd-52-zEj">
-                        <barButtonItem key="backBarButtonItem" title="Atrás" id="DDw-J8-cCy"/>
+                        <barButtonItem key="backBarButtonItem" title="Gists" id="DDw-J8-cCy"/>
                     </navigationItem>
                     <connections>
                         <outlet property="gistListTableView" destination="VbB-3Y-nBz" id="DjD-NP-ZgJ"/>
+                        <segue destination="Zsg-DW-NYk" kind="show" identifier="gistFilesSegue" id="XeY-7n-PLU"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="44Z-hT-2pU" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="2586" y="-1031"/>
         </scene>
-        <!--View Controller-->
+        <!--Archivos-->
         <scene sceneID="6eU-2c-xfN">
             <objects>
-                <viewController id="Zsg-DW-NYk" sceneMemberID="viewController">
+                <viewController id="Zsg-DW-NYk" customClass="GistFilesViewController" customModule="GitHub_Viewer" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="3Ta-qG-392">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Descripción del Gist" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zcS-Nh-Zug">
+                                <rect key="frame" x="10" y="98" width="394" height="24"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="3a0-NV-E4r">
+                                <rect key="frame" x="0.0" y="142" width="414" height="720"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                <connections>
+                                    <outlet property="dataSource" destination="Zsg-DW-NYk" id="rTC-US-ZKc"/>
+                                    <outlet property="delegate" destination="Zsg-DW-NYk" id="JWg-w5-M4b"/>
+                                </connections>
+                            </tableView>
+                        </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <constraints>
+                            <constraint firstItem="EW3-UK-CSa" firstAttribute="trailing" secondItem="3a0-NV-E4r" secondAttribute="trailing" id="IzI-Gk-ybg"/>
+                            <constraint firstItem="zcS-Nh-Zug" firstAttribute="leading" secondItem="EW3-UK-CSa" secondAttribute="leading" constant="10" id="LxH-ME-29J"/>
+                            <constraint firstItem="EW3-UK-CSa" firstAttribute="trailing" secondItem="zcS-Nh-Zug" secondAttribute="trailing" constant="10" id="UUr-xC-nQL"/>
+                            <constraint firstItem="3a0-NV-E4r" firstAttribute="top" secondItem="zcS-Nh-Zug" secondAttribute="bottom" constant="20" id="Y7W-lv-P3k"/>
+                            <constraint firstItem="zcS-Nh-Zug" firstAttribute="top" secondItem="EW3-UK-CSa" secondAttribute="top" constant="10" id="aSA-us-cP0"/>
+                            <constraint firstItem="3a0-NV-E4r" firstAttribute="leading" secondItem="EW3-UK-CSa" secondAttribute="leading" id="hi8-4X-sTj"/>
+                            <constraint firstItem="EW3-UK-CSa" firstAttribute="bottom" secondItem="3a0-NV-E4r" secondAttribute="bottom" id="wA1-1s-IeI"/>
+                        </constraints>
                         <viewLayoutGuide key="safeArea" id="EW3-UK-CSa"/>
                     </view>
+                    <navigationItem key="navigationItem" title="Archivos" id="HCW-gn-J7u">
+                        <barButtonItem key="backBarButtonItem" title="Archivos" id="udn-iO-nVS"/>
+                    </navigationItem>
+                    <connections>
+                        <outlet property="gistDescriptionLabel" destination="zcS-Nh-Zug" id="CM2-CT-pEg"/>
+                        <outlet property="gistFilesTableView" destination="3a0-NV-E4r" id="9hl-S8-WO6"/>
+                        <segue destination="Of3-VA-qVO" kind="show" identifier="gistFileSegue" id="uyv-oI-oaB"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="to1-iX-Cp3" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="3295" y="-1032"/>
+        </scene>
+        <!--View Controller-->
+        <scene sceneID="HAe-vK-pmD">
+            <objects>
+                <viewController id="Of3-VA-qVO" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="UEn-Tm-9E1">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <viewLayoutGuide key="safeArea" id="it7-NQ-8yl"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="N89-Al-tv9"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="bzG-7s-RZn" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3978" y="-1033"/>
         </scene>
         <!--Gists-->
         <scene sceneID="B9i-b3-Dnn">

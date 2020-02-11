@@ -10,6 +10,12 @@ import UIKit
 
 extension UIViewController {
     
+    public enum Segues: String {
+        case home = "loginHomeSegue"
+        case gistFileList = "gistFilesSegue"
+        case gistFile = "gistFileSegue"
+    }
+    
     public enum Storyboards: String {
         case login = "Main"
         case home = "Home"
