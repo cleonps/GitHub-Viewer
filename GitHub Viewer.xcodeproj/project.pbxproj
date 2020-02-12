@@ -35,6 +35,8 @@
 		B634313123F4653200C4C9A2 /* ReposResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = B634313023F4653200C4C9A2 /* ReposResponse.swift */; };
 		B634313323F466FA00C4C9A2 /* ReposViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B634313223F466FA00C4C9A2 /* ReposViewController.swift */; };
 		B634313523F467DF00C4C9A2 /* Repos.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B634313423F467DF00C4C9A2 /* Repos.storyboard */; };
+		B693CF3E23F479440091F329 /* RepoContentsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B693CF3D23F479440091F329 /* RepoContentsViewController.swift */; };
+		B693CF4023F484310091F329 /* FileResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = B693CF3F23F484310091F329 /* FileResponse.swift */; };
 		B6EB182F23D78F01002607BF /* GistResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6EB182E23D78F01002607BF /* GistResponse.swift */; };
 		B6EB183323D7AD9B002607BF /* UITableView+Names.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6EB183223D7AD9B002607BF /* UITableView+Names.swift */; };
 		B6EB183623D7AF21002607BF /* GistTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6EB183423D7AF21002607BF /* GistTableViewCell.swift */; };
@@ -86,6 +88,8 @@
 		B634313023F4653200C4C9A2 /* ReposResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReposResponse.swift; sourceTree = "<group>"; };
 		B634313223F466FA00C4C9A2 /* ReposViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReposViewController.swift; sourceTree = "<group>"; };
 		B634313423F467DF00C4C9A2 /* Repos.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Repos.storyboard; sourceTree = "<group>"; };
+		B693CF3D23F479440091F329 /* RepoContentsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RepoContentsViewController.swift; sourceTree = "<group>"; };
+		B693CF3F23F484310091F329 /* FileResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileResponse.swift; sourceTree = "<group>"; };
 		B6EB182E23D78F01002607BF /* GistResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GistResponse.swift; sourceTree = "<group>"; };
 		B6EB183223D7AD9B002607BF /* UITableView+Names.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITableView+Names.swift"; sourceTree = "<group>"; };
 		B6EB183423D7AF21002607BF /* GistTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GistTableViewCell.swift; sourceTree = "<group>"; };
@@ -179,6 +183,7 @@
 				B6EB182E23D78F01002607BF /* GistResponse.swift */,
 				3563A0D223F333080019032F /* GistFile.swift */,
 				B634313023F4653200C4C9A2 /* ReposResponse.swift */,
+				B693CF3F23F484310091F329 /* FileResponse.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -205,6 +210,7 @@
 				3563A0D023F3323C0019032F /* GistFilesViewController.swift */,
 				3563A0D623F38AA20019032F /* GistFileContentViewController.swift */,
 				B634313223F466FA00C4C9A2 /* ReposViewController.swift */,
+				B693CF3D23F479440091F329 /* RepoContentsViewController.swift */,
 				35A046B723EFCD7D00695516 /* ProfileViewController.swift */,
 			);
 			path = Controllers;
@@ -433,6 +439,7 @@
 				3563A0D123F3323C0019032F /* GistFilesViewController.swift in Sources */,
 				B634313123F4653200C4C9A2 /* ReposResponse.swift in Sources */,
 				B634313323F466FA00C4C9A2 /* ReposViewController.swift in Sources */,
+				B693CF3E23F479440091F329 /* RepoContentsViewController.swift in Sources */,
 				3563A0D723F38AA20019032F /* GistFileContentViewController.swift in Sources */,
 				358D074123D3BF360097BF02 /* ViewController+Utilities.swift in Sources */,
 				B6EB182F23D78F01002607BF /* GistResponse.swift in Sources */,
@@ -440,6 +447,7 @@
 				352F011923D3740800177F99 /* MainViewController.swift in Sources */,
 				35058C2323D3D3540015A90B /* Router.swift in Sources */,
 				352F013E23D3954200177F99 /* GistsViewController.swift in Sources */,
+				B693CF4023F484310091F329 /* FileResponse.swift in Sources */,
 				35A046B823EFCD7D00695516 /* ProfileViewController.swift in Sources */,
 				B6EB183623D7AF21002607BF /* GistTableViewCell.swift in Sources */,
 				3563A0D323F333080019032F /* GistFile.swift in Sources */,

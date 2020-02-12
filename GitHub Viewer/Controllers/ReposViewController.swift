@@ -11,19 +11,31 @@ import UIKit
 class ReposViewController: UITableViewController {
     var refresher = UIRefreshControl()
     var repos = [ReposResponse]()
+    var repo = ""
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         NetworkManager.shared.delegate = self
-        NetworkManager.shared.getRepos()
+        NetworkManager.shared.getRepoList()
         tableView.register(nibName: .gist, cellName: .gist)
         tableView.refreshControl = refresher
         refresher.addTarget(self, action: #selector(refreshData(_:)), for: .valueChanged)
     }
     
     @objc private func refreshData(_ sender: Any) {
-        NetworkManager.shared.getRepos()
+        NetworkManager.shared.getRepoList()
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        switch segue.identifier {
+        case Segues.repoContents.rawValue:
+            let destinationVC = segue.destination as! RepoContentsViewController
+            destinationVC.repo = repo
+            
+        default:
+            return
+        }
     }
 }
 
@@ -38,13 +50,19 @@ extension ReposViewController {
         let row = indexPath.row
         
         let name = "Repo: \(repos[row].name)."
-        let accessLevel = "Privacidad: \(repos[row].isPrivate ? "Privado" : "Público")."
+        let accessLevel = "\nAcceso: \(repos[row].isPrivate ? "Privado" : "Público")."
         let description = repos[row].description ?? ""
         let repoDescription = description != "" ? "\nDescripción: \(description)" : ""
         
         cell.fileNameLabel.text = "\(name) \(accessLevel)\(repoDescription)"
         
         return cell
+    }
+    
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let row = indexPath.row
+        repo = repos[row].name
+        performSegue(withIdentifier: Segues.repoContents.rawValue, sender: nil)
     }
 }
 

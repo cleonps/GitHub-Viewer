@@ -25,7 +25,6 @@ class GistFilesViewController: UIViewController {
         
         print("viewDidLoad")
         NetworkManager.shared.delegate = self
-        gistFilesTableView.delegate = self
         gistFilesTableView.register(nibName: .gist, cellName: .gist)
         gistFilesTableView.refreshControl = refresher
         refresher.addTarget(self, action: #selector(refreshData(_:)), for: .valueChanged)

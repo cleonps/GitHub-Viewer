@@ -4,6 +4,7 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15706"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -21,10 +22,58 @@
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" title="Repos" id="vl6-HY-yOL"/>
+                    <connections>
+                        <segue destination="Snl-cX-wfz" kind="show" identifier="repoContentsSegue" id="Mxt-sQ-x9R"/>
+                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="bGh-kJ-tmn" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1584" y="102"/>
+            <point key="canvasLocation" x="1601" y="102"/>
+        </scene>
+        <!--Archivos-->
+        <scene sceneID="N61-9m-S41">
+            <objects>
+                <viewController id="Snl-cX-wfz" customClass="RepoContentsViewController" customModule="GitHub_Viewer" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="1hJ-r2-Tin">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="gPI-Gf-bVT">
+                                <rect key="frame" x="0.0" y="108" width="414" height="705"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                <connections>
+                                    <outlet property="dataSource" destination="Snl-cX-wfz" id="mdk-PM-LfL"/>
+                                    <outlet property="delegate" destination="Snl-cX-wfz" id="XN7-Gd-oH9"/>
+                                </connections>
+                            </tableView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="udB-GF-tw2">
+                                <rect key="frame" x="20" y="98" width="374" height="0.0"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <constraints>
+                            <constraint firstItem="gPI-Gf-bVT" firstAttribute="leading" secondItem="2oO-9k-AyT" secondAttribute="leading" id="27v-1q-xkX"/>
+                            <constraint firstItem="udB-GF-tw2" firstAttribute="top" secondItem="2oO-9k-AyT" secondAttribute="top" constant="10" id="6vH-7b-jhW"/>
+                            <constraint firstItem="2oO-9k-AyT" firstAttribute="trailing" secondItem="gPI-Gf-bVT" secondAttribute="trailing" id="Fmh-ad-4fe"/>
+                            <constraint firstItem="2oO-9k-AyT" firstAttribute="bottom" secondItem="gPI-Gf-bVT" secondAttribute="bottom" id="OwB-if-uX7"/>
+                            <constraint firstItem="gPI-Gf-bVT" firstAttribute="top" secondItem="udB-GF-tw2" secondAttribute="bottom" constant="10" id="Wa0-Y2-5m9"/>
+                            <constraint firstItem="udB-GF-tw2" firstAttribute="leading" secondItem="2oO-9k-AyT" secondAttribute="leading" constant="20" id="bVb-kf-pnj"/>
+                            <constraint firstItem="2oO-9k-AyT" firstAttribute="trailing" secondItem="udB-GF-tw2" secondAttribute="trailing" constant="20" id="xSU-CU-Gx4"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="2oO-9k-AyT"/>
+                    </view>
+                    <navigationItem key="navigationItem" title="Archivos" id="7qB-3N-Ass"/>
+                    <connections>
+                        <outlet property="repoFilesTableView" destination="gPI-Gf-bVT" id="nEp-O0-NnG"/>
+                        <outlet property="titleLabel" destination="udB-GF-tw2" id="Hgd-5C-VSr"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="BUn-7K-Doy" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2285.507246376812" y="101.78571428571428"/>
         </scene>
         <!--Repos-->
         <scene sceneID="ppg-3h-6Ic">
@@ -35,6 +84,7 @@
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="hQC-jt-Mx7">
                         <rect key="frame" x="0.0" y="44" width="414" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
+                        <color key="tintColor" systemColor="systemGreenColor" red="0.20392156859999999" green="0.78039215689999997" blue="0.34901960780000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     </navigationBar>
                     <connections>
                         <segue destination="BhA-fP-FVF" kind="relationship" relationship="rootViewController" id="DIJ-88-qQq"/>

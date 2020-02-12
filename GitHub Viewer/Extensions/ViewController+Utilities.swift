@@ -14,6 +14,7 @@ extension UIViewController {
         case home = "loginHomeSegue"
         case gistFileList = "gistFilesSegue"
         case gistFile = "gistFileSegue"
+        case repoContents = "repoContentsSegue"
     }
     
     public enum Storyboards: String {
@@ -21,6 +22,7 @@ extension UIViewController {
         case home = "Home"
         case gists = "Gists"
         case profile = "Profile"
+        case repos = "Repos"
     }
     
     public enum ViewIdentifiers: String {

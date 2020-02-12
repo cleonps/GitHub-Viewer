@@ -44,9 +44,14 @@ extension NetworkManager {
         handleRequest(route: route, validModel: GistResponse.self)
     }
     
-    func getRepos() {
+    func getRepoList() {
         let route = Router.getRepos
         handleRequest(route: route, validModel: [ReposResponse].self)
+    }
+    
+    func getRepoContents(user: String, repo: String) {
+        let route = Router.getRepoContents(username: user, repo: repo)
+        handleRequest(route: route, validModel: [FileReponse].self)
     }
 }
 
