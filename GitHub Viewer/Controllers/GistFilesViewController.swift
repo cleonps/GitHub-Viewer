@@ -9,9 +9,13 @@
 import UIKit
 
 class GistFilesViewController: UIViewController {
-    var idGist = ""
-    var gistDescription = ""
-    var gistFiles = [GistFile]()
+    let refresher = UIRefreshControl()
+    
+    public var idGist = ""
+    private var gistDescription = ""
+    private var gistFiles = [GistFile]()
+    private var sentContent = ""
+    private var sentTitle = ""
     
     @IBOutlet var gistDescriptionLabel: UILabel!
     @IBOutlet var gistFilesTableView: UITableView!
@@ -19,9 +23,28 @@ class GistFilesViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        gistDescriptionLabel.text = "Descripción: \(gistDescription)"
+        print("viewDidLoad")
+        NetworkManager.shared.delegate = self
         gistFilesTableView.delegate = self
         gistFilesTableView.register(nibName: .gist, cellName: .gist)
+        gistFilesTableView.refreshControl = refresher
+        refresher.addTarget(self, action: #selector(refreshData(_:)), for: .valueChanged)
+        NetworkManager.shared.getGistFiles(id: idGist)
+    }
+    
+    @objc private func refreshData(_ sender: Any) {
+        NetworkManager.shared.getGistFiles(id: idGist)
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        switch segue.identifier {
+        case Segues.gistFile.rawValue:
+            let destinationVC = segue.destination as! GistFileContentViewController
+            destinationVC.gistTitle = sentTitle
+            destinationVC.content = sentContent
+        default:
+            return
+        }
     }
 }
 
@@ -40,5 +63,48 @@ extension GistFilesViewController: UITableViewDelegate, UITableViewDataSource {
         return cell
     }
     
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let row = indexPath.row
+        sentContent = gistFiles[row].content ?? ""
+        sentTitle = gistFiles[row].filename
+        performSegue(withIdentifier: Segues.gistFile.rawValue, sender: nil)
+    }
+    
 }
 
+extension GistFilesViewController: NetworkManagerDelegate {
+    func response<T:Codable>(dataModel: T, endpoint: Router, code: StatusCodes) {
+        self.refresher.endRefreshing()
+        switch endpoint {
+        case .getGistFiles:
+            switch code {
+            case .success, .accepted:
+                let gistResponse = dataModel as! GistResponse
+                gistFiles = gistResponse.files.files.map { $1 }
+                gistDescription = gistResponse.description
+                
+                gistDescriptionLabel.text = "Descripción: \(gistDescription)"
+                gistFilesTableView.reloadData()
+            default:
+                let error = dataModel as! ErrorResponse
+                
+                gistDescriptionLabel.text = "No se pudieron obtener los datos"
+                presentSimpleAlert(title: "Error", message: "\(error.message)")
+            }
+        default:
+            break
+        }
+    }
+    
+    func response(withError error: String, endpoint: Router) {
+        self.refresher.endRefreshing()
+        switch endpoint {
+        case .getGistFiles:
+            presentSimpleAlert(title: "Error", message: error)
+        default:
+            break
+        }
+    }
+    
+    
+}

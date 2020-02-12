@@ -14,6 +14,7 @@ enum Router: URLRequestConvertible {
     
     case login
     case getGists(username: String)
+    case getGistFiles(id: String)
     
     var path: String {
         switch self {
@@ -21,19 +22,21 @@ enum Router: URLRequestConvertible {
             return "user"
         case .getGists(let username):
             return "users/\(username)/gists"
+        case .getGistFiles(let id):
+        return "gists/\(id)"
         }
     }
     
     var method: HTTPMethod {
         switch self {
-        case .login, .getGists:
+        case .login, .getGists, .getGistFiles:
             return .get
         }
     }
     
     var headers: HTTPHeaders {
         switch self {
-        case .login, .getGists:
+        case .login, .getGists, .getGistFiles:
             return HTTPHeaders([
                 NetworkManager.shared.authorization,
                 .accept("application/vnd.github.v3+json")

@@ -39,6 +39,11 @@ extension NetworkManager {
         handleRequest(route: route, validModel: [GistResponse].self)
     }
     
+    func getGistFiles(id: String) {
+        let route = Router.getGistFiles(id: id)
+        handleRequest(route: route, validModel: GistResponse.self)
+    }
+    
 }
 
 // MARK: Response handler functions

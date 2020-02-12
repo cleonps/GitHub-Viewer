@@ -12,11 +12,9 @@ class GistsViewController: UIViewController {
     let refresher = UIRefreshControl()
     let userDefaults = UserDefaults.standard
     
-    var gists: [GistResponse] = []
-    var username = ""
-    var idGist = ""
-    var gistDescription = ""
-    var gistFiles = [GistFile]()
+    private var gists: [GistResponse] = []
+    private var username = ""
+    private var idGist = ""
     
     @IBOutlet var gistListTableView: UITableView!
     
@@ -53,8 +51,6 @@ class GistsViewController: UIViewController {
         case Segues.gistFileList.rawValue:
             let destinationVC = segue.destination as! GistFilesViewController
             destinationVC.idGist = idGist
-            destinationVC.gistDescription = gistDescription
-            destinationVC.gistFiles = gistFiles
         default:
             return
         }
@@ -86,8 +82,6 @@ extension GistsViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let row = indexPath.row
         idGist = gists[row].id
-        gistDescription = gists[row].description
-        gistFiles = gists[row].files.files.map { $1 }
         performSegue(withIdentifier: Segues.gistFileList.rawValue, sender: nil)
     }
     

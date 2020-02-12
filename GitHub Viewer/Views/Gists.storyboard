@@ -94,17 +94,35 @@
             </objects>
             <point key="canvasLocation" x="3295" y="-1032"/>
         </scene>
-        <!--View Controller-->
+        <!--Gist File Content View Controller-->
         <scene sceneID="HAe-vK-pmD">
             <objects>
-                <viewController id="Of3-VA-qVO" sceneMemberID="viewController">
+                <viewController id="Of3-VA-qVO" customClass="GistFileContentViewController" customModule="GitHub_Viewer" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="UEn-Tm-9E1">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="6mt-1R-n2U">
+                                <rect key="frame" x="20" y="108" width="374" height="734"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                <color key="textColor" systemColor="labelColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                            </textView>
+                        </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <constraints>
+                            <constraint firstItem="6mt-1R-n2U" firstAttribute="top" secondItem="it7-NQ-8yl" secondAttribute="top" constant="20" id="DdA-cR-1wv"/>
+                            <constraint firstItem="it7-NQ-8yl" firstAttribute="trailing" secondItem="6mt-1R-n2U" secondAttribute="trailing" constant="20" id="E3c-6N-p46"/>
+                            <constraint firstItem="it7-NQ-8yl" firstAttribute="bottom" secondItem="6mt-1R-n2U" secondAttribute="bottom" constant="20" id="YTf-Yc-xrx"/>
+                            <constraint firstItem="6mt-1R-n2U" firstAttribute="leading" secondItem="it7-NQ-8yl" secondAttribute="leading" constant="20" id="eGn-ui-bq2"/>
+                        </constraints>
                         <viewLayoutGuide key="safeArea" id="it7-NQ-8yl"/>
                     </view>
                     <navigationItem key="navigationItem" id="N89-Al-tv9"/>
+                    <connections>
+                        <outlet property="contentTextView" destination="6mt-1R-n2U" id="7fH-pd-Ubn"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="bzG-7s-RZn" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>

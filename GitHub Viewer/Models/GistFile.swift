@@ -9,7 +9,8 @@
 import Foundation
 
 struct GistFile: Codable {
-    let filename: String
-    let type: String
-    let size: Int
+    var filename: String
+    var type: String
+    var size: Int
+    var content: String?
 }
