@@ -15,6 +15,7 @@ class RepoContentsViewController: UIViewController {
     lazy var user = userDefaults.string(forKey: UserDefaults.Keys.User)!
     var repo = ""
     var fileList = [FileReponse]()
+    var fileName = ""
     
     @IBOutlet var repoFilesTableView: UITableView!
     @IBOutlet var titleLabel: UILabel!
@@ -34,6 +35,17 @@ class RepoContentsViewController: UIViewController {
     @objc private func refreshData(_ sender: Any) {
         NetworkManager.shared.getRepoContents(user: user, repo: repo)
     }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        switch segue.identifier {
+        case Segues.repoFile.rawValue:
+            let destinationVC = segue.destination as! RepoFileViewController
+            destinationVC.repo = repo
+            destinationVC.fileName = fileName
+        default:
+            return
+        }
+    }
 }
 
 extension RepoContentsViewController: UITableViewDelegate, UITableViewDataSource {
@@ -44,12 +56,25 @@ extension RepoContentsViewController: UITableViewDelegate, UITableViewDataSource
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeReusableCell(withName: .gist, for: indexPath) as! GistTableViewCell
         let row = indexPath.row
-        cell.fileNameLabel.text = "\(fileList[row].name) - \(fileList[row].size)"
+        let name = "\(fileList[row].name)\n"
+        var description = "\tTamaño: \(fileList[row].size) Bytes"
+        if fileList[row].type == FileType.dir.rawValue {
+            description = "\tDirectorio de archivos"
+        }
+        
+        cell.fileNameLabel.text = "\(name)\(description)"
         
         return cell
     }
     
-    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let row = indexPath.row
+        
+        if fileList[row].type == FileType.file.rawValue {
+            fileName = fileList[row].name
+            performSegue(withIdentifier: Segues.repoFile.rawValue, sender: nil)
+        }
+    }
 }
 
 extension RepoContentsViewController: NetworkManagerDelegate {

@@ -69,11 +69,46 @@
                     <connections>
                         <outlet property="repoFilesTableView" destination="gPI-Gf-bVT" id="nEp-O0-NnG"/>
                         <outlet property="titleLabel" destination="udB-GF-tw2" id="Hgd-5C-VSr"/>
+                        <segue destination="6a8-Zu-5T2" kind="show" identifier="repoFileSegue" id="jmc-JT-jFc"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="BUn-7K-Doy" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="2285.507246376812" y="101.78571428571428"/>
+        </scene>
+        <!--Repo File View Controller-->
+        <scene sceneID="FQa-LA-wTZ">
+            <objects>
+                <viewController id="6a8-Zu-5T2" customClass="RepoFileViewController" customModule="GitHub_Viewer" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="f9R-6N-1VN">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="BKs-AI-jI5">
+                                <rect key="frame" x="20" y="108" width="374" height="685"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                <color key="textColor" systemColor="labelColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                            </textView>
+                        </subviews>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <constraints>
+                            <constraint firstItem="BKs-AI-jI5" firstAttribute="top" secondItem="kuE-xr-MsC" secondAttribute="top" constant="20" id="TSa-F6-27B"/>
+                            <constraint firstItem="BKs-AI-jI5" firstAttribute="leading" secondItem="kuE-xr-MsC" secondAttribute="leading" constant="20" id="fGD-vv-s5p"/>
+                            <constraint firstItem="kuE-xr-MsC" firstAttribute="trailing" secondItem="BKs-AI-jI5" secondAttribute="trailing" constant="20" id="gTc-Xr-0Mo"/>
+                            <constraint firstItem="kuE-xr-MsC" firstAttribute="bottom" secondItem="BKs-AI-jI5" secondAttribute="bottom" constant="20" id="lku-ru-zev"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="kuE-xr-MsC"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="UQQ-zV-DF2"/>
+                    <connections>
+                        <outlet property="contentTextView" destination="BKs-AI-jI5" id="V5l-eK-Y8v"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="EuR-1v-zte" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2971" y="102"/>
         </scene>
         <!--Repos-->
         <scene sceneID="ppg-3h-6Ic">

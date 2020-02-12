@@ -11,4 +11,10 @@ import Foundation
 struct FileReponse: Codable {
     let name: String
     let size: Int
+    let type: String
+}
+
+enum FileType: String {
+    case file = "file"
+    case dir = "dir"
 }

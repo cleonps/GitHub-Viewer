@@ -53,16 +53,25 @@ extension NetworkManager {
         let route = Router.getRepoContents(username: user, repo: repo)
         handleRequest(route: route, validModel: [FileReponse].self)
     }
+    
+    func getRepoFileContent(user: String, repo: String, file: String) {
+        let route = Router.getRepoFileContent(username: user, repo: repo, file: file)
+        handleRequest(route: route, validModel: String.self, isRaw: true)
+    }
 }
 
 // MARK: Response handler functions
 extension NetworkManager {
     
-    func handleRequest<T: Codable>(route: Router, validModel: T.Type) {
+    func handleRequest<T: Codable>(route: Router, validModel: T.Type, isRaw: Bool? = false) {
         AF.request(route).responseString { (response) in
             switch response.result {
             case .success:
-                self.parseResponse(response, validModel: validModel.self, endpoint: route)
+                if !isRaw! {
+                    self.parseResponse(response, validModel: validModel.self, endpoint: route)
+                } else {
+                    self.getRawString(response, endpoint: route)
+                }
             case .failure(let error):
                 let message = self.getNetworkError(error.localizedDescription)
                 self.delegate!.response(withError: message, endpoint: route)
@@ -78,8 +87,27 @@ extension NetworkManager {
         do {
             switch statusCode {
             case .success, .accepted, .created, .notFound:
-                let user = try JSONDecoder().decode(validModel.self, from: data)
-                self.delegate!.response(dataModel: user, endpoint: endpoint, code: statusCode)
+                let model = try JSONDecoder().decode(validModel.self, from: data)
+                self.delegate!.response(dataModel: model, endpoint: endpoint, code: statusCode)
+            default:
+                let error = try JSONDecoder().decode(ErrorResponse.self, from: data)
+                self.delegate!.response(dataModel: error, endpoint: endpoint, code: statusCode)
+            }
+        } catch {
+            let errorMessage = response.value ?? "Error indefinido"
+            self.delegate!.response(withError: errorMessage, endpoint: endpoint)
+        }
+    }
+    
+    func getRawString(_ response: AFDataResponse<String>, endpoint: Router) {
+        guard let status = response.response?.statusCode else { return }
+        guard let statusCode = StatusCodes(rawValue: status) else { return }
+        guard let data = response.data else { return }
+        
+        do {
+            switch statusCode {
+            case .success, .accepted, .created, .notFound:
+                self.delegate!.response(dataModel: response.value, endpoint: endpoint, code: statusCode)
             default:
                 let error = try JSONDecoder().decode(ErrorResponse.self, from: data)
                 self.delegate!.response(dataModel: error, endpoint: endpoint, code: statusCode)

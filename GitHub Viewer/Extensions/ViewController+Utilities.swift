@@ -15,6 +15,7 @@ extension UIViewController {
         case gistFileList = "gistFilesSegue"
         case gistFile = "gistFileSegue"
         case repoContents = "repoContentsSegue"
+        case repoFile = "repoFileSegue"
     }
     
     public enum Storyboards: String {
