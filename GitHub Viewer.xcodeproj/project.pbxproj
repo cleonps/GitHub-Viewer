@@ -32,6 +32,9 @@
 		35A046B823EFCD7D00695516 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35A046B723EFCD7D00695516 /* ProfileViewController.swift */; };
 		3AB199D79F385D285273D07C /* Pods_GitHub_ViewerTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 23F33C50D93622F7F46C3CC2 /* Pods_GitHub_ViewerTests.framework */; };
 		56FA0BBC86171E76E487559D /* Pods_GitHub_Viewer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7A0EC630EFBA15F85261CB11 /* Pods_GitHub_Viewer.framework */; };
+		B634313123F4653200C4C9A2 /* ReposResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = B634313023F4653200C4C9A2 /* ReposResponse.swift */; };
+		B634313323F466FA00C4C9A2 /* ReposViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B634313223F466FA00C4C9A2 /* ReposViewController.swift */; };
+		B634313523F467DF00C4C9A2 /* Repos.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B634313423F467DF00C4C9A2 /* Repos.storyboard */; };
 		B6EB182F23D78F01002607BF /* GistResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6EB182E23D78F01002607BF /* GistResponse.swift */; };
 		B6EB183323D7AD9B002607BF /* UITableView+Names.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6EB183223D7AD9B002607BF /* UITableView+Names.swift */; };
 		B6EB183623D7AF21002607BF /* GistTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6EB183423D7AF21002607BF /* GistTableViewCell.swift */; };
@@ -80,6 +83,9 @@
 		7A0EC630EFBA15F85261CB11 /* Pods_GitHub_Viewer.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_GitHub_Viewer.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		9D58476241FA177BA0D0079A /* Pods-GitHub Viewer.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GitHub Viewer.debug.xcconfig"; path = "Target Support Files/Pods-GitHub Viewer/Pods-GitHub Viewer.debug.xcconfig"; sourceTree = "<group>"; };
 		9FB06091C6A0BE02790924B7 /* Pods-GitHub ViewerTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GitHub ViewerTests.release.xcconfig"; path = "Target Support Files/Pods-GitHub ViewerTests/Pods-GitHub ViewerTests.release.xcconfig"; sourceTree = "<group>"; };
+		B634313023F4653200C4C9A2 /* ReposResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReposResponse.swift; sourceTree = "<group>"; };
+		B634313223F466FA00C4C9A2 /* ReposViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReposViewController.swift; sourceTree = "<group>"; };
+		B634313423F467DF00C4C9A2 /* Repos.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Repos.storyboard; sourceTree = "<group>"; };
 		B6EB182E23D78F01002607BF /* GistResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GistResponse.swift; sourceTree = "<group>"; };
 		B6EB183223D7AD9B002607BF /* UITableView+Names.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITableView+Names.swift"; sourceTree = "<group>"; };
 		B6EB183423D7AF21002607BF /* GistTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GistTableViewCell.swift; sourceTree = "<group>"; };
@@ -172,6 +178,7 @@
 				357BB5ED23D3DEA700605AA8 /* ErrorResponse.swift */,
 				B6EB182E23D78F01002607BF /* GistResponse.swift */,
 				3563A0D223F333080019032F /* GistFile.swift */,
+				B634313023F4653200C4C9A2 /* ReposResponse.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -183,6 +190,7 @@
 				352F013B23D393AC00177F99 /* Home.storyboard */,
 				B6EB183923D7AF3C002607BF /* GistList */,
 				35034E7023F0A1D100FA12E0 /* Gists.storyboard */,
+				B634313423F467DF00C4C9A2 /* Repos.storyboard */,
 				35034E7223F0A21800FA12E0 /* Profile.storyboard */,
 			);
 			path = Views;
@@ -195,8 +203,9 @@
 				B6EB183823D7AF30002607BF /* GistList */,
 				352F013D23D3954200177F99 /* GistsViewController.swift */,
 				3563A0D023F3323C0019032F /* GistFilesViewController.swift */,
-				35A046B723EFCD7D00695516 /* ProfileViewController.swift */,
 				3563A0D623F38AA20019032F /* GistFileContentViewController.swift */,
+				B634313223F466FA00C4C9A2 /* ReposViewController.swift */,
+				35A046B723EFCD7D00695516 /* ProfileViewController.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -331,6 +340,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B634313523F467DF00C4C9A2 /* Repos.storyboard in Resources */,
 				352F012123D3740900177F99 /* LaunchScreen.storyboard in Resources */,
 				35034E7123F0A1D100FA12E0 /* Gists.storyboard in Resources */,
 				352F013C23D393AC00177F99 /* Home.storyboard in Resources */,
@@ -421,6 +431,8 @@
 			files = (
 				35058C2123D3D20C0015A90B /* NetworkManager.swift in Sources */,
 				3563A0D123F3323C0019032F /* GistFilesViewController.swift in Sources */,
+				B634313123F4653200C4C9A2 /* ReposResponse.swift in Sources */,
+				B634313323F466FA00C4C9A2 /* ReposViewController.swift in Sources */,
 				3563A0D723F38AA20019032F /* GistFileContentViewController.swift in Sources */,
 				358D074123D3BF360097BF02 /* ViewController+Utilities.swift in Sources */,
 				B6EB182F23D78F01002607BF /* GistResponse.swift in Sources */,

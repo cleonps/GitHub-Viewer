@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15705" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="9ps-x1-Ht0">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15706"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--Repos-->
+        <scene sceneID="9l2-7Q-DpE">
+            <objects>
+                <tableViewController id="BhA-fP-FVF" customClass="ReposViewController" customModule="GitHub_Viewer" customModuleProvider="target" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="Eha-yd-uL7" customClass="GistViewController">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <connections>
+                            <outlet property="dataSource" destination="BhA-fP-FVF" id="D2a-E6-dKk"/>
+                            <outlet property="delegate" destination="BhA-fP-FVF" id="ube-ou-vd0"/>
+                        </connections>
+                    </tableView>
+                    <navigationItem key="navigationItem" title="Repos" id="vl6-HY-yOL"/>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="bGh-kJ-tmn" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1584" y="102"/>
+        </scene>
+        <!--Repos-->
+        <scene sceneID="ppg-3h-6Ic">
+            <objects>
+                <navigationController id="9ps-x1-Ht0" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="Repos" image="repos" id="4az-Nq-Jx5"/>
+                    <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="hQC-jt-Mx7">
+                        <rect key="frame" x="0.0" y="44" width="414" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <connections>
+                        <segue destination="BhA-fP-FVF" kind="relationship" relationship="rootViewController" id="DIJ-88-qQq"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="bAq-rh-ukQ" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="919" y="103"/>
+        </scene>
+    </scenes>
+    <resources>
+        <image name="repos" width="23" height="23"/>
+    </resources>
+</document>

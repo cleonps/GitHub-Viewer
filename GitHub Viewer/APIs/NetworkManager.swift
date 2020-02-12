@@ -44,6 +44,10 @@ extension NetworkManager {
         handleRequest(route: route, validModel: GistResponse.self)
     }
     
+    func getRepos() {
+        let route = Router.getRepos
+        handleRequest(route: route, validModel: [ReposResponse].self)
+    }
 }
 
 // MARK: Response handler functions
