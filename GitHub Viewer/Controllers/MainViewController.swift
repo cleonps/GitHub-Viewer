@@ -19,6 +19,7 @@ class MainViewController: UIViewController {
     
     var shouldCallAPI = true
     
+    @IBOutlet var logoWidthConstraint: NSLayoutConstraint!
     @IBOutlet var emailTextField: UITextField!
     @IBOutlet var passwordTextField: UITextField!
     
@@ -49,7 +50,18 @@ class MainViewController: UIViewController {
         }
     }
     
-    @IBAction func loginButtonPressed(_ sender: UIButton) {
+    override func dismissKeyboard() {
+        super.dismissKeyboard()
+        
+        DispatchQueue.main.asyncAfter(deadline: .now() + .milliseconds(1)) {
+            self.logoWidthConstraint.constant = 200
+            UIView.animate(withDuration: 0.5) {
+                self.view.layoutIfNeeded()
+            }
+        }
+    }
+    
+    @IBAction func loginButtonPressed(_ sender: UIButton? = nil) {
         if shouldCallAPI {
             shouldCallAPI = false
             
@@ -63,8 +75,8 @@ class MainViewController: UIViewController {
     }
     
     private func checkIfUserExists() -> Bool {
-        guard   let _ = userDefaults.string(forKey: UserDefaults.Keys.User),
-                let _ = userDefaults.string(forKey: UserDefaults.Keys.Password) else { return false }
+        guard let _ = userDefaults.string(forKey: UserDefaults.Keys.User),
+              let _ = userDefaults.string(forKey: UserDefaults.Keys.Password) else { return false }
         return true
     }
     
@@ -82,9 +94,17 @@ class MainViewController: UIViewController {
     private func validateData() -> Bool {
         return emailTextField.text != "" && passwordTextField.text != ""
     }
+    
 }
 
 extension MainViewController: UITextFieldDelegate {
+    func textFieldDidBeginEditing(_ textField: UITextField) {
+        self.logoWidthConstraint.constant = 1
+        UIView.animate(withDuration: 0.5) {
+            self.view.layoutIfNeeded()
+        }
+    }
+    
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         guard let field = Field(rawValue: textField.tag) else { return true }
         
@@ -93,6 +113,8 @@ extension MainViewController: UITextFieldDelegate {
             passwordTextField.becomeFirstResponder()
         case .password:
             textField.resignFirstResponder()
+            loginButtonPressed()
+            dismissKeyboard()
         }
         
         return false
