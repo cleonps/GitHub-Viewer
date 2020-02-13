@@ -68,7 +68,7 @@ extension ReposViewController {
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let row = indexPath.row
         repo = repos[row].name
-        performSegue(withIdentifier: Segues.repoContents.rawValue, sender: nil)
+        performSegue(withIdentifier: .repoContents)
     }
 }
 

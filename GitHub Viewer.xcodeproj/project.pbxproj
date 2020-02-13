@@ -162,7 +162,6 @@
 				352F011423D3740800177F99 /* AppDelegate.swift */,
 				352F011623D3740800177F99 /* SceneDelegate.swift */,
 				352F011D23D3740900177F99 /* Assets.xcassets */,
-				352F011F23D3740900177F99 /* LaunchScreen.storyboard */,
 				352F012223D3740900177F99 /* Info.plist */,
 			);
 			path = "GitHub Viewer";
@@ -193,12 +192,12 @@
 		352F013723D378D200177F99 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				352F011F23D3740900177F99 /* LaunchScreen.storyboard */,
 				352F011A23D3740800177F99 /* Main.storyboard */,
 				352F013B23D393AC00177F99 /* Home.storyboard */,
-				B6EB183923D7AF3C002607BF /* GistList */,
-				35034E7023F0A1D100FA12E0 /* Gists.storyboard */,
-				B634313423F467DF00C4C9A2 /* Repos.storyboard */,
-				35034E7223F0A21800FA12E0 /* Profile.storyboard */,
+				B6EB183923D7AF3C002607BF /* Gists */,
+				35BB0C3C23F4EBB700AC984C /* Repos */,
+				35BB0C3D23F4EBCB00AC984C /* Profile */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -253,6 +252,30 @@
 			path = Repos;
 			sourceTree = "<group>";
 		};
+		35BB0C3B23F4EBAB00AC984C /* Cells */ = {
+			isa = PBXGroup;
+			children = (
+				B6EB183523D7AF21002607BF /* GistTableViewCell.xib */,
+			);
+			path = Cells;
+			sourceTree = "<group>";
+		};
+		35BB0C3C23F4EBB700AC984C /* Repos */ = {
+			isa = PBXGroup;
+			children = (
+				B634313423F467DF00C4C9A2 /* Repos.storyboard */,
+			);
+			path = Repos;
+			sourceTree = "<group>";
+		};
+		35BB0C3D23F4EBCB00AC984C /* Profile */ = {
+			isa = PBXGroup;
+			children = (
+				35034E7223F0A21800FA12E0 /* Profile.storyboard */,
+			);
+			path = Profile;
+			sourceTree = "<group>";
+		};
 		47ADCE5AFF573EE3BAD39B63 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
@@ -273,12 +296,13 @@
 			path = Gists;
 			sourceTree = "<group>";
 		};
-		B6EB183923D7AF3C002607BF /* GistList */ = {
+		B6EB183923D7AF3C002607BF /* Gists */ = {
 			isa = PBXGroup;
 			children = (
-				B6EB183523D7AF21002607BF /* GistTableViewCell.xib */,
+				35BB0C3B23F4EBAB00AC984C /* Cells */,
+				35034E7023F0A1D100FA12E0 /* Gists.storyboard */,
 			);
-			path = GistList;
+			path = Gists;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */

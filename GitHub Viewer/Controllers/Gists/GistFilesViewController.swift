@@ -72,7 +72,7 @@ extension GistFilesViewController: UITableViewDelegate, UITableViewDataSource {
         let row = indexPath.row
         sentContent = gistFiles[row].content ?? ""
         sentTitle = gistFiles[row].filename
-        performSegue(withIdentifier: Segues.gistFile.rawValue, sender: nil)
+        performSegue(withIdentifier: .gistFile)
     }
     
 }

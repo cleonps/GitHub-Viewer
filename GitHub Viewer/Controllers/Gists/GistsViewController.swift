@@ -82,7 +82,7 @@ extension GistsViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let row = indexPath.row
         idGist = gists[row].id
-        performSegue(withIdentifier: Segues.gistFileList.rawValue, sender: nil)
+        performSegue(withIdentifier: .gistFileList)
     }
     
 }

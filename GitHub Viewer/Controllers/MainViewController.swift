@@ -41,7 +41,7 @@ class MainViewController: UIViewController {
             let password = userDefaults.string(forKey: UserDefaults.Keys.Password)!
             UIView.setAnimationsEnabled(false)
             NetworkManager.shared.authorization = HTTPHeader.authorization(username: user, password: password)
-            self.performSegue(withIdentifier: Segues.home.rawValue, sender: nil)
+            performSegue(withIdentifier: .home)
         } else {
             view.isHidden = false
             setupTextFields()
@@ -144,7 +144,7 @@ extension MainViewController: NetworkManagerDelegate {
                 self.passwordTextField.text = ""
                 self.userDefaults.setValue(user, forKey: UserDefaults.Keys.User)
                 self.userDefaults.setValue(password, forKey: UserDefaults.Keys.Password)
-                self.performSegue(withIdentifier: Segues.home.rawValue, sender: nil)
+                self.performSegue(withIdentifier: .home)
             }
         default:
             let error = dataModel as! ErrorResponse

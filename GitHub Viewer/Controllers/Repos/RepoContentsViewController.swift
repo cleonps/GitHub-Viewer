@@ -79,7 +79,7 @@ extension RepoContentsViewController: UITableViewDelegate, UITableViewDataSource
         
         if fileList[row].type == FileType.file.rawValue {
             fileName = fileList[row].name
-            performSegue(withIdentifier: Segues.repoFile.rawValue, sender: nil)
+            performSegue(withIdentifier: .repoFile)
         }
     }
 }

@@ -40,6 +40,10 @@ extension UIViewController {
         case profile = "Profile"
     }
     
+    func performSegue(withIdentifier identifier: Segues) {
+        performSegue(withIdentifier: identifier.rawValue, sender: nil)
+    }
+    
     /// Returns an instance of UIViewController subclass
     ///
     /// - Parameters:
