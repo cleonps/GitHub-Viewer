@@ -23,13 +23,20 @@ class RepoContentsViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        NetworkManager.shared.delegate = self
+        
         repoFilesTableView.register(nibName: .gist, cellName: .gist)
         repoFilesTableView.refreshControl = refresher
         refresher.addTarget(self, action: #selector(refreshData(_:)), for: .valueChanged)
-        NetworkManager.shared.getRepoContents(user: user, repo: repo)
+        
         titleLabel.viewStyle()
         titleLabel.text = repo
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        NetworkManager.shared.delegate = self
+        if fileList.isEmpty {
+            NetworkManager.shared.getRepoContents(user: user, repo: repo)
+        }
     }
     
     @objc private func refreshData(_ sender: Any) {

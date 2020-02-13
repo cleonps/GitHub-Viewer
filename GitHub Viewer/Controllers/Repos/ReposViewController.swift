@@ -16,11 +16,17 @@ class ReposViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        NetworkManager.shared.delegate = self
-        NetworkManager.shared.getRepoList()
         tableView.register(nibName: .gist, cellName: .gist)
         tableView.refreshControl = refresher
         refresher.addTarget(self, action: #selector(refreshData(_:)), for: .valueChanged)
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        NetworkManager.shared.delegate = self
+        
+        if repos.isEmpty {
+            NetworkManager.shared.getRepoList()
+        }
     }
     
     @objc private func refreshData(_ sender: Any) {

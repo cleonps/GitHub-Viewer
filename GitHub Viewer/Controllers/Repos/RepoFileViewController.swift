@@ -17,11 +17,11 @@ class RepoFileViewController: UIViewController {
     
     @IBOutlet var contentTextView: UITextView!
     
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        
+    override func viewDidAppear(_ animated: Bool) {
         NetworkManager.shared.delegate = self
-        NetworkManager.shared.getRepoFileContent(user: user, repo: repo, file: fileName)
+        if content.isEmpty {
+            NetworkManager.shared.getRepoFileContent(user: user, repo: repo, file: fileName)
+        }
     }
 }
 

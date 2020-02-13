@@ -207,13 +207,8 @@
 			isa = PBXGroup;
 			children = (
 				352F011823D3740800177F99 /* MainViewController.swift */,
-				B6EB183823D7AF30002607BF /* GistList */,
-				352F013D23D3954200177F99 /* GistsViewController.swift */,
-				3563A0D023F3323C0019032F /* GistFilesViewController.swift */,
-				3563A0D623F38AA20019032F /* GistFileContentViewController.swift */,
-				B634313223F466FA00C4C9A2 /* ReposViewController.swift */,
-				B693CF3D23F479440091F329 /* RepoContentsViewController.swift */,
-				B693CF4123F4BD990091F329 /* RepoFileViewController.swift */,
+				B6EB183823D7AF30002607BF /* Gists */,
+				35BB0C3A23F4E18200AC984C /* Repos */,
 				35A046B723EFCD7D00695516 /* ProfileViewController.swift */,
 			);
 			path = Controllers;
@@ -240,6 +235,24 @@
 			path = Extensions;
 			sourceTree = "<group>";
 		};
+		35BB0C3923F4E16D00AC984C /* Cells */ = {
+			isa = PBXGroup;
+			children = (
+				B6EB183423D7AF21002607BF /* GistTableViewCell.swift */,
+			);
+			path = Cells;
+			sourceTree = "<group>";
+		};
+		35BB0C3A23F4E18200AC984C /* Repos */ = {
+			isa = PBXGroup;
+			children = (
+				B634313223F466FA00C4C9A2 /* ReposViewController.swift */,
+				B693CF3D23F479440091F329 /* RepoContentsViewController.swift */,
+				B693CF4123F4BD990091F329 /* RepoFileViewController.swift */,
+			);
+			path = Repos;
+			sourceTree = "<group>";
+		};
 		47ADCE5AFF573EE3BAD39B63 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
@@ -249,12 +262,15 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
-		B6EB183823D7AF30002607BF /* GistList */ = {
+		B6EB183823D7AF30002607BF /* Gists */ = {
 			isa = PBXGroup;
 			children = (
-				B6EB183423D7AF21002607BF /* GistTableViewCell.swift */,
+				35BB0C3923F4E16D00AC984C /* Cells */,
+				352F013D23D3954200177F99 /* GistsViewController.swift */,
+				3563A0D023F3323C0019032F /* GistFilesViewController.swift */,
+				3563A0D623F38AA20019032F /* GistFileContentViewController.swift */,
 			);
-			path = GistList;
+			path = Gists;
 			sourceTree = "<group>";
 		};
 		B6EB183923D7AF3C002607BF /* GistList */ = {

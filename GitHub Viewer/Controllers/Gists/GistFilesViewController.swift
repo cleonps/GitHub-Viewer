@@ -23,12 +23,18 @@ class GistFilesViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        print("viewDidLoad")
-        NetworkManager.shared.delegate = self
         gistFilesTableView.register(nibName: .gist, cellName: .gist)
         gistFilesTableView.refreshControl = refresher
         refresher.addTarget(self, action: #selector(refreshData(_:)), for: .valueChanged)
-        NetworkManager.shared.getGistFiles(id: idGist)
+        
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        NetworkManager.shared.delegate = self
+        
+        if gistFiles.isEmpty {
+            NetworkManager.shared.getGistFiles(id: idGist)
+        }
     }
     
     @objc private func refreshData(_ sender: Any) {
