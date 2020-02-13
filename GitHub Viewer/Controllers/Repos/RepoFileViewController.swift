@@ -13,13 +13,13 @@ class RepoFileViewController: UIViewController {
     lazy var user = userDefaults.string(forKey: UserDefaults.Keys.User)!
     var repo = ""
     var fileName = ""
-    var content = ""
+    var file = RepoFileContent()
     
     @IBOutlet var contentTextView: UITextView!
     
     override func viewDidAppear(_ animated: Bool) {
         NetworkManager.shared.delegate = self
-        if content.isEmpty {
+        if file.content == nil {
             NetworkManager.shared.getRepoFileContent(user: user, repo: repo, file: fileName)
         }
     }
@@ -40,8 +40,11 @@ extension RepoFileViewController: NetworkManagerDelegate {
         case .getRepoFileContent:
             switch code {
             case .success, .accepted:
-                content = dataModel as! String
-                contentTextView.text = content
+                file = dataModel as! RepoFileContent
+                let encodedData = file.content!
+                let decodedData = Data(base64Encoded: encodedData, options: .ignoreUnknownCharacters)!
+                let decodedString = String(data: decodedData, encoding: .utf8)
+                contentTextView.text = decodedString
             default:
                 let error = dataModel as! ErrorResponse
                 presentSimpleAlert(title: "Error", message: "\(error.message)")

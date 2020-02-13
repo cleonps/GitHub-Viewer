@@ -8,7 +8,7 @@
 
 import Foundation
 
-struct FileReponse: Codable {
+struct RepoFileInfo: Codable {
     let name: String
     let size: Int
     let type: String

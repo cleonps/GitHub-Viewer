@@ -14,7 +14,7 @@ class RepoContentsViewController: UIViewController {
     
     lazy var user = userDefaults.string(forKey: UserDefaults.Keys.User)!
     var repo = ""
-    var fileList = [FileReponse]()
+    var fileList = [RepoFileInfo]()
     var fileName = ""
     
     @IBOutlet var repoFilesTableView: UITableView!
@@ -101,7 +101,7 @@ extension RepoContentsViewController: NetworkManagerDelegate {
         case .getRepoContents:
             switch code {
             case .success, .accepted:
-                fileList = dataModel as! [FileReponse]
+                fileList = dataModel as! [RepoFileInfo]
                 repoFilesTableView.reloadData()
             default:
                 let error = dataModel as! ErrorResponse

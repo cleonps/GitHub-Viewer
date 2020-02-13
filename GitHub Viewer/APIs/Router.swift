@@ -45,15 +45,10 @@ enum Router: URLRequestConvertible {
     
     var headers: HTTPHeaders {
         switch self {
-        case .login, .getGists, .getGistFiles, .getRepos, .getRepoContents:
+        case .login, .getGists, .getGistFiles, .getRepos, .getRepoContents, .getRepoFileContent:
             return HTTPHeaders([
                 NetworkManager.shared.authorization,
                 .accept("application/vnd.github.v3+json")
-            ])
-        case .getRepoFileContent:
-            return HTTPHeaders([
-                NetworkManager.shared.authorization,
-                .accept("application/vnd.github.v3.raw")
             ])
         }
     }
