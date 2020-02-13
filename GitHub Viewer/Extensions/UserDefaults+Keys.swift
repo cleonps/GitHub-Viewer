@@ -9,8 +9,24 @@
 import Foundation
 
 extension UserDefaults{
-    enum Keys{
-        static let User = "user"
-        static let Password = "password"
+    public enum Keys: String{
+        case User = "user"
+        case Password = "password"
+    }
+    
+    public func setValue(_ value: Any?, forKey key: Keys) {
+        setValue(value, forKey: key.rawValue)
+    }
+    
+    public func value(forKey key: Keys) -> Any? {
+        return value(forKey: key.rawValue)
+    }
+    
+    public func string(forKey key: Keys) -> String? {
+        return string(forKey: key.rawValue)
+    }
+    
+    public func removeObject(forKey key: Keys) {
+        removeObject(forKey: key.rawValue)
     }
 }

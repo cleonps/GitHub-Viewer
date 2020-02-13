@@ -142,8 +142,8 @@ extension MainViewController: NetworkManagerDelegate {
                 let password = self.passwordTextField.text!
                 self.emailTextField.text = ""
                 self.passwordTextField.text = ""
-                self.userDefaults.setValue(user, forKey: UserDefaults.Keys.User)
-                self.userDefaults.setValue(password, forKey: UserDefaults.Keys.Password)
+                self.userDefaults.setValue(user, forKey: .User)
+                self.userDefaults.setValue(password, forKey: .Password)
                 self.performSegue(withIdentifier: .home)
             }
         default:

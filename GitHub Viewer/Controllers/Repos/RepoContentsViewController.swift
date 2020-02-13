@@ -12,7 +12,7 @@ class RepoContentsViewController: UIViewController {
     let refresher = UIRefreshControl()
     let userDefaults = UserDefaults.standard
     
-    lazy var user = userDefaults.string(forKey: UserDefaults.Keys.User)!
+    lazy var user = userDefaults.string(forKey: .User)!
     var repo = ""
     var fileList = [RepoFileInfo]()
     var fileName = ""

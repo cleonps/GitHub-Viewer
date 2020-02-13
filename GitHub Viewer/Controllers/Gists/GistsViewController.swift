@@ -21,7 +21,7 @@ class GistsViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        guard let user = userDefaults.value(forKey: UserDefaults.Keys.User) else {
+        guard let user = userDefaults.value(forKey: .User) else {
             dismiss(animated: true)
             return
         }
