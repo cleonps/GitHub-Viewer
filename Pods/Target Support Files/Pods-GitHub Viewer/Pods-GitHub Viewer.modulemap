@@ -1,4 +1,4 @@
-module Pods_GitHub_Viewer {
+framework module Pods_GitHub_Viewer {
   umbrella header "Pods-GitHub Viewer-umbrella.h"
 
   export *
