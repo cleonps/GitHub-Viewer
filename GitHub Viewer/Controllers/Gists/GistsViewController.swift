@@ -68,9 +68,13 @@ extension GistsViewController: UITableViewDelegate, UITableViewDataSource {
         let cell = tableView.dequeReusableCell(withName: .gist, for: indexPath) as! GistTableViewCell
         let row = indexPath.row
         
+        let image = #imageLiteral(resourceName: "repo")
         let description = gists[row].description
-        let accessLevel = "\nAcceso: \(gists[row].accessLevel ? "Público" : "Privado")."
-        cell.fileNameLabel.text = "\(description)\(accessLevel)"
+        let accessLevel = "Acceso: \(gists[row].accessLevel ? "Público" : "Privado")."
+        
+        cell.cellImage.image = image
+        cell.nameLabel.text = description
+        cell.detailLabel.text = accessLevel
         
         return cell
     }

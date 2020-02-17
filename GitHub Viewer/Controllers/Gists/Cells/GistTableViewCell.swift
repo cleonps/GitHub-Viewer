@@ -10,7 +10,9 @@ import UIKit
 
 class GistTableViewCell: UITableViewCell {
     
-    @IBOutlet var fileNameLabel: UILabel!
+    @IBOutlet var cellImage: UIImageView!
+    @IBOutlet var nameLabel: UILabel!
+    @IBOutlet var detailLabel: UILabel!
     @IBOutlet var backgroundCellView: UIView!
     
     override func awakeFromNib() {

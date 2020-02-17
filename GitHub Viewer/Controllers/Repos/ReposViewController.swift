@@ -55,12 +55,15 @@ extension ReposViewController {
         let cell = tableView.dequeReusableCell(withName: .gist, for: indexPath) as! GistTableViewCell
         let row = indexPath.row
         
-        let name = "Repo: \(repos[row].name)."
-        let accessLevel = "\nAcceso: \(repos[row].isPrivate ? "Privado" : "Público")."
+        let image = #imageLiteral(resourceName: "gist")
+        let name = repos[row].name
+        let accessLevel = "Acceso: \(repos[row].isPrivate ? "Privado" : "Público")."
         let description = repos[row].description ?? ""
-        let repoDescription = description != "" ? "\nDescripción: \(description)" : ""
+        let repoDescription = description != "" ? "Descripción: \(description)\n" : ""
         
-        cell.fileNameLabel.text = "\(name) \(accessLevel)\(repoDescription)"
+        cell.cellImage.image = image
+        cell.nameLabel.text = name
+        cell.detailLabel.text = "\(repoDescription)\(accessLevel)"
         
         return cell
     }

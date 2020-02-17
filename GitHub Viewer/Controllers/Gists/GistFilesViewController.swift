@@ -63,7 +63,9 @@ extension GistFilesViewController: UITableViewDelegate, UITableViewDataSource {
         let cell = tableView.dequeReusableCell(withName: .gist, for: indexPath) as! GistTableViewCell
         let row = indexPath.row
         
-        cell.fileNameLabel.text = gistFiles[row].filename
+        cell.cellImage.image = #imageLiteral(resourceName: "file")
+        cell.nameLabel.text = gistFiles[row].filename
+        cell.detailLabel.text = "Tamaño: \(gistFiles[row].size) Bytes"
         
         return cell
     }

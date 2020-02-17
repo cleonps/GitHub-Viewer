@@ -63,13 +63,18 @@ extension RepoContentsViewController: UITableViewDelegate, UITableViewDataSource
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeReusableCell(withName: .gist, for: indexPath) as! GistTableViewCell
         let row = indexPath.row
-        let name = "\(fileList[row].name)\n"
-        var description = "\tTamaño: \(fileList[row].size) Bytes"
+        
+        let image = fileList[row].type == FileType.dir.rawValue ? #imageLiteral(resourceName: "folder") : #imageLiteral(resourceName: "file")
+        let name = "\(fileList[row].name)"
+        var description = "Tamaño: \(fileList[row].size) Bytes"
         if fileList[row].type == FileType.dir.rawValue {
-            description = "\tDirectorio de archivos"
+            description = "Directorio de archivos"
         }
         
-        cell.fileNameLabel.text = "\(name)\(description)"
+        cell.cellImage.image = image.withRenderingMode(.alwaysTemplate)
+        cell.cellImage.tintColor = UIColor.white
+        cell.nameLabel.text = name
+        cell.detailLabel.text = description
         
         return cell
     }
