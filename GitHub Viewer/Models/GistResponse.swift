@@ -11,7 +11,13 @@ import Foundation
 struct GistResponse: Codable {
     let id: String
     let files: FileList
+    let accessLevel: Bool
     let description: String
+    
+    enum CodingKeys: String, CodingKey {
+        case id, files, description
+        case accessLevel = "public"
+    }
     
     struct FileList: Codable {
         let files: [String: GistFile]

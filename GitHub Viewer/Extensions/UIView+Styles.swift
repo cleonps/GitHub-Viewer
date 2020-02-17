@@ -32,7 +32,7 @@ extension UIView {
         fancyView.shadowOpacity = 1.0
         fancyView.shadowRadius = 2.0
         fancyView.masksToBounds = false
-        fancyView.cornerRadius = 15
+        fancyView.cornerRadius = 5
     }
     
     public func viewStyle(bgColor color: UIColor) {

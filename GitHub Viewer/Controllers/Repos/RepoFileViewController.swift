@@ -18,6 +18,7 @@ class RepoFileViewController: UIViewController {
     @IBOutlet var contentTextView: UITextView!
     
     override func viewDidAppear(_ animated: Bool) {
+        navigationItem.title = fileName
         NetworkManager.shared.delegate = self
         if file.content == nil {
             NetworkManager.shared.getRepoFileContent(user: user, repo: repo, file: fileName)
