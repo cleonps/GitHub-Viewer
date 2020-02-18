@@ -7,6 +7,7 @@ target 'GitHub Viewer' do
 
   # Pods for GitHub Viewer
   pod 'Alamofire', '~> 5.0'
+  pod 'Highlightr'
   
   target 'GitHub ViewerTests' do
     inherit! :search_paths

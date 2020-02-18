@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Highlightr
 
 class GistFileContentViewController: UIViewController {
     public var content = ""
@@ -17,7 +18,12 @@ class GistFileContentViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        let highlightr = Highlightr()
+        highlightr?.setTheme(to: "paraiso-dark")
+        let highlightedCode = highlightr?.highlight(content)
+        
         self.navigationItem.title = gistTitle
-        contentTextView.text = content
+        contentTextView.attributedText = highlightedCode
+//        contentTextView.text = content
     }
 }

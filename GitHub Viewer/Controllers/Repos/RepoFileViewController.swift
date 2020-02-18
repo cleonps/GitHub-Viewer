@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Highlightr
 
 class RepoFileViewController: UIViewController {
     let userDefaults = UserDefaults.standard
@@ -44,8 +45,14 @@ extension RepoFileViewController: NetworkManagerDelegate {
                 file = dataModel as! RepoFileContent
                 let encodedData = file.content!
                 let decodedData = Data(base64Encoded: encodedData, options: .ignoreUnknownCharacters)!
-                let decodedString = String(data: decodedData, encoding: .utf8)
-                contentTextView.text = decodedString
+                guard let decodedString = String(data: decodedData, encoding: .utf8) else { return }
+                
+                let highlightr = Highlightr()
+                highlightr?.setTheme(to: "paraiso-dark")
+                let highlightedCode = highlightr?.highlight(decodedString)
+                
+                contentTextView.attributedText = highlightedCode
+
             default:
                 let error = dataModel as! ErrorResponse
                 presentSimpleAlert(title: "Error", message: "\(error.message)")
