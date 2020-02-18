@@ -61,7 +61,7 @@ extension ReposViewController {
         let description = repos[row].description ?? ""
         let repoDescription = description != "" ? "Descripción: \(description)\n" : ""
         
-        cell.cellImage.image = image
+        cell.cellImage.image = image.withRenderingMode(.alwaysTemplate)
         cell.nameLabel.text = name
         cell.detailLabel.text = "\(repoDescription)\(accessLevel)"
         
