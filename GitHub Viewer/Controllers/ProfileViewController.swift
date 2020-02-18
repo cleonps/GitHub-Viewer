@@ -11,9 +11,12 @@ import UIKit
 class ProfileViewController: UIViewController {
     let userDefaults = UserDefaults.standard
     
+    @IBOutlet var logoutButton: UIButton!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        logoutButton.buttonStyle()
     }
     
     @IBAction func logoutButtonPressed(_ sender: UIButton) {

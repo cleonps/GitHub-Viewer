@@ -29,10 +29,10 @@
             </objects>
             <point key="canvasLocation" x="919" y="-709"/>
         </scene>
-        <!--UINavigationController-xub-RE-pbN-->
+        <!--Gists-->
         <scene sceneID="fcN-aO-Fdj">
             <objects>
-                <viewControllerPlaceholder storyboardName="Gists" referencedIdentifier="UINavigationController-xub-RE-pbN" id="DQP-yj-Bhu" sceneMemberID="viewController">
+                <viewControllerPlaceholder storyboardName="Gists" id="DQP-yj-Bhu" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="Item" id="SMa-8v-IHW"/>
                 </viewControllerPlaceholder>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="pRW-Z3-BPl" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>

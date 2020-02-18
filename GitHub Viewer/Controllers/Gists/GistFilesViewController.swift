@@ -63,9 +63,13 @@ extension GistFilesViewController: UITableViewDelegate, UITableViewDataSource {
         let cell = tableView.dequeReusableCell(withName: .gist, for: indexPath) as! GistTableViewCell
         let row = indexPath.row
         
-        cell.cellImage.image = #imageLiteral(resourceName: "file")
-        cell.nameLabel.text = gistFiles[row].filename
-        cell.detailLabel.text = "Tamaño: \(gistFiles[row].size) Bytes"
+        let image = #imageLiteral(resourceName: "file")
+        let name = gistFiles[row].filename
+        let details = "Tamaño: \(gistFiles[row].size) Bytes"
+        
+        cell.cellImage.image = image.withRenderingMode(.alwaysTemplate)
+        cell.nameLabel.text = name
+        cell.detailLabel.text = details
         
         return cell
     }
@@ -112,6 +116,5 @@ extension GistFilesViewController: NetworkManagerDelegate {
             break
         }
     }
-    
     
 }

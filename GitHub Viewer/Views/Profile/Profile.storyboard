@@ -18,8 +18,9 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="E6H-ek-EdO">
-                                <rect key="frame" x="62" y="389" width="290" height="30"/>
+                                <rect key="frame" x="62" y="385.5" width="290" height="37"/>
                                 <color key="backgroundColor" name="CellBackground"/>
+                                <fontDescription key="fontDescription" name="Avenir-Heavy" family="Avenir" pointSize="18"/>
                                 <state key="normal" title="Cerrar Sesión">
                                     <color key="titleColor" systemColor="systemGreenColor" red="0.20392156859999999" green="0.78039215689999997" blue="0.34901960780000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 </state>
@@ -37,6 +38,9 @@
                         <viewLayoutGuide key="safeArea" id="jq9-Mh-uJc"/>
                     </view>
                     <navigationItem key="navigationItem" title="Perfil" id="QE1-xI-TOa"/>
+                    <connections>
+                        <outlet property="logoutButton" destination="E6H-ek-EdO" id="2mq-EC-QKs"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="E8p-7n-Yhz" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>

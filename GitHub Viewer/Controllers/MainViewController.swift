@@ -22,6 +22,7 @@ class MainViewController: UIViewController {
     @IBOutlet var logoWidthConstraint: NSLayoutConstraint!
     @IBOutlet var emailTextField: UITextField!
     @IBOutlet var passwordTextField: UITextField!
+    @IBOutlet var loginButton: UIButton!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -46,6 +47,7 @@ class MainViewController: UIViewController {
             view.isHidden = false
             setupTextFields()
             setupDelegates()
+            loginButton.buttonStyle()
             hideKeyboardOnTap()
         }
     }

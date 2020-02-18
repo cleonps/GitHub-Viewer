@@ -39,6 +39,7 @@
                             </stackView>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="F8I-CP-Z10">
                                 <rect key="frame" x="10" y="10" width="50" height="50"/>
+                                <color key="tintColor" systemColor="labelColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="50" id="DAA-Cp-GYY"/>
                                     <constraint firstAttribute="width" secondItem="F8I-CP-Z10" secondAttribute="height" multiplier="1:1" id="m67-8A-ivh"/>

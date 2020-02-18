@@ -72,7 +72,6 @@ extension RepoContentsViewController: UITableViewDelegate, UITableViewDataSource
         }
         
         cell.cellImage.image = image.withRenderingMode(.alwaysTemplate)
-        cell.cellImage.tintColor = UIColor.white
         cell.nameLabel.text = name
         cell.detailLabel.text = description
         

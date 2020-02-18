@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15705" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15705" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="xub-RE-pbN">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
@@ -55,14 +55,14 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="808"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Descripción del Gist" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zcS-Nh-Zug">
-                                <rect key="frame" x="10" y="10" width="394" height="24"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zcS-Nh-Zug">
+                                <rect key="frame" x="10" y="10" width="394" height="0.0"/>
+                                <fontDescription key="fontDescription" name="Avenir-Heavy" family="Avenir" pointSize="18"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="3a0-NV-E4r">
-                                <rect key="frame" x="0.0" y="54" width="414" height="720"/>
+                                <rect key="frame" x="0.0" y="20" width="414" height="754"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                 <connections>
                                     <outlet property="dataSource" destination="Zsg-DW-NYk" id="rTC-US-ZKc"/>
@@ -75,7 +75,7 @@
                             <constraint firstItem="EW3-UK-CSa" firstAttribute="trailing" secondItem="3a0-NV-E4r" secondAttribute="trailing" id="IzI-Gk-ybg"/>
                             <constraint firstItem="zcS-Nh-Zug" firstAttribute="leading" secondItem="EW3-UK-CSa" secondAttribute="leading" constant="10" id="LxH-ME-29J"/>
                             <constraint firstItem="EW3-UK-CSa" firstAttribute="trailing" secondItem="zcS-Nh-Zug" secondAttribute="trailing" constant="10" id="UUr-xC-nQL"/>
-                            <constraint firstItem="3a0-NV-E4r" firstAttribute="top" secondItem="zcS-Nh-Zug" secondAttribute="bottom" constant="20" id="Y7W-lv-P3k"/>
+                            <constraint firstItem="3a0-NV-E4r" firstAttribute="top" secondItem="zcS-Nh-Zug" secondAttribute="bottom" constant="10" id="Y7W-lv-P3k"/>
                             <constraint firstItem="zcS-Nh-Zug" firstAttribute="top" secondItem="EW3-UK-CSa" secondAttribute="top" constant="10" id="aSA-us-cP0"/>
                             <constraint firstItem="3a0-NV-E4r" firstAttribute="leading" secondItem="EW3-UK-CSa" secondAttribute="leading" id="hi8-4X-sTj"/>
                             <constraint firstItem="EW3-UK-CSa" firstAttribute="bottom" secondItem="3a0-NV-E4r" secondAttribute="bottom" id="wA1-1s-IeI"/>
@@ -104,19 +104,19 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="6mt-1R-n2U">
-                                <rect key="frame" x="20" y="20" width="374" height="734"/>
+                                <rect key="frame" x="10" y="10" width="394" height="754"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                 <color key="textColor" systemColor="labelColor" cocoaTouchSystemColor="darkTextColor"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <fontDescription key="fontDescription" name="Courier" family="Courier" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                             </textView>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <constraints>
-                            <constraint firstItem="6mt-1R-n2U" firstAttribute="top" secondItem="it7-NQ-8yl" secondAttribute="top" constant="20" id="DdA-cR-1wv"/>
-                            <constraint firstItem="it7-NQ-8yl" firstAttribute="trailing" secondItem="6mt-1R-n2U" secondAttribute="trailing" constant="20" id="E3c-6N-p46"/>
-                            <constraint firstItem="it7-NQ-8yl" firstAttribute="bottom" secondItem="6mt-1R-n2U" secondAttribute="bottom" constant="20" id="YTf-Yc-xrx"/>
-                            <constraint firstItem="6mt-1R-n2U" firstAttribute="leading" secondItem="it7-NQ-8yl" secondAttribute="leading" constant="20" id="eGn-ui-bq2"/>
+                            <constraint firstItem="6mt-1R-n2U" firstAttribute="top" secondItem="it7-NQ-8yl" secondAttribute="top" constant="10" id="DdA-cR-1wv"/>
+                            <constraint firstItem="it7-NQ-8yl" firstAttribute="trailing" secondItem="6mt-1R-n2U" secondAttribute="trailing" constant="10" id="E3c-6N-p46"/>
+                            <constraint firstItem="it7-NQ-8yl" firstAttribute="bottom" secondItem="6mt-1R-n2U" secondAttribute="bottom" constant="10" id="YTf-Yc-xrx"/>
+                            <constraint firstItem="6mt-1R-n2U" firstAttribute="leading" secondItem="it7-NQ-8yl" secondAttribute="leading" constant="10" id="eGn-ui-bq2"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="it7-NQ-8yl"/>
                     </view>

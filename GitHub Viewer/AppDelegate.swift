@@ -14,7 +14,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 //    var window: UIWindow?
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
-        // Override point for customization after application launch.
+        
+        if let titleFont = UIFont(name: "Avenir-heavy", size: 18),
+        let backFont = UIFont(name: "Avenir-book", size: 16) {
+            UINavigationBar.appearance().largeTitleTextAttributes = [.font: titleFont]
+            UIBarButtonItem.appearance().setTitleTextAttributes([.font: backFont], for: .normal)
+        }
+        
         return true
     }
 
