@@ -16,9 +16,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         
         if let titleFont = UIFont(name: "Avenir-heavy", size: 18),
-        let backFont = UIFont(name: "Avenir-book", size: 16) {
+        let backFont = UIFont(name: "Avenir-book", size: 16),
+        let barFont = UIFont(name: "Avenir-book", size: 14) {
             UINavigationBar.appearance().largeTitleTextAttributes = [.font: titleFont]
             UIBarButtonItem.appearance().setTitleTextAttributes([.font: backFont], for: .normal)
+            UITabBarItem.appearance().setTitleTextAttributes([.font: barFont], for: .normal)
         }
         
         return true
