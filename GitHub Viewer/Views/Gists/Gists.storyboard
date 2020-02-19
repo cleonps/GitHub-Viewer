@@ -122,6 +122,7 @@
                     </view>
                     <navigationItem key="navigationItem" id="N89-Al-tv9"/>
                     <connections>
+                        <outlet property="bottomTextViewConstraint" destination="YTf-Yc-xrx" id="mdn-Ow-CYH"/>
                         <outlet property="contentTextView" destination="6mt-1R-n2U" id="7fH-pd-Ubn"/>
                     </connections>
                 </viewController>

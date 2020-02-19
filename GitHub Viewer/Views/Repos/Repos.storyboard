@@ -96,10 +96,19 @@
                                 <fontDescription key="fontDescription" name="Courier" family="Courier" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                             </textView>
+                            <imageView hidden="YES" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="0fL-kZ-cJl">
+                                <rect key="frame" x="10" y="10" width="394" height="400"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="400" id="wST-Op-BV5"/>
+                                </constraints>
+                            </imageView>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <constraints>
+                            <constraint firstItem="kuE-xr-MsC" firstAttribute="trailing" secondItem="0fL-kZ-cJl" secondAttribute="trailing" constant="10" id="2uZ-Cl-lee"/>
+                            <constraint firstItem="0fL-kZ-cJl" firstAttribute="top" secondItem="kuE-xr-MsC" secondAttribute="top" constant="10" id="3Bn-iO-DIW"/>
                             <constraint firstItem="BKs-AI-jI5" firstAttribute="top" secondItem="kuE-xr-MsC" secondAttribute="top" constant="10" id="TSa-F6-27B"/>
+                            <constraint firstItem="0fL-kZ-cJl" firstAttribute="leading" secondItem="kuE-xr-MsC" secondAttribute="leading" constant="10" id="arb-CQ-iRL"/>
                             <constraint firstItem="BKs-AI-jI5" firstAttribute="leading" secondItem="kuE-xr-MsC" secondAttribute="leading" constant="10" id="fGD-vv-s5p"/>
                             <constraint firstItem="kuE-xr-MsC" firstAttribute="trailing" secondItem="BKs-AI-jI5" secondAttribute="trailing" constant="10" id="gTc-Xr-0Mo"/>
                             <constraint firstItem="kuE-xr-MsC" firstAttribute="bottom" secondItem="BKs-AI-jI5" secondAttribute="bottom" constant="10" id="lku-ru-zev"/>
@@ -108,12 +117,14 @@
                     </view>
                     <navigationItem key="navigationItem" id="UQQ-zV-DF2"/>
                     <connections>
+                        <outlet property="bottomTextViewConstraint" destination="lku-ru-zev" id="b3J-va-NYW"/>
+                        <outlet property="contentImage" destination="0fL-kZ-cJl" id="2xH-Dq-aiN"/>
                         <outlet property="contentTextView" destination="BKs-AI-jI5" id="V5l-eK-Y8v"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="EuR-1v-zte" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2971" y="102"/>
+            <point key="canvasLocation" x="2969.5652173913045" y="101.78571428571428"/>
         </scene>
         <!--Repos-->
         <scene sceneID="ppg-3h-6Ic">

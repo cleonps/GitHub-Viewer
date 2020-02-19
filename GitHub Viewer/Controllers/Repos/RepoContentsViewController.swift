@@ -23,7 +23,6 @@ class RepoContentsViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        
         repoFilesTableView.register(nibName: .gist, cellName: .gist)
         repoFilesTableView.refreshControl = refresher
         refresher.addTarget(self, action: #selector(refreshData(_:)), for: .valueChanged)

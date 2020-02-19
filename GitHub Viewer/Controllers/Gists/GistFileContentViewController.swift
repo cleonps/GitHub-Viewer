@@ -14,16 +14,48 @@ class GistFileContentViewController: UIViewController {
     public var gistTitle = ""
     
     @IBOutlet var contentTextView: UITextView!
+    @IBOutlet var bottomTextViewConstraint: NSLayoutConstraint!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        let highlightr = Highlightr()
-        highlightr?.setTheme(to: "paraiso-dark")
-        let highlightedCode = highlightr?.highlight(content)
-        
         self.navigationItem.title = gistTitle
-        contentTextView.attributedText = highlightedCode
-//        contentTextView.text = content
+            
+        let kbObserver = UIResponder.keyboardWillShowNotification
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow), name: kbObserver, object: nil)
+        hideKeyboardOnTap()
+        
+        if gistTitle.contains(".txt") {
+            contentTextView.text = content
+        } else if gistTitle.contains(".md") {
+            contentTextView.text = content
+        } else {
+            let highlightr = Highlightr()
+            highlightr?.setTheme(to: "paraiso-dark")
+            if let highlightedCode = highlightr?.highlight(content) {
+                contentTextView.attributedText = highlightedCode
+            } else {
+                contentTextView.text = "Contenido no disponible"
+            }
+        }
+        
+    }
+    
+    @objc func keyboardWillShow(_ notification: Notification) {
+        if let keyboardFrame: NSValue = notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue {
+            let keyboardRectangle = keyboardFrame.cgRectValue
+            let keyboardHeight = keyboardRectangle.height
+            bottomTextViewConstraint.constant = keyboardHeight - ((self.navigationController?.view.subviews[1].bounds.height) ?? 0)
+        }
+    }
+    
+    deinit {
+        NotificationCenter.default.removeObserver(self, name: UIResponder.keyboardWillShowNotification, object: nil)
+    }
+    
+    override func dismissKeyboard() {
+        super.dismissKeyboard()
+        
+        bottomTextViewConstraint.constant = 10
     }
 }

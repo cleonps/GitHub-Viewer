@@ -17,6 +17,8 @@ class RepoFileViewController: UIViewController {
     var file = RepoFileContent()
     
     @IBOutlet var contentTextView: UITextView!
+    @IBOutlet var contentImage: UIImageView!
+    @IBOutlet var bottomTextViewConstraint: NSLayoutConstraint!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -25,10 +27,32 @@ class RepoFileViewController: UIViewController {
     }
     
     override func viewDidAppear(_ animated: Bool) {
+        let kbObserver = UIResponder.keyboardWillShowNotification
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow), name: kbObserver, object: nil)
+        hideKeyboardOnTap()
+        
         NetworkManager.shared.delegate = self
         if file.content == nil {
             NetworkManager.shared.getRepoFileContent(user: user, repo: repo, file: fileName)
         }
+    }
+    
+    @objc func keyboardWillShow(_ notification: Notification) {
+        if let keyboardFrame: NSValue = notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue {
+            let keyboardRectangle = keyboardFrame.cgRectValue
+            let keyboardHeight = keyboardRectangle.height
+            bottomTextViewConstraint.constant = keyboardHeight - ((self.navigationController?.view.subviews[1].bounds.height) ?? 0)
+        }
+    }
+    
+    deinit {
+        NotificationCenter.default.removeObserver(self, name: UIResponder.keyboardWillShowNotification, object: nil)
+    }
+    
+    override func dismissKeyboard() {
+        super.dismissKeyboard()
+        
+        bottomTextViewConstraint.constant = 10
     }
 }
 
@@ -50,14 +74,29 @@ extension RepoFileViewController: NetworkManagerDelegate {
                 file = dataModel as! RepoFileContent
                 let encodedData = file.content!
                 let decodedData = Data(base64Encoded: encodedData, options: .ignoreUnknownCharacters)!
-                guard let decodedString = String(data: decodedData, encoding: .utf8) else { return }
                 
-                let highlightr = Highlightr()
-                highlightr?.setTheme(to: "paraiso-dark")
-                let highlightedCode = highlightr?.highlight(decodedString)
+                if fileName.contains(".png") || fileName.contains(".jpg") || fileName.contains(".gif") || fileName.contains(".svg") {
+                    let image = UIImage(data: decodedData)
+                    contentImage.image = image
+                    contentImage.isHidden = false
+                } else if let content = String(data: decodedData, encoding: .utf8) {
+                    if fileName.contains(".txt") {
+                        contentTextView.text = content
+                    } else if fileName.contains(".md") {
+                        contentTextView.text = content
+                    } else {
+                        let highlightr = Highlightr()
+                        highlightr?.setTheme(to: "paraiso-dark")
+                        if let highlightedCode = highlightr?.highlight(content) {
+                            contentTextView.attributedText = highlightedCode
+                        } else {
+                            contentTextView.text = "Contenido no disponible"
+                        }
+                    }
+                }  else {
+                    contentTextView.text = "Contenido no disponible"
+                }
                 
-                contentTextView.attributedText = highlightedCode
-
             default:
                 let error = dataModel as! ErrorResponse
                 presentSimpleAlert(title: "Error", message: "\(error.message)")
