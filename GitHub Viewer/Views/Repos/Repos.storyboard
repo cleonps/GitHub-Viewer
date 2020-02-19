@@ -22,7 +22,9 @@
                             <outlet property="delegate" destination="BhA-fP-FVF" id="ube-ou-vd0"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" title="Repos" id="vl6-HY-yOL"/>
+                    <navigationItem key="navigationItem" title="Repos" id="vl6-HY-yOL">
+                        <barButtonItem key="backBarButtonItem" title="Repos" id="eU4-UL-7iu"/>
+                    </navigationItem>
                     <connections>
                         <segue destination="Snl-cX-wfz" kind="show" identifier="repoContentsSegue" id="Mxt-sQ-x9R"/>
                     </connections>
@@ -66,7 +68,9 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="2oO-9k-AyT"/>
                     </view>
-                    <navigationItem key="navigationItem" title="Archivos" id="7qB-3N-Ass"/>
+                    <navigationItem key="navigationItem" title="Archivos" id="7qB-3N-Ass">
+                        <barButtonItem key="backBarButtonItem" title="Archivos" id="nCO-cw-okv"/>
+                    </navigationItem>
                     <connections>
                         <outlet property="repoFilesTableView" destination="gPI-Gf-bVT" id="nEp-O0-NnG"/>
                         <outlet property="titleLabel" destination="udB-GF-tw2" id="Hgd-5C-VSr"/>
