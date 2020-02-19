@@ -87,6 +87,7 @@ extension RepoFileViewController: NetworkManagerDelegate {
                     } else {
                         let highlightr = Highlightr()
                         highlightr?.setTheme(to: "paraiso-dark")
+                        highlightr?.theme.setCodeFont(RPFont(name: "FiraCode-Medium", size: 12)!)
                         if let highlightedCode = highlightr?.highlight(content) {
                             contentTextView.attributedText = highlightedCode
                         } else {

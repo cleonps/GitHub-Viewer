@@ -8,6 +8,11 @@
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
+    <customFonts key="customFonts">
+        <array key="FiraCode-Regular.ttf">
+            <string>FiraCode-Regular</string>
+        </array>
+    </customFonts>
     <scenes>
         <!--Repos-->
         <scene sceneID="9l2-7Q-DpE">
@@ -93,7 +98,7 @@
                                 <rect key="frame" x="10" y="10" width="394" height="705"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                 <color key="textColor" systemColor="labelColor" cocoaTouchSystemColor="darkTextColor"/>
-                                <fontDescription key="fontDescription" name="Courier" family="Courier" pointSize="14"/>
+                                <fontDescription key="fontDescription" name="FiraCode-Regular" family="Fira Code" pointSize="12"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                             </textView>
                             <imageView hidden="YES" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="0fL-kZ-cJl">
