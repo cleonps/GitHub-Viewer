@@ -74,6 +74,8 @@ class GistsViewController: UIViewController {
             
             if !alertIsPresented {
                 alertIsPresented = true
+                AudioServicesPlaySystemSound(.peek)
+                
                 presentSimpleAlert(title: title, message: message) {
                     self.gistListTableView.isUserInteractionEnabled = true
                     self.gistListTableView.addGestureRecognizer(longPressGesture)
