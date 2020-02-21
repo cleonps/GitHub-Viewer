@@ -18,7 +18,7 @@ class ProfileViewController: UIViewController {
         super.viewDidLoad()
         
         profileImage.image = #imageLiteral(resourceName: "logo")
-        logoutButton.buttonStyle()
+        logoutButton.roundButton()
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -32,7 +32,7 @@ class ProfileViewController: UIViewController {
         
         do {
             profileImage.image = try UIImage(data: Data(contentsOf: url))
-            profileImage.viewStyle(bgColor: .white)
+            profileImage.roundView(bgColor: .white)
         } catch (let e) {
             print("Error: \(e)")
         }

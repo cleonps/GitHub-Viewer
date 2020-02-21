@@ -10,33 +10,45 @@ import UIKit
 
 extension UIView {
     
-    public func buttonStyle() {
+    public func roundButton() {
         let fancyButton = self.layer
-        fancyButton.shadowColor = UIColor(red: 0, green: 0, blue: 0, alpha: 0.25).cgColor
-        fancyButton.shadowOffset = CGSize(width: 0.0, height: 2.0)
+        var color = UIColor.black.withAlphaComponent(0.25).cgColor
+        
+        if #available(iOS 13.0, *) {
+            color = UIColor.label.withAlphaComponent(0.25).cgColor
+        }
+        
+        fancyButton.shadowColor = color
+        fancyButton.shadowOffset = CGSize(width: 0.0, height: 3.0)
         fancyButton.shadowOpacity = 1.0
         fancyButton.shadowRadius = 0.0
         fancyButton.masksToBounds = false
         fancyButton.cornerRadius = 10
     }
     
-    public func buttonStyle(bgColor color: UIColor) {
-        buttonStyle()
+    public func roundButton(bgColor color: UIColor) {
+        roundButton()
         self.backgroundColor = color
     }
     
-    public func viewStyle() {
+    public func roundView() {
         let fancyView = self.layer
-        fancyView.shadowColor = UIColor(red: 0, green: 0, blue: 0, alpha: 0.25).cgColor
-        fancyView.shadowOffset = CGSize(width: 0, height: 3)
+        var color = UIColor.black.withAlphaComponent(0.25).cgColor
+        
+        if #available(iOS 13.0, *) {
+            color = UIColor.label.withAlphaComponent(0.25).cgColor
+        }
+        
+        fancyView.shadowColor = color
+        fancyView.shadowOffset = CGSize(width: 3, height: 3)
         fancyView.shadowOpacity = 1.0
         fancyView.shadowRadius = 2.0
         fancyView.masksToBounds = false
         fancyView.cornerRadius = 5
     }
     
-    public func viewStyle(bgColor color: UIColor) {
-        viewStyle()
+    public func roundView(bgColor color: UIColor) {
+        roundView()
         self.backgroundColor = color
     }
     

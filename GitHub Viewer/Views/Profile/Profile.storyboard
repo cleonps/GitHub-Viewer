@@ -21,9 +21,8 @@
                                 <rect key="frame" x="62" y="385.5" width="290" height="37"/>
                                 <color key="backgroundColor" name="CellBackground"/>
                                 <fontDescription key="fontDescription" name="Avenir-Heavy" family="Avenir" pointSize="18"/>
-                                <state key="normal" title="Cerrar Sesión">
-                                    <color key="titleColor" systemColor="systemGreenColor" red="0.20392156859999999" green="0.78039215689999997" blue="0.34901960780000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                </state>
+                                <color key="tintColor" name="TintColor"/>
+                                <state key="normal" title="Cerrar Sesión"/>
                                 <connections>
                                     <action selector="logoutButtonPressed:" destination="Ter-UJ-zXC" eventType="touchUpInside" id="vB2-O7-3jS"/>
                                 </connections>
@@ -65,6 +64,7 @@
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" translucent="NO" id="3Nt-YV-8jj">
                         <rect key="frame" x="0.0" y="44" width="414" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
+                        <color key="tintColor" name="TintColor"/>
                         <color key="barTintColor" name="CellBackground"/>
                     </navigationBar>
                     <nil name="viewControllers"/>
@@ -81,6 +81,9 @@
         <image name="github" width="23" height="23"/>
         <namedColor name="CellBackground">
             <color red="0.80000000000000004" green="0.80000000000000004" blue="0.80000000000000004" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="TintColor">
+            <color red="0.011764705882352941" green="0.58039215686274515" blue="0.16078431372549021" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
     </resources>
 </document>

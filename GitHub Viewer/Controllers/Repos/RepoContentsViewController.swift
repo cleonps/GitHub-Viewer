@@ -27,7 +27,7 @@ class RepoContentsViewController: UIViewController {
         repoFilesTableView.refreshControl = refresher
         refresher.addTarget(self, action: #selector(refreshData(_:)), for: .valueChanged)
         
-        titleLabel.viewStyle()
+        titleLabel.roundView()
         titleLabel.text = repo
     }
     

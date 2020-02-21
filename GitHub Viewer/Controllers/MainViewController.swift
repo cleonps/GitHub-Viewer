@@ -47,7 +47,7 @@ class MainViewController: UIViewController {
             view.isHidden = false
             setupTextFields()
             setupDelegates()
-            loginButton.buttonStyle()
+            loginButton.roundButton()
             hideKeyboardOnTap()
         }
     }

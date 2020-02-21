@@ -18,7 +18,7 @@ class GistTableViewCell: UITableViewCell {
     override func awakeFromNib() {
         super.awakeFromNib()
         
-        backgroundCellView.viewStyle()
+        backgroundCellView.roundView()
     }
     
     override func setSelected(_ selected: Bool, animated: Bool) {
