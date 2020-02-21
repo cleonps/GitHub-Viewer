@@ -12,11 +12,30 @@ class ProfileViewController: UIViewController {
     let userDefaults = UserDefaults.standard
     
     @IBOutlet var logoutButton: UIButton!
+    @IBOutlet var profileImage: UIImageView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        profileImage.image = #imageLiteral(resourceName: "logo")
         logoutButton.buttonStyle()
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        if profileImage.image == #imageLiteral(resourceName: "logo") {
+            setupProfileImage()
+        }
+    }
+    
+    private func setupProfileImage() {
+        guard let url = URL(string: userDefaults.value(forKey: .AvatarURL) as! String) else { return }
+        
+        do {
+            profileImage.image = try UIImage(data: Data(contentsOf: url))
+            profileImage.viewStyle(bgColor: .white)
+        } catch (let e) {
+            print("Error: \(e)")
+        }
     }
     
     @IBAction func logoutButtonPressed(_ sender: UIButton) {
