@@ -15,6 +15,7 @@ class GistsViewController: UIViewController {
     private var gists: [GistResponse] = []
     private var username = ""
     private var idGist = ""
+    private var alertIsPresented = false
     
     @IBOutlet var gistListTableView: UITableView!
     
@@ -31,6 +32,7 @@ class GistsViewController: UIViewController {
         gistListTableView.register(nibName: .gist, cellName: .gist)
         gistListTableView.refreshControl = refresher
         refresher.addTarget(self, action: #selector(refreshData(_:)), for: .valueChanged)
+        setupCellLongPress()
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -40,10 +42,6 @@ class GistsViewController: UIViewController {
         if gists.isEmpty {
             NetworkManager.shared.getGists(user: username)
         }
-    }
-    
-    @objc private func refreshData(_ sender: Any) {
-        NetworkManager.shared.getGists(user: username)
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -56,6 +54,39 @@ class GistsViewController: UIViewController {
         }
     }
     
+    @objc private func refreshData(_ sender: Any) {
+        NetworkManager.shared.getGists(user: username)
+    }
+    
+    @objc func recognizeLongPress(_ longPressGesture: UILongPressGestureRecognizer) {
+        gistListTableView.isUserInteractionEnabled = false
+        gistListTableView.removeGestureRecognizer(longPressGesture)
+        
+        let p = longPressGesture.location(in: self.gistListTableView)
+        if let indexPath = self.gistListTableView.indexPathForRow(at: p) {
+            let row = indexPath.row
+            let title = gists[row].description
+            var message = "Archivos:\n"
+            
+            for (_, file) in gists[row].files.files {
+                message += file.filename + "\n"
+            }
+            
+            if !alertIsPresented {
+                alertIsPresented = true
+                presentSimpleAlert(title: title, message: message) {
+                    self.gistListTableView.isUserInteractionEnabled = true
+                    self.gistListTableView.addGestureRecognizer(longPressGesture)
+                    self.alertIsPresented = false
+                }
+            }
+        }
+    }
+    
+    private func setupCellLongPress() {
+        let longPressGesture = UILongPressGestureRecognizer(target: self, action: #selector(recognizeLongPress))
+        gistListTableView.addGestureRecognizer(longPressGesture)
+    }
 }
 
 extension GistsViewController: UITableViewDelegate, UITableViewDataSource {
