@@ -12,7 +12,14 @@ struct UserResponse: Codable {
     let login: String
     let id: Int
     let node_id: String
-    let avatar_url: String
-    let gravatar_id: String
-    let url: String
+    let avatar_url: String?
+    let html_url: String
+    let name: String?
+    let blog: String?
+    let location: String?
+    let email: String?
+    let public_repos: Int
+    let public_gists: Int
+    let followers: Int
+    let following: Int
 }

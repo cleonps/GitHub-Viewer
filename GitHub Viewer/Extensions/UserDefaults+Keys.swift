@@ -9,9 +9,18 @@
 import Foundation
 
 extension UserDefaults{
-    public enum Keys: String{
+    public enum Keys: String, CaseIterable{
         case User = "user"
         case Password = "password"
+        case AvatarURL = "avatarURL"
+        case Name = "name"
+        case Blog = "blog"
+        case Location = "location"
+        case Email = "email"
+        case PublicRepos = "publicRepos"
+        case PublicGists = "publicGists"
+        case Followers = "followers"
+        case Following = "following"
     }
     
     public func setValue(_ value: Any?, forKey key: Keys) {
@@ -28,5 +37,12 @@ extension UserDefaults{
     
     public func removeObject(forKey key: Keys) {
         removeObject(forKey: key.rawValue)
+    }
+    
+    /// Removes all objects created on User Defaults
+    public func removeAll() {
+        for key in Keys.allCases {
+            removeObject(forKey: key)
+        }
     }
 }

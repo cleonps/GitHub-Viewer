@@ -137,15 +137,37 @@ extension MainViewController: NetworkManagerDelegate {
     func response<T: Codable>(dataModel: T, endpoint: Router, code: StatusCodes) {
         switch code {
         case .success, .accepted:
-            let user = dataModel as! UserResponse
+            let userData = dataModel as! UserResponse
             self.shouldCallAPI = true
-            presentSimpleAlert(title: "Sesión Iniciada", message: "Bienvenido \(user.login)") {
-                let user = user.login
+            presentSimpleAlert(title: "Sesión Iniciada", message: "Bienvenido \(userData.login)") {
+                let user = userData.login
                 let password = self.passwordTextField.text!
-                self.emailTextField.text = ""
-                self.passwordTextField.text = ""
+                let avatar = userData.avatar_url
+                let name = userData.name
+                let blog = userData.blog
+                let location = userData.location
+                let email = userData.email
+                let publicRepos = userData.public_repos
+                let publicGists = userData.public_gists
+                let followers = userData.followers
+                let following = userData.following
+                
+                // Save Profile Data
                 self.userDefaults.setValue(user, forKey: .User)
                 self.userDefaults.setValue(password, forKey: .Password)
+                self.userDefaults.setValue(avatar, forKey: .AvatarURL)
+                self.userDefaults.setValue(name, forKey: .Name)
+                self.userDefaults.setValue(blog, forKey: .Blog)
+                self.userDefaults.setValue(location, forKey: .Location)
+                self.userDefaults.setValue(email, forKey: .Email)
+                self.userDefaults.setValue(publicRepos, forKey: .PublicRepos)
+                self.userDefaults.setValue(publicGists, forKey: .PublicGists)
+                self.userDefaults.setValue(followers, forKey: .Followers)
+                self.userDefaults.setValue(following, forKey: .Following)
+                
+                self.emailTextField.text = ""
+                self.passwordTextField.text = ""
+                
                 self.performSegue(withIdentifier: .home)
             }
         default:

@@ -20,8 +20,7 @@ class ProfileViewController: UIViewController {
     }
     
     @IBAction func logoutButtonPressed(_ sender: UIButton) {
-        userDefaults.removeObject(forKey: .User)
-        userDefaults.removeObject(forKey: .Password)
+        userDefaults.removeAll()
         UIView.setAnimationsEnabled(true)
         dismiss(animated: true)
     }
