@@ -78,6 +78,8 @@ extension RepoFileViewController: NetworkManagerDelegate {
                 if fileName.contains(".png") || fileName.contains(".jpg") || fileName.contains(".jpeg") || fileName.contains(".gif") || fileName.contains(".svg") {
                     let image = UIImage(data: decodedData)
                     contentImage.image = image
+                    contentImage.contentMode = .scaleAspectFit
+                    contentTextView.isHidden = true
                     contentImage.isHidden = false
                 } else if let content = String(data: decodedData, encoding: .utf8) {
                     if fileName.contains(".txt") {
@@ -92,6 +94,7 @@ extension RepoFileViewController: NetworkManagerDelegate {
                             contentTextView.attributedText = highlightedCode
                         } else {
                             contentTextView.text = "Contenido no disponible"
+                            contentTextView.isUserInteractionEnabled = false
                         }
                     }
                 }  else {
