@@ -14,8 +14,10 @@ class RepoContentsViewController: UIViewController {
     
     lazy var user = userDefaults.string(forKey: .User)!
     var repo = ""
+    var isSubdirectory = false
     var fileList = [RepoFileInfo]()
     var fileName = ""
+    var path = ""
     
     @IBOutlet var repoFilesTableView: UITableView!
     @IBOutlet var titleLabel: UILabel!
@@ -34,12 +36,20 @@ class RepoContentsViewController: UIViewController {
     override func viewDidAppear(_ animated: Bool) {
         NetworkManager.shared.delegate = self
         if fileList.isEmpty {
-            NetworkManager.shared.getRepoContents(user: user, repo: repo)
+            if isSubdirectory {
+                    NetworkManager.shared.getRepoSubContents(user: user, repo: repo, file: path)
+            } else {
+                    NetworkManager.shared.getRepoContents(user: user, repo: repo)
+            }
         }
     }
     
     @objc private func refreshData(_ sender: Any) {
-        NetworkManager.shared.getRepoContents(user: user, repo: repo)
+        if isSubdirectory {
+            NetworkManager.shared.getRepoSubContents(user: user, repo: repo, file: path)
+        } else {
+            NetworkManager.shared.getRepoContents(user: user, repo: repo)
+        }
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -81,8 +91,18 @@ extension RepoContentsViewController: UITableViewDelegate, UITableViewDataSource
         let row = indexPath.row
         
         if fileList[row].type == FileType.file.rawValue {
-            fileName = fileList[row].name
+            if isSubdirectory {
+                fileName = path + "/" + fileList[row].name
+            } else {
+                fileName = fileList[row].name
+            }
             performSegue(withIdentifier: .repoFile)
+        } else {
+            let vc = instantiateVC(storyboard: .repos, identifier: .reposList, controller: RepoContentsViewController.self)
+            vc.repo = repo
+            vc.path = path + "/" + fileList[row].name
+            vc.isSubdirectory = true
+            self.navigationController?.pushViewController(vc, animated: true)
         }
     }
 }
@@ -91,7 +111,7 @@ extension RepoContentsViewController: NetworkManagerDelegate {
     func response(withError error: String, endpoint: Router) {
         self.refresher.endRefreshing()
         switch endpoint {
-        case .getRepoContents:
+        case .getRepoContents, .getRepoFileContent:
             presentSimpleAlert(title: "Error", message: error)
         default:
             break
@@ -101,7 +121,7 @@ extension RepoContentsViewController: NetworkManagerDelegate {
     func response<T: Codable>(dataModel: T, endpoint: Router, code: StatusCodes) {
         self.refresher.endRefreshing()
         switch endpoint {
-        case .getRepoContents:
+        case .getRepoContents, .getRepoFileContent:
             switch code {
             case .success, .accepted:
                 fileList = dataModel as! [RepoFileInfo]

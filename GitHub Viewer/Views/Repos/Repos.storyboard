@@ -41,7 +41,7 @@
         <!--Archivos-->
         <scene sceneID="N61-9m-S41">
             <objects>
-                <viewController id="Snl-cX-wfz" customClass="RepoContentsViewController" customModule="GitHub_Viewer" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="ReposList" id="Snl-cX-wfz" customClass="RepoContentsViewController" customModule="GitHub_Viewer" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="1hJ-r2-Tin">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="808"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>

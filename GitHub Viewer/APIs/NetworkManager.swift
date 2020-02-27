@@ -54,6 +54,11 @@ extension NetworkManager {
         handleRequest(route: route, validModel: [RepoFileInfo].self)
     }
     
+    func getRepoSubContents(user: String, repo: String, file: String) {
+        let route = Router.getRepoFileContent(username: user, repo: repo, file: file)
+        handleRequest(route: route, validModel: [RepoFileInfo].self)
+    }
+    
     func getRepoFileContent(user: String, repo: String, file: String) {
         let route = Router.getRepoFileContent(username: user, repo: repo, file: file)
         handleRequest(route: route, validModel: RepoFileContent.self)
