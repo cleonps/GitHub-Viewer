@@ -75,7 +75,7 @@ extension RepoFileViewController: NetworkManagerDelegate {
                 let encodedData = file.content!
                 let decodedData = Data(base64Encoded: encodedData, options: .ignoreUnknownCharacters)!
                 
-                if fileName.contains(".png") || fileName.contains(".jpg") || fileName.contains(".gif") || fileName.contains(".svg") {
+                if fileName.contains(".png") || fileName.contains(".jpg") || fileName.contains(".jpeg") || fileName.contains(".gif") || fileName.contains(".svg") {
                     let image = UIImage(data: decodedData)
                     contentImage.image = image
                     contentImage.isHidden = false
