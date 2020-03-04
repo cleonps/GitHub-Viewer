@@ -88,8 +88,8 @@ class ProfileViewController: UIViewController {
             let followers = userDefaults.value(forKey: .Followers) {
             let following = following as? Int
             let followers = followers as? Int
-            followingLabel.text = "Following: \(following ?? 0)"
-            followersLabel.text = "Followers: \(followers ?? 0)"
+            followingLabel.text = "Siguiendo: \(following ?? 0)"
+            followersLabel.text = "Seguidores: \(followers ?? 0)"
         }
         
     }
