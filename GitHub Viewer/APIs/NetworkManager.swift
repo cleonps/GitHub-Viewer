@@ -19,7 +19,7 @@ extension NetworkManagerDelegate {
 
 class NetworkManager {
     static let shared = NetworkManager()
-    var authorization = HTTPHeader.authorization(username: "", password: "")
+    lazy var authorization = HTTPHeader.authorization(username: "", password: "")
     weak var delegate: NetworkManagerDelegate?
     
     private init() {}

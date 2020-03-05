@@ -8,6 +8,7 @@
 
 import UIKit
 import Alamofire
+import SwiftKeychainWrapper
 
 private enum Field: Int {
     case email = 1
@@ -16,6 +17,7 @@ private enum Field: Int {
 
 class MainViewController: UIViewController {
     let userDefaults = UserDefaults.standard
+    let keychain = KeychainWrapper.standard
     
     var shouldCallAPI = true
     
@@ -39,7 +41,7 @@ class MainViewController: UIViewController {
         
         if checkIfUserExists() {
             let user = userDefaults.string(forKey: UserDefaults.Keys.user)!
-            let password = userDefaults.string(forKey: UserDefaults.Keys.password)!
+            let password = keychain.string(forKey: .password)!
             UIView.setAnimationsEnabled(false)
             NetworkManager.shared.authorization = HTTPHeader.authorization(username: user, password: password)
             performSegue(withIdentifier: .home)
@@ -78,7 +80,7 @@ class MainViewController: UIViewController {
     
     private func checkIfUserExists() -> Bool {
         let userIsSet = userDefaults.string(forKey: UserDefaults.Keys.user) != nil ? true : false
-        let passwordIsSet = userDefaults.string(forKey: UserDefaults.Keys.password) != nil ? true : false
+        let passwordIsSet = keychain.string(forKey: .password) != nil ? true : false
         return userIsSet && passwordIsSet
     }
     
@@ -152,23 +154,24 @@ extension MainViewController: NetworkManagerDelegate {
                 let followers = userData.followers
                 let following = userData.following
                 
-                // Save Profile Data
-                self.userDefaults.setValue(user, forKey: .user)
-                self.userDefaults.setValue(password, forKey: .password)
-                self.userDefaults.setValue(avatar, forKey: .avatarURL)
-                self.userDefaults.setValue(name, forKey: .name)
-                self.userDefaults.setValue(blog, forKey: .blog)
-                self.userDefaults.setValue(location, forKey: .location)
-                self.userDefaults.setValue(email, forKey: .email)
-                self.userDefaults.setValue(publicRepos, forKey: .publicRepos)
-                self.userDefaults.setValue(publicGists, forKey: .publicGists)
-                self.userDefaults.setValue(followers, forKey: .followers)
-                self.userDefaults.setValue(following, forKey: .following)
-                
-                self.emailTextField.text = ""
-                self.passwordTextField.text = ""
-                
-                self.performSegue(withIdentifier: .home)
+                // Validate password and save profile data
+                if self.keychain.set(password, forKey: .password) {
+                    self.userDefaults.setValue(user, forKey: .user)
+                    self.userDefaults.setValue(avatar, forKey: .avatarURL)
+                    self.userDefaults.setValue(name, forKey: .name)
+                    self.userDefaults.setValue(blog, forKey: .blog)
+                    self.userDefaults.setValue(location, forKey: .location)
+                    self.userDefaults.setValue(email, forKey: .email)
+                    self.userDefaults.setValue(publicRepos, forKey: .publicRepos)
+                    self.userDefaults.setValue(publicGists, forKey: .publicGists)
+                    self.userDefaults.setValue(followers, forKey: .followers)
+                    self.userDefaults.setValue(following, forKey: .following)
+                    
+                    self.emailTextField.text = ""
+                    self.passwordTextField.text = ""
+                    
+                    self.performSegue(withIdentifier: .home)
+                }
             }
         default:
             guard let error = dataModel as? ErrorResponse else { return }

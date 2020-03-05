@@ -7,9 +7,11 @@
 //
 
 import UIKit
+import SwiftKeychainWrapper
 
 class ProfileViewController: UIViewController {
     let userDefaults = UserDefaults.standard
+    let keychain = KeychainWrapper.standard
     
     @IBOutlet var logoutButton: UIButton!
     @IBOutlet var userNameLabel: UILabel!
@@ -36,7 +38,7 @@ class ProfileViewController: UIViewController {
         }
         
         let user = (userDefaults.value(forKey: .user) as? String)!
-        let password = (userDefaults.value(forKey: .password) as? String)!
+        let password = keychain.string(forKey: .password)!
         NetworkManager.shared.delegate = self
         NetworkManager.shared.login(email: user, password: password)
     }
@@ -108,6 +110,7 @@ class ProfileViewController: UIViewController {
     }
     
     @IBAction func logoutButtonPressed(_ sender: UIButton) {
+        keychain.removeAllKeys()
         userDefaults.removeAll()
         UIView.setAnimationsEnabled(true)
         dismiss(animated: true)

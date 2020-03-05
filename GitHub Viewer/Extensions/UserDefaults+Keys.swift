@@ -11,7 +11,6 @@ import Foundation
 extension UserDefaults {
     public enum Keys: String, CaseIterable {
         case user
-        case password
         case avatarURL
         case name
         case blog

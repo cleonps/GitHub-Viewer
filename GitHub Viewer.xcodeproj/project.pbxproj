@@ -42,6 +42,7 @@
 		B67F439823FDE8C3009E1412 /* FiraCode-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = B67F439323FDE8C3009E1412 /* FiraCode-Regular.ttf */; };
 		B67F439923FDE8C3009E1412 /* FiraCode-Retina.ttf in Resources */ = {isa = PBXBuildFile; fileRef = B67F439423FDE8C3009E1412 /* FiraCode-Retina.ttf */; };
 		B68108F324005D32003D7282 /* AudioToolboxUtilities.swift in Sources */ = {isa = PBXBuildFile; fileRef = B68108F224005D32003D7282 /* AudioToolboxUtilities.swift */; };
+		B6884C292411802300B37F65 /* KeychainWrapper+Keys.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6884C282411802300B37F65 /* KeychainWrapper+Keys.swift */; };
 		B693CF3E23F479440091F329 /* RepoContentsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B693CF3D23F479440091F329 /* RepoContentsViewController.swift */; };
 		B693CF4023F484310091F329 /* RepoFileInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = B693CF3F23F484310091F329 /* RepoFileInfo.swift */; };
 		B693CF4223F4BD990091F329 /* RepoFileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B693CF4123F4BD990091F329 /* RepoFileViewController.swift */; };
@@ -102,6 +103,7 @@
 		B67F439323FDE8C3009E1412 /* FiraCode-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "FiraCode-Regular.ttf"; sourceTree = "<group>"; };
 		B67F439423FDE8C3009E1412 /* FiraCode-Retina.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "FiraCode-Retina.ttf"; sourceTree = "<group>"; };
 		B68108F224005D32003D7282 /* AudioToolboxUtilities.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioToolboxUtilities.swift; sourceTree = "<group>"; };
+		B6884C282411802300B37F65 /* KeychainWrapper+Keys.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "KeychainWrapper+Keys.swift"; sourceTree = "<group>"; };
 		B693CF3D23F479440091F329 /* RepoContentsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RepoContentsViewController.swift; sourceTree = "<group>"; };
 		B693CF3F23F484310091F329 /* RepoFileInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RepoFileInfo.swift; sourceTree = "<group>"; };
 		B693CF4123F4BD990091F329 /* RepoFileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RepoFileViewController.swift; sourceTree = "<group>"; };
@@ -247,6 +249,7 @@
 				35A046B523EFC34E00695516 /* UserDefaults+Keys.swift */,
 				3563A0D423F366FD0019032F /* UIView+Styles.swift */,
 				B68108F224005D32003D7282 /* AudioToolboxUtilities.swift */,
+				B6884C282411802300B37F65 /* KeychainWrapper+Keys.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -530,6 +533,7 @@
 				B6EB183623D7AF21002607BF /* GistTableViewCell.swift in Sources */,
 				3563A0D323F333080019032F /* GistFile.swift in Sources */,
 				357BB5EE23D3DEA700605AA8 /* ErrorResponse.swift in Sources */,
+				B6884C292411802300B37F65 /* KeychainWrapper+Keys.swift in Sources */,
 				352F011523D3740800177F99 /* AppDelegate.swift in Sources */,
 				B6EB183323D7AD9B002607BF /* UITableView+Names.swift in Sources */,
 				B649FC4723F5BEC9005216D2 /* RepoFileContent.swift in Sources */,

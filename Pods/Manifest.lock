@@ -1,20 +1,24 @@
 PODS:
   - Alamofire (5.0.0)
   - Highlightr (2.1.0)
+  - SwiftKeychainWrapper (3.4.0)
 
 DEPENDENCIES:
   - Alamofire (~> 5.0)
   - Highlightr
+  - SwiftKeychainWrapper
 
 SPEC REPOS:
   trunk:
     - Alamofire
     - Highlightr
+    - SwiftKeychainWrapper
 
 SPEC CHECKSUMS:
   Alamofire: 58ff2bfb8daaacaa233d5c36e37b10a5248f59b1
   Highlightr: 595f3e100737c8de41113385da8bd0b5b65212c6
+  SwiftKeychainWrapper: 6fc49fbf7d4a6b0772917acb0e53a1639f6078d6
 
-PODFILE CHECKSUM: 70e6e07ddaca06b1be1d81eba72a9d47599e30b2
+PODFILE CHECKSUM: 75102017967080215cd50466c673f75ec4ffe2ba
 
 COCOAPODS: 1.8.4
