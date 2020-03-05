@@ -12,7 +12,7 @@ class RepoContentsViewController: UIViewController {
     let refresher = UIRefreshControl()
     let userDefaults = UserDefaults.standard
     
-    lazy var user = userDefaults.string(forKey: .User)!
+    lazy var user = userDefaults.string(forKey: .user)!
     var repo = ""
     var isSubdirectory = false
     var fileList = [RepoFileInfo]()
@@ -55,7 +55,7 @@ class RepoContentsViewController: UIViewController {
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         switch segue.identifier {
         case Segues.repoFile.rawValue:
-            let destinationVC = segue.destination as! RepoFileViewController
+            guard let destinationVC = segue.destination as? RepoFileViewController else { return }
             destinationVC.repo = repo
             destinationVC.fileName = fileName
         default:
@@ -70,7 +70,10 @@ extension RepoContentsViewController: UITableViewDelegate, UITableViewDataSource
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeReusableCell(withName: .gist, for: indexPath) as! GistTableViewCell
+        guard let cell = tableView.dequeReusableCell(withName: .gist, for: indexPath) as? GistTableViewCell else {
+            return UITableViewCell()
+        }
+        
         let row = indexPath.row
         
         let image = fileList[row].type == FileType.dir.rawValue ? #imageLiteral(resourceName: "folder") : #imageLiteral(resourceName: "file")
@@ -98,11 +101,11 @@ extension RepoContentsViewController: UITableViewDelegate, UITableViewDataSource
             }
             performSegue(withIdentifier: .repoFile)
         } else {
-            let vc = instantiateVC(storyboard: .repos, identifier: .reposList, controller: RepoContentsViewController.self)
-            vc.repo = repo
-            vc.path = path + "/" + fileList[row].name
-            vc.isSubdirectory = true
-            self.navigationController?.pushViewController(vc, animated: true)
+            guard let viewController = instantiateVC(storyboard: .repos, identifier: .reposList, controller: RepoContentsViewController.self) else { return }
+            viewController.repo = repo
+            viewController.path = path + "/" + fileList[row].name
+            viewController.isSubdirectory = true
+            self.navigationController?.pushViewController(viewController, animated: true)
         }
     }
 }
@@ -124,10 +127,10 @@ extension RepoContentsViewController: NetworkManagerDelegate {
         case .getRepoContents, .getRepoFileContent:
             switch code {
             case .success, .accepted:
-                fileList = dataModel as! [RepoFileInfo]
+                fileList = (dataModel as? [RepoFileInfo]) ?? []
                 repoFilesTableView.reloadData()
             default:
-                let error = dataModel as! ErrorResponse
+                guard let error = dataModel as? ErrorResponse else { return }
                 presentSimpleAlert(title: "Error", message: "\(error.message)")
             }
         default:

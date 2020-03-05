@@ -29,7 +29,7 @@ struct GistResponse: Codable {
                 self.stringValue = stringValue
             }
             init?(intValue: Int) {
-                self.stringValue = "\(intValue)";
+                self.stringValue = "\(intValue)"
                 self.intValue = intValue
             }
         }

@@ -9,7 +9,7 @@
 import UIKit
 import Alamofire
 
-protocol NetworkManagerDelegate {
+protocol NetworkManagerDelegate: class {
     func response<T: Codable>(dataModel: T, endpoint: Router, code: StatusCodes)
     func response(withError error: String, endpoint: Router)
 }
@@ -20,7 +20,7 @@ extension NetworkManagerDelegate {
 class NetworkManager {
     static let shared = NetworkManager()
     var authorization = HTTPHeader.authorization(username: "", password: "")
-    var delegate: NetworkManagerDelegate?
+    weak var delegate: NetworkManagerDelegate?
     
     private init() {}
 }
@@ -39,8 +39,8 @@ extension NetworkManager {
         handleRequest(route: route, validModel: [GistResponse].self)
     }
     
-    func getGistFiles(id: String) {
-        let route = Router.getGistFiles(id: id)
+    func getGistFiles(for gistId: String) {
+        let route = Router.getGistFiles(gistId: gistId)
         handleRequest(route: route, validModel: GistResponse.self)
     }
     
@@ -80,7 +80,7 @@ extension NetworkManager {
         }
     }
     
-    func parseResponse<T: Codable>(_ response: AFDataResponse<String>,validModel: T.Type, endpoint: Router) {
+    func parseResponse<T: Codable>(_ response: AFDataResponse<String>, validModel: T.Type, endpoint: Router) {
         guard let status = response.response?.statusCode else { return }
         guard let statusCode = StatusCodes(rawValue: status) else { return }
         guard let data = response.data else { return }

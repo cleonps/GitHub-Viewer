@@ -22,12 +22,12 @@ class GistsViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        guard let user = userDefaults.value(forKey: .User) else {
+        guard let user = userDefaults.value(forKey: .user) else {
             dismiss(animated: true)
             return
         }
         
-        username = user as! String
+        username = (user as? String) ?? ""
         
         gistListTableView.register(nibName: .gist, cellName: .gist)
         gistListTableView.refreshControl = refresher
@@ -47,7 +47,7 @@ class GistsViewController: UIViewController {
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         switch segue.identifier {
         case Segues.gistFileList.rawValue:
-            let destinationVC = segue.destination as! GistFilesViewController
+            guard let destinationVC = segue.destination as? GistFilesViewController else { return }
             destinationVC.idGist = idGist
         default:
             return
@@ -62,8 +62,8 @@ class GistsViewController: UIViewController {
         gistListTableView.isUserInteractionEnabled = false
         gistListTableView.removeGestureRecognizer(longPressGesture)
         
-        let p = longPressGesture.location(in: self.gistListTableView)
-        if let indexPath = self.gistListTableView.indexPathForRow(at: p) {
+        let gesture = longPressGesture.location(in: self.gistListTableView)
+        if let indexPath = self.gistListTableView.indexPathForRow(at: gesture) {
             let row = indexPath.row
             let title = gists[row].description
             var message = "Archivos:\n"
@@ -98,7 +98,10 @@ extension GistsViewController: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeReusableCell(withName: .gist, for: indexPath) as! GistTableViewCell
+        guard let cell = tableView.dequeReusableCell(withName: .gist, for: indexPath) as? GistTableViewCell else {
+            return UITableViewCell()
+        }
+        
         let row = indexPath.row
         
         let image = #imageLiteral(resourceName: "repo")
@@ -143,10 +146,10 @@ extension GistsViewController: NetworkManagerDelegate {
         case .getGists:
             switch code {
             case .success, .accepted:
-                gists = dataModel as! [GistResponse]
+                gists = (dataModel as? [GistResponse]) ?? []
                 gistListTableView.reloadData()
             default:
-                let error = dataModel as! ErrorResponse
+                guard let error = dataModel as? ErrorResponse else { return }
                 presentSimpleAlert(title: "Error", message: "\(error.message)")
             }
         default:

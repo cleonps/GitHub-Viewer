@@ -33,18 +33,18 @@ class GistFilesViewController: UIViewController {
         NetworkManager.shared.delegate = self
         
         if gistFiles.isEmpty {
-            NetworkManager.shared.getGistFiles(id: idGist)
+            NetworkManager.shared.getGistFiles(for: idGist)
         }
     }
     
     @objc private func refreshData(_ sender: Any) {
-        NetworkManager.shared.getGistFiles(id: idGist)
+        NetworkManager.shared.getGistFiles(for: idGist)
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         switch segue.identifier {
         case Segues.gistFile.rawValue:
-            let destinationVC = segue.destination as! GistFileContentViewController
+            guard let destinationVC = segue.destination as? GistFileContentViewController else { return }
             destinationVC.gistTitle = sentTitle
             destinationVC.content = sentContent
         default:
@@ -60,7 +60,9 @@ extension GistFilesViewController: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeReusableCell(withName: .gist, for: indexPath) as! GistTableViewCell
+        guard let cell = tableView.dequeReusableCell(withName: .gist, for: indexPath) as? GistTableViewCell else {
+            return UITableViewCell()
+        }
         let row = indexPath.row
         
         let image = #imageLiteral(resourceName: "file")
@@ -84,21 +86,20 @@ extension GistFilesViewController: UITableViewDelegate, UITableViewDataSource {
 }
 
 extension GistFilesViewController: NetworkManagerDelegate {
-    func response<T:Codable>(dataModel: T, endpoint: Router, code: StatusCodes) {
+    func response<T: Codable>(dataModel: T, endpoint: Router, code: StatusCodes) {
         self.refresher.endRefreshing()
         switch endpoint {
         case .getGistFiles:
             switch code {
             case .success, .accepted:
-                let gistResponse = dataModel as! GistResponse
+                guard let gistResponse = dataModel as? GistResponse else { return }
                 gistFiles = gistResponse.files.files.map { $1 }
                 gistDescription = gistResponse.description
                 
                 gistDescriptionLabel.text = "Descripción: \(gistDescription)"
                 gistFilesTableView.reloadData()
             default:
-                let error = dataModel as! ErrorResponse
-                
+                guard let error = dataModel as? ErrorResponse else { return }
                 gistDescriptionLabel.text = "No se pudieron obtener los datos"
                 presentSimpleAlert(title: "Error", message: "\(error.message)")
             }

@@ -8,19 +8,19 @@
 
 import Foundation
 
-extension UserDefaults{
-    public enum Keys: String, CaseIterable{
-        case User = "user"
-        case Password = "password"
-        case AvatarURL = "avatarURL"
-        case Name = "name"
-        case Blog = "blog"
-        case Location = "location"
-        case Email = "email"
-        case PublicRepos = "publicRepos"
-        case PublicGists = "publicGists"
-        case Followers = "followers"
-        case Following = "following"
+extension UserDefaults {
+    public enum Keys: String, CaseIterable {
+        case user
+        case password
+        case avatarURL
+        case name
+        case blog
+        case location
+        case email
+        case publicRepos
+        case publicGists
+        case followers
+        case following
     }
     
     public func setValue(_ value: Any?, forKey key: Keys) {

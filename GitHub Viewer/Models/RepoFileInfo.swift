@@ -15,6 +15,6 @@ struct RepoFileInfo: Codable {
 }
 
 enum FileType: String {
-    case file = "file"
-    case dir = "dir"
+    case file
+    case dir
 }

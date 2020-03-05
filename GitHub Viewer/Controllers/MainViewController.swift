@@ -9,7 +9,7 @@
 import UIKit
 import Alamofire
 
-fileprivate enum Field: Int {
+private enum Field: Int {
     case email = 1
     case password = 2
 }
@@ -38,8 +38,8 @@ class MainViewController: UIViewController {
         super.viewDidAppear(false)
         
         if checkIfUserExists() {
-            let user = userDefaults.string(forKey: UserDefaults.Keys.User)!
-            let password = userDefaults.string(forKey: UserDefaults.Keys.Password)!
+            let user = userDefaults.string(forKey: UserDefaults.Keys.user)!
+            let password = userDefaults.string(forKey: UserDefaults.Keys.password)!
             UIView.setAnimationsEnabled(false)
             NetworkManager.shared.authorization = HTTPHeader.authorization(username: user, password: password)
             performSegue(withIdentifier: .home)
@@ -77,9 +77,9 @@ class MainViewController: UIViewController {
     }
     
     private func checkIfUserExists() -> Bool {
-        guard let _ = userDefaults.string(forKey: UserDefaults.Keys.User),
-              let _ = userDefaults.string(forKey: UserDefaults.Keys.Password) else { return false }
-        return true
+        let userIsSet = userDefaults.string(forKey: UserDefaults.Keys.user) != nil ? true : false
+        let passwordIsSet = userDefaults.string(forKey: UserDefaults.Keys.password) != nil ? true : false
+        return userIsSet && passwordIsSet
     }
     
     private func setupDelegates() {
@@ -137,7 +137,7 @@ extension MainViewController: NetworkManagerDelegate {
     func response<T: Codable>(dataModel: T, endpoint: Router, code: StatusCodes) {
         switch code {
         case .success, .accepted:
-            let userData = dataModel as! UserResponse
+            guard let userData = dataModel as? UserResponse else { return }
             self.shouldCallAPI = true
             presentSimpleAlert(title: "Sesión Iniciada", message: "Bienvenido \(userData.login)") {
                 let user = userData.login
@@ -153,17 +153,17 @@ extension MainViewController: NetworkManagerDelegate {
                 let following = userData.following
                 
                 // Save Profile Data
-                self.userDefaults.setValue(user, forKey: .User)
-                self.userDefaults.setValue(password, forKey: .Password)
-                self.userDefaults.setValue(avatar, forKey: .AvatarURL)
-                self.userDefaults.setValue(name, forKey: .Name)
-                self.userDefaults.setValue(blog, forKey: .Blog)
-                self.userDefaults.setValue(location, forKey: .Location)
-                self.userDefaults.setValue(email, forKey: .Email)
-                self.userDefaults.setValue(publicRepos, forKey: .PublicRepos)
-                self.userDefaults.setValue(publicGists, forKey: .PublicGists)
-                self.userDefaults.setValue(followers, forKey: .Followers)
-                self.userDefaults.setValue(following, forKey: .Following)
+                self.userDefaults.setValue(user, forKey: .user)
+                self.userDefaults.setValue(password, forKey: .password)
+                self.userDefaults.setValue(avatar, forKey: .avatarURL)
+                self.userDefaults.setValue(name, forKey: .name)
+                self.userDefaults.setValue(blog, forKey: .blog)
+                self.userDefaults.setValue(location, forKey: .location)
+                self.userDefaults.setValue(email, forKey: .email)
+                self.userDefaults.setValue(publicRepos, forKey: .publicRepos)
+                self.userDefaults.setValue(publicGists, forKey: .publicGists)
+                self.userDefaults.setValue(followers, forKey: .followers)
+                self.userDefaults.setValue(following, forKey: .following)
                 
                 self.emailTextField.text = ""
                 self.passwordTextField.text = ""
@@ -171,7 +171,7 @@ extension MainViewController: NetworkManagerDelegate {
                 self.performSegue(withIdentifier: .home)
             }
         default:
-            let error = dataModel as! ErrorResponse
+            guard let error = dataModel as? ErrorResponse else { return }
             presentSimpleAlert(title: "Error", message: error.message)
         }
     }

@@ -14,7 +14,7 @@ enum Router: URLRequestConvertible {
     
     case login
     case getGists(username: String)
-    case getGistFiles(id: String)
+    case getGistFiles(gistId: String)
     case getRepos
     case getRepoContents(username: String, repo: String)
     case getRepoFileContent(username: String, repo: String, file: String)
@@ -25,8 +25,8 @@ enum Router: URLRequestConvertible {
             return "user"
         case .getGists(let username):
             return "users/\(username)/gists"
-        case .getGistFiles(let id):
-        return "gists/\(id)"
+        case .getGistFiles(let gistId):
+        return "gists/\(gistId)"
         case .getRepos:
             return "user/repos"
         case .getRepoContents(let username, let repo):

@@ -54,10 +54,10 @@ extension UIViewController {
     ///     - identifier: The *storyboard id* property of the view.
     ///     - controller: The *UIViewController subclass* associated with the view.
     ///     - presentation: The *UIModalPresentationStyle*, default value is .fullScreen
-    func instantiateVC<T: UIViewController>(storyboard: Storyboards, identifier: ViewIdentifiers, controller: T.Type, presentation: UIModalPresentationStyle? = .fullScreen) -> T {
+    func instantiateVC<T: UIViewController>(storyboard: Storyboards, identifier: ViewIdentifiers, controller: T.Type, presentation: UIModalPresentationStyle? = .fullScreen) -> T? {
         let storyboard = UIStoryboard(name: storyboard.rawValue, bundle: nil)
-        let viewController = storyboard.instantiateViewController(withIdentifier: identifier.rawValue) as! T
-        viewController.modalPresentationStyle = presentation!
+        let viewController = storyboard.instantiateViewController(withIdentifier: identifier.rawValue) as? T
+        viewController?.modalPresentationStyle = presentation!
         
         return viewController
     }
@@ -68,7 +68,7 @@ extension UIViewController {
     ///     - title: The *title* of the alert.
     ///     - message: The *message* that the alert displays.
     ///     - actionHandler: The *closure* executed when the button is pressed.
-    func presentSimpleAlert(title: String, message: String, actionHandler: (() -> ())? = nil) {
+    func presentSimpleAlert(title: String, message: String, actionHandler: (() -> Void)? = nil) {
         let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
         let action = UIAlertAction(title: "OK", style: .default) { _ in
             if actionHandler != nil {

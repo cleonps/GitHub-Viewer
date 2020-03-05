@@ -35,57 +35,58 @@ class ProfileViewController: UIViewController {
             setupProfileImage()
         }
         
-        let user = (userDefaults.value(forKey: .User) as? String)!
-        let password = (userDefaults.value(forKey: .Password) as? String)!
+        let user = (userDefaults.value(forKey: .user) as? String)!
+        let password = (userDefaults.value(forKey: .password) as? String)!
         NetworkManager.shared.delegate = self
         NetworkManager.shared.login(email: user, password: password)
     }
     
     private func setupProfileImage() {
-        guard let url = URL(string: userDefaults.value(forKey: .AvatarURL) as! String) else { return }
+        let stringURL = (userDefaults.value(forKey: .avatarURL) as? String) ?? ""
+        guard let url = URL(string: stringURL) else { return }
         
         do {
             profileImage.image = try UIImage(data: Data(contentsOf: url))
             profileImage.roundView(bgColor: .white)
-        } catch (let e) {
-            print("Error: \(e)")
+        } catch let error {
+            print("Error: \(error)")
         }
     }
     
     private func setupUserInfo() {
-        userNameLabel.text = userDefaults.value(forKey: .Name) as? String
+        userNameLabel.text = userDefaults.value(forKey: .name) as? String
         
-        if let location = setupUserDefault(forKey: .Location) {
+        if let location = setupUserDefault(forKey: .location) {
             locationLabel.text = location as? String
             locationLabel.isHidden = false
         } else {
             locationLabel.isHidden = true
         }
         
-        if let email = setupUserDefault(forKey: .Email) {
+        if let email = setupUserDefault(forKey: .email) {
             emailLabel.text = email as? String
             locationLabel.isHidden = false
         } else {
             emailLabel.isHidden = true
         }
         
-        if let blog = setupUserDefault(forKey: .Blog) {
+        if let blog = setupUserDefault(forKey: .blog) {
             blogLabel.text = blog as? String
             locationLabel.isHidden = false
         } else {
             blogLabel.isHidden = true
         }
         
-        if let publicRepos = userDefaults.value(forKey: .PublicRepos),
-            let publicGists = userDefaults.value(forKey: .PublicGists) {
+        if let publicRepos = userDefaults.value(forKey: .publicRepos),
+            let publicGists = userDefaults.value(forKey: .publicGists) {
             let repos = publicRepos as? Int
             let gists = publicGists as? Int
             publicReposLabel.text = "Repos: \(repos ?? 0)"
             publicGistsLabel.text = "Gists: \(gists ?? 0)"
         }
         
-        if let following = userDefaults.value(forKey: .Following),
-            let followers = userDefaults.value(forKey: .Followers) {
+        if let following = userDefaults.value(forKey: .following),
+            let followers = userDefaults.value(forKey: .followers) {
             let following = following as? Int
             let followers = followers as? Int
             followingLabel.text = "Siguiendo: \(following ?? 0)"
@@ -124,7 +125,7 @@ extension ProfileViewController: NetworkManagerDelegate {
         case .success, .accepted:
             switch endpoint {
             case .login:
-                let userData = dataModel as! UserResponse
+                guard let userData = dataModel as? UserResponse else { return }
                 
                 let name = userData.name
                 let blog = userData.blog
@@ -136,14 +137,14 @@ extension ProfileViewController: NetworkManagerDelegate {
                 let following = userData.following
                 
                 // Save Profile Data
-                userDefaults.setValue(name, forKey: .Name)
-                userDefaults.setValue(blog, forKey: .Blog)
-                userDefaults.setValue(location, forKey: .Location)
-                userDefaults.setValue(email, forKey: .Email)
-                userDefaults.setValue(publicRepos, forKey: .PublicRepos)
-                userDefaults.setValue(publicGists, forKey: .PublicGists)
-                userDefaults.setValue(followers, forKey: .Followers)
-                userDefaults.setValue(following, forKey: .Following)
+                userDefaults.setValue(name, forKey: .name)
+                userDefaults.setValue(blog, forKey: .blog)
+                userDefaults.setValue(location, forKey: .location)
+                userDefaults.setValue(email, forKey: .email)
+                userDefaults.setValue(publicRepos, forKey: .publicRepos)
+                userDefaults.setValue(publicGists, forKey: .publicGists)
+                userDefaults.setValue(followers, forKey: .followers)
+                userDefaults.setValue(following, forKey: .following)
                 
                 setupUserInfo()
             default:

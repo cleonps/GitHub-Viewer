@@ -11,7 +11,7 @@ import Highlightr
 
 class RepoFileViewController: UIViewController {
     let userDefaults = UserDefaults.standard
-    lazy var user = userDefaults.string(forKey: UserDefaults.Keys.User)!
+    lazy var user = userDefaults.string(forKey: UserDefaults.Keys.user)!
     var repo = ""
     var fileName = ""
     var file = RepoFileContent()
@@ -71,7 +71,7 @@ extension RepoFileViewController: NetworkManagerDelegate {
         case .getRepoFileContent:
             switch code {
             case .success, .accepted:
-                file = dataModel as! RepoFileContent
+                file = (dataModel as? RepoFileContent) ?? RepoFileContent()
                 let encodedData = file.content!
                 let decodedData = Data(base64Encoded: encodedData, options: .ignoreUnknownCharacters)!
                 
@@ -97,12 +97,12 @@ extension RepoFileViewController: NetworkManagerDelegate {
                             contentTextView.isUserInteractionEnabled = false
                         }
                     }
-                }  else {
+                } else {
                     contentTextView.text = "Contenido no disponible"
                 }
                 
             default:
-                let error = dataModel as! ErrorResponse
+                guard let error = dataModel as? ErrorResponse else { return }
                 presentSimpleAlert(title: "Error", message: "\(error.message)")
             }
         default:

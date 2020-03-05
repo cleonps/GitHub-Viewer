@@ -36,9 +36,8 @@ class ReposViewController: UITableViewController {
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         switch segue.identifier {
         case Segues.repoContents.rawValue:
-            let destinationVC = segue.destination as! RepoContentsViewController
+            guard let destinationVC = segue.destination as? RepoContentsViewController else { return }
             destinationVC.repo = repo
-            
         default:
             return
         }
@@ -52,7 +51,10 @@ extension ReposViewController {
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeReusableCell(withName: .gist, for: indexPath) as! GistTableViewCell
+        guard let cell = tableView.dequeReusableCell(withName: .gist, for: indexPath) as? GistTableViewCell else {
+            return UITableViewCell()
+        }
+        
         let row = indexPath.row
         
         let image = #imageLiteral(resourceName: "gist")
@@ -92,16 +94,15 @@ extension ReposViewController: NetworkManagerDelegate {
         case .getRepos:
             switch code {
             case .success, .accepted:
-                repos = dataModel as! [ReposResponse]
+                repos = (dataModel as? [ReposResponse]) ?? []
                 tableView.reloadData()
             default:
-                let error = dataModel as! ErrorResponse
+                guard let error = dataModel as? ErrorResponse else { return }
                 presentSimpleAlert(title: "Error", message: "\(error.message)")
             }
         default:
             break
         }
     }
-    
     
 }
