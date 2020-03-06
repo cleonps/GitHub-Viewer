@@ -39,7 +39,11 @@ class GistFileContentViewController: UIViewController {
                 contentTextView.text = "Contenido no disponible"
             }
         }
-        
+    }
+    
+    override func viewDidDisappear(_ animated: Bool) {
+        let value = UIInterfaceOrientation.portrait.rawValue
+        UIDevice.current.setValue(value, forKey: "orientation")
     }
     
     @objc func keyboardWillShow(_ notification: Notification) {

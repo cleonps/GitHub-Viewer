@@ -51,6 +51,7 @@
 		B6EB183323D7AD9B002607BF /* UITableView+Names.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6EB183223D7AD9B002607BF /* UITableView+Names.swift */; };
 		B6EB183623D7AF21002607BF /* GistTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6EB183423D7AF21002607BF /* GistTableViewCell.swift */; };
 		B6EB183723D7AF21002607BF /* GistTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = B6EB183523D7AF21002607BF /* GistTableViewCell.xib */; };
+		B6F132652412C4DA00D3175D /* UITabBarController+Rotation.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6F132642412C4DA00D3175D /* UITabBarController+Rotation.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -113,6 +114,7 @@
 		B6EB183223D7AD9B002607BF /* UITableView+Names.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITableView+Names.swift"; sourceTree = "<group>"; };
 		B6EB183423D7AF21002607BF /* GistTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GistTableViewCell.swift; sourceTree = "<group>"; };
 		B6EB183523D7AF21002607BF /* GistTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = GistTableViewCell.xib; sourceTree = "<group>"; };
+		B6F132642412C4DA00D3175D /* UITabBarController+Rotation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITabBarController+Rotation.swift"; sourceTree = "<group>"; };
 		C42107511D6B9EB9B49D87F6 /* Pods_GitHub_Viewer.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_GitHub_Viewer.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		D0ACD439D5F4CEE335B92F0B /* Pods-GitHub Viewer.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GitHub Viewer.release.xcconfig"; path = "Target Support Files/Pods-GitHub Viewer/Pods-GitHub Viewer.release.xcconfig"; sourceTree = "<group>"; };
 		DDC320C94435AFD334DCCAC5 /* Pods-GitHub ViewerTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GitHub ViewerTests.debug.xcconfig"; path = "Target Support Files/Pods-GitHub ViewerTests/Pods-GitHub ViewerTests.debug.xcconfig"; sourceTree = "<group>"; };
@@ -253,6 +255,7 @@
 				3563A0D423F366FD0019032F /* UIView+Styles.swift */,
 				B68108F224005D32003D7282 /* AudioToolboxUtilities.swift */,
 				B6884C282411802300B37F65 /* KeychainWrapper+Keys.swift */,
+				B6F132642412C4DA00D3175D /* UITabBarController+Rotation.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -519,6 +522,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				35058C2123D3D20C0015A90B /* NetworkManager.swift in Sources */,
+				B6F132652412C4DA00D3175D /* UITabBarController+Rotation.swift in Sources */,
 				3563A0D123F3323C0019032F /* GistFilesViewController.swift in Sources */,
 				B634313123F4653200C4C9A2 /* ReposResponse.swift in Sources */,
 				B634313323F466FA00C4C9A2 /* ReposViewController.swift in Sources */,

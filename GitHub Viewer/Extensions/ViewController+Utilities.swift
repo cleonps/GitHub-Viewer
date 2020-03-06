@@ -36,9 +36,11 @@ extension UIViewController {
         
         // Gists
         case gistsList = "GistsList"
+        case gistFile = "GistFile"
         
         // Repos
         case reposList = "ReposList"
+        case repoFile = "RepoFile"
         
         // Profile
         case profile = "Profile"
