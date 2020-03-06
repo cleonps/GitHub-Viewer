@@ -58,14 +58,28 @@ extension ReposViewController {
         let row = indexPath.row
         
         let image = #imageLiteral(resourceName: "gist")
+        let imageLock = #imageLiteral(resourceName: "padlock")
         let name = repos[row].name
-        let accessLevel = "Acceso: \(repos[row].isPrivate ? "Privado" : "Público")."
         let description = repos[row].description ?? ""
-        let repoDescription = description != "" ? "Descripción: \(description)\n" : ""
+        let date = repos[row].lastUpdate
+        
+        let dateFormatter = DateFormatter()
+        dateFormatter.locale = Locale(identifier: "en_US_POSIX")
+        dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ssZ"
+        let stringDate = dateFormatter.date(from:date)!
+        
+        let stringFormatter = DateFormatter()
+        stringFormatter.dateFormat = "HH:mm:ss '-' dd-MM-yyyy"
+        let lastUpdate = "Actualizado: \(stringFormatter.string(from: stringDate))"
+        
+        let repoDescription = description != "" ? "Descripción: \(description)" : ""
         
         cell.cellImage.image = image.withRenderingMode(.alwaysTemplate)
+        cell.padlockImage.image = imageLock.withRenderingMode(.alwaysTemplate)
         cell.nameLabel.text = name
-        cell.detailLabel.text = "\(repoDescription)\(accessLevel)"
+        cell.padlockImage.isHidden = !repos[row].isPrivate
+        cell.detailLabel.text = "\(repoDescription)"
+        cell.secondDetailLabel.text = "\(lastUpdate)"
         
         return cell
     }

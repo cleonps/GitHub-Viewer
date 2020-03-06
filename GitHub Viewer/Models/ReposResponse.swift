@@ -14,12 +14,14 @@ struct ReposResponse: Codable {
     var description: String?
     var fork: Bool
     var isPrivate: Bool
+    var lastUpdate: String
     
     enum CodingKeys: String, CodingKey {
         case id
         case name
         case description
         case fork
+        case lastUpdate = "updated_at"
         case isPrivate = "private"
     }
 }

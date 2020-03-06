@@ -13,7 +13,9 @@ class GistTableViewCell: UITableViewCell {
     @IBOutlet var cellImage: UIImageView!
     @IBOutlet var nameLabel: UILabel!
     @IBOutlet var detailLabel: UILabel!
+    @IBOutlet var secondDetailLabel: UILabel!
     @IBOutlet var backgroundCellView: UIView!
+    @IBOutlet var padlockImage: UIImageView!
     
     override func awakeFromNib() {
         super.awakeFromNib()
