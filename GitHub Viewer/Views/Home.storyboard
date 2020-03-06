@@ -5,6 +5,7 @@
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15706"/>
         <capability name="Named colors" minToolsVersion="9.0"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -28,6 +29,61 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="os5-9G-Zbs" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="919" y="-709"/>
+        </scene>
+        <!--Gist Detail View Controller-->
+        <scene sceneID="UsG-6W-Xwu">
+            <objects>
+                <viewController storyboardIdentifier="GistsDetails" modalTransitionStyle="crossDissolve" id="9yW-cm-og5" customClass="GistDetailViewController" customModule="GitHub_Viewer" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="ubI-K3-0E1">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="hZo-Yx-qRf">
+                                <rect key="frame" x="31" y="423" width="352" height="50"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Pwe-Vi-vrX">
+                                        <rect key="frame" x="10" y="15" width="332" height="0.0"/>
+                                        <fontDescription key="fontDescription" name="Avenir-Heavy" family="Avenir" pointSize="20"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="15" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tdw-aN-6uz">
+                                        <rect key="frame" x="10" y="35" width="332" height="0.0"/>
+                                        <fontDescription key="fontDescription" name="Avenir-Book" family="Avenir" pointSize="16"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                <constraints>
+                                    <constraint firstAttribute="trailing" secondItem="tdw-aN-6uz" secondAttribute="trailing" constant="10" id="3OD-Qj-r9e"/>
+                                    <constraint firstItem="Pwe-Vi-vrX" firstAttribute="leading" secondItem="hZo-Yx-qRf" secondAttribute="leading" constant="10" id="6Py-wq-1r4"/>
+                                    <constraint firstAttribute="bottom" secondItem="tdw-aN-6uz" secondAttribute="bottom" constant="15" id="NU2-lG-AHg"/>
+                                    <constraint firstItem="tdw-aN-6uz" firstAttribute="top" secondItem="Pwe-Vi-vrX" secondAttribute="bottom" constant="20" id="an6-cr-LIL"/>
+                                    <constraint firstItem="Pwe-Vi-vrX" firstAttribute="top" secondItem="hZo-Yx-qRf" secondAttribute="top" constant="15" id="rj4-r9-m6H"/>
+                                    <constraint firstItem="tdw-aN-6uz" firstAttribute="leading" secondItem="hZo-Yx-qRf" secondAttribute="leading" constant="10" id="utN-aU-Ila"/>
+                                    <constraint firstAttribute="trailing" secondItem="Pwe-Vi-vrX" secondAttribute="trailing" constant="10" id="zcV-7y-yjC"/>
+                                </constraints>
+                            </view>
+                        </subviews>
+                        <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.70644263698630139" colorSpace="calibratedRGB"/>
+                        <constraints>
+                            <constraint firstItem="hZo-Yx-qRf" firstAttribute="centerX" secondItem="ubI-K3-0E1" secondAttribute="centerX" id="QP1-RU-Eb5"/>
+                            <constraint firstItem="hZo-Yx-qRf" firstAttribute="centerY" secondItem="ubI-K3-0E1" secondAttribute="centerY" id="olW-js-6T8"/>
+                            <constraint firstItem="hZo-Yx-qRf" firstAttribute="width" secondItem="ubI-K3-0E1" secondAttribute="width" multiplier="0.85" id="uX0-2t-GVO"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="z2F-kT-Pba"/>
+                    </view>
+                    <extendedEdge key="edgesForExtendedLayout"/>
+                    <connections>
+                        <outlet property="containerView" destination="hZo-Yx-qRf" id="xIF-bg-IUt"/>
+                        <outlet property="filesLabel" destination="tdw-aN-6uz" id="12f-ka-3jZ"/>
+                        <outlet property="titleLabel" destination="Pwe-Vi-vrX" id="uJb-fc-2uc"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="3IQ-aw-2fA" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1672.4637681159422" y="-709.15178571428567"/>
         </scene>
         <!--Gists-->
         <scene sceneID="fcN-aO-Fdj">
@@ -65,7 +121,7 @@
             <color red="0.80000000000000004" green="0.80000000000000004" blue="0.80000000000000004" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
         <namedColor name="TintColor">
-            <color red="0.011764705882352941" green="0.58039215686274515" blue="0.16078431372549021" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color red="0.0078431372549019607" green="0.29411764705882354" blue="0.082352941176470587" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
     </resources>
 </document>

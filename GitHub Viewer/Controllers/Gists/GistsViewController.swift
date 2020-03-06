@@ -16,6 +16,7 @@ class GistsViewController: UIViewController {
     private var username = ""
     private var idGist = ""
     private var alertIsPresented = false
+    private var longGesture: UILongPressGestureRecognizer?
     
     @IBOutlet var gistListTableView: UITableView!
     
@@ -61,6 +62,7 @@ class GistsViewController: UIViewController {
     @objc func recognizeLongPress(_ longPressGesture: UILongPressGestureRecognizer) {
         gistListTableView.isUserInteractionEnabled = false
         gistListTableView.removeGestureRecognizer(longPressGesture)
+        longGesture = longPressGesture
         
         let gesture = longPressGesture.location(in: self.gistListTableView)
         if let indexPath = self.gistListTableView.indexPathForRow(at: gesture) {
@@ -76,11 +78,14 @@ class GistsViewController: UIViewController {
                 alertIsPresented = true
                 AudioServicesPlaySystemSound(.peek)
                 
-                presentSimpleAlert(title: title, message: message) {
-                    self.gistListTableView.isUserInteractionEnabled = true
-                    self.gistListTableView.addGestureRecognizer(longPressGesture)
-                    self.alertIsPresented = false
-                }
+                guard let viewController = instantiateVC(storyboard: .home, identifier: .gistDetail, controller: GistDetailViewController.self, presentation: .overFullScreen) else { return }
+                
+                viewController.gistTitle = title
+                viewController.gistFiles = message
+                viewController.delegate = self
+                
+                self.gistListTableView.touchesShouldCancel(in: self.gistListTableView)
+                present(viewController, animated: true)
             }
         }
     }
@@ -88,6 +93,16 @@ class GistsViewController: UIViewController {
     private func setupCellLongPress() {
         let longPressGesture = UILongPressGestureRecognizer(target: self, action: #selector(recognizeLongPress))
         gistListTableView.addGestureRecognizer(longPressGesture)
+    }
+    
+}
+
+extension GistsViewController: GistDetailViewControllerDelegate {
+    func resetTableView() {
+        self.gistListTableView.isUserInteractionEnabled = true
+        guard let gesture = longGesture else { return }
+        self.gistListTableView.addGestureRecognizer(gesture)
+        self.alertIsPresented = false
     }
 }
 

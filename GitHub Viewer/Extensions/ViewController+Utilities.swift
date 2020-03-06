@@ -32,6 +32,7 @@ extension UIViewController {
         
         // Home
         case gistTabBar = "GistsTabBar"
+        case gistDetail = "GistsDetails"
         
         // Gists
         case gistsList = "GistsList"
