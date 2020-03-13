@@ -1,5 +1,5 @@
 # GitHub Viewer
-A Viewer of Gists and Repos from GitHub.
+A Viewer of Gist and Repo files from GitHub.
 
 - iOS 11+
 - Swift 5
@@ -9,4 +9,5 @@ A Viewer of Gists and Repos from GitHub.
 - Pods
   - Networking: Alamofire 5
   - Syntax Highlight: Highlightr
+  - Markdown to HTML parser: Down
   - SwiftKeychainWrapper

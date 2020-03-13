@@ -162,6 +162,7 @@ extension GistsViewController: NetworkManagerDelegate {
             switch code {
             case .success, .accepted:
                 gists = (dataModel as? [GistResponse]) ?? []
+                gists = gists.sorted(by: { $0.accessLevel && !$1.accessLevel })
                 gistListTableView.reloadData()
             default:
                 guard let error = dataModel as? ErrorResponse else { return }

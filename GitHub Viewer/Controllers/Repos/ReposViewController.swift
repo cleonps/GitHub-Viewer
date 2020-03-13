@@ -109,6 +109,7 @@ extension ReposViewController: NetworkManagerDelegate {
             switch code {
             case .success, .accepted:
                 repos = (dataModel as? [ReposResponse]) ?? []
+                repos = repos.sorted(by: { !$0.isPrivate && $1.isPrivate })
                 tableView.reloadData()
             default:
                 guard let error = dataModel as? ErrorResponse else { return }
