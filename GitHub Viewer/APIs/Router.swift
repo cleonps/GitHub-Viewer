@@ -18,6 +18,7 @@ enum Router: URLRequestConvertible {
     case getRepos
     case getRepoContents(username: String, repo: String)
     case getRepoFileContent(username: String, repo: String, file: String)
+    case getRepoMDFileContent(username: String, repo: String, file: String)
     
     var path: String {
         switch self {
@@ -33,18 +34,25 @@ enum Router: URLRequestConvertible {
             return "repos/\(username)/\(repo)/contents"
         case .getRepoFileContent(let username, let repo, let file):
             return "repos/\(username)/\(repo)/contents/\(file)"
+        case .getRepoMDFileContent(let username, let repo, let file):
+            return "repos/\(username)/\(repo)/contents/\(file)"
         }
     }
     
     var method: HTTPMethod {
         switch self {
-        case .login, .getGists, .getGistFiles, .getRepos, .getRepoContents, .getRepoFileContent:
+        case .login, .getGists, .getGistFiles, .getRepos, .getRepoContents, .getRepoFileContent, .getRepoMDFileContent:
             return .get
         }
     }
     
     var headers: HTTPHeaders {
         switch self {
+        case .getRepoMDFileContent:
+            return HTTPHeaders([
+                NetworkManager.shared.authorization,
+                .accept("application/vnd.github.v3.html+json")
+            ])
         case .login, .getGists, .getGistFiles, .getRepos, .getRepoContents, .getRepoFileContent:
             return HTTPHeaders([
                 NetworkManager.shared.authorization,

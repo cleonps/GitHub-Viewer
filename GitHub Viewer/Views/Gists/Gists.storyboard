@@ -115,13 +115,25 @@
                                 <fontDescription key="fontDescription" name="FiraCode-Regular" family="Fira Code" pointSize="12"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                             </textView>
+                            <wkWebView hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="3JM-OX-DrL">
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="774"/>
+                                <color key="backgroundColor" red="0.36078431370000003" green="0.38823529410000002" blue="0.4039215686" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <wkWebViewConfiguration key="configuration">
+                                    <audiovisualMediaTypes key="mediaTypesRequiringUserActionForPlayback" none="YES"/>
+                                    <wkPreferences key="preferences"/>
+                                </wkWebViewConfiguration>
+                            </wkWebView>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <constraints>
+                            <constraint firstItem="3JM-OX-DrL" firstAttribute="leading" secondItem="it7-NQ-8yl" secondAttribute="leading" id="2hg-kh-OWj"/>
+                            <constraint firstItem="it7-NQ-8yl" firstAttribute="bottom" secondItem="3JM-OX-DrL" secondAttribute="bottom" id="CAi-Le-3DC"/>
                             <constraint firstItem="6mt-1R-n2U" firstAttribute="top" secondItem="it7-NQ-8yl" secondAttribute="top" constant="10" id="DdA-cR-1wv"/>
                             <constraint firstItem="it7-NQ-8yl" firstAttribute="trailing" secondItem="6mt-1R-n2U" secondAttribute="trailing" constant="10" id="E3c-6N-p46"/>
+                            <constraint firstItem="it7-NQ-8yl" firstAttribute="trailing" secondItem="3JM-OX-DrL" secondAttribute="trailing" id="LcB-EF-NIq"/>
                             <constraint firstItem="it7-NQ-8yl" firstAttribute="bottom" secondItem="6mt-1R-n2U" secondAttribute="bottom" constant="10" id="YTf-Yc-xrx"/>
                             <constraint firstItem="6mt-1R-n2U" firstAttribute="leading" secondItem="it7-NQ-8yl" secondAttribute="leading" constant="10" id="eGn-ui-bq2"/>
+                            <constraint firstItem="3JM-OX-DrL" firstAttribute="top" secondItem="it7-NQ-8yl" secondAttribute="top" id="esO-Gc-VwP"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="it7-NQ-8yl"/>
                     </view>
@@ -129,11 +141,12 @@
                     <connections>
                         <outlet property="bottomTextViewConstraint" destination="YTf-Yc-xrx" id="mdn-Ow-CYH"/>
                         <outlet property="contentTextView" destination="6mt-1R-n2U" id="7fH-pd-Ubn"/>
+                        <outlet property="contentWebView" destination="3JM-OX-DrL" id="xFK-VV-JCe"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="bzG-7s-RZn" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3978" y="-1033"/>
+            <point key="canvasLocation" x="3976.811594202899" y="-1033.2589285714284"/>
         </scene>
         <!--Gists-->
         <scene sceneID="B9i-b3-Dnn">

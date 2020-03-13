@@ -8,6 +8,7 @@ target 'GitHub Viewer' do
   # Pods for GitHub Viewer
   pod 'Alamofire', '~> 5.0'
   pod 'Highlightr'
+  pod 'Down'
   pod 'SwiftKeychainWrapper'
   
   target 'GitHub ViewerTests' do

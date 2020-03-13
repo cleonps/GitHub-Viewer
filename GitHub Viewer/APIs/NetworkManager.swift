@@ -63,6 +63,11 @@ extension NetworkManager {
         let route = Router.getRepoFileContent(username: user, repo: repo, file: file)
         handleRequest(route: route, validModel: RepoFileContent.self)
     }
+    
+    func getRepoMDFileContent(user: String, repo: String, file: String) {
+        let route = Router.getRepoMDFileContent(username: user, repo: repo, file: file)
+        handleHTMLRequest(route: route, validModel: String.self)
+    }
 }
 
 // MARK: Response handler functions
@@ -72,6 +77,22 @@ extension NetworkManager {
         AF.request(route).responseString { (response) in
             switch response.result {
             case .success:
+                self.parseResponse(response, validModel: validModel.self, endpoint: route)
+            case .failure(let error):
+                let message = self.getNetworkError(error.localizedDescription)
+                self.delegate!.response(withError: message, endpoint: route)
+            }
+        }
+    }
+    
+    func handleHTMLRequest<T: Codable>(route: Router, validModel: T.Type) {
+        AF.request(route).responseString { (response) in
+            switch response.result {
+            case .success:
+                guard let status = response.response?.statusCode else { return }
+                guard let statusCode = StatusCodes(rawValue: status) else { return }
+                guard let text = response.value else { return }
+                self.delegate!.response(dataModel: text, endpoint: route, code: statusCode)
                 self.parseResponse(response, validModel: validModel.self, endpoint: route)
             case .failure(let error):
                 let message = self.getNetworkError(error.localizedDescription)

@@ -8,6 +8,7 @@
 
 import UIKit
 import Highlightr
+import WebKit
 
 class RepoFileViewController: UIViewController {
     let userDefaults = UserDefaults.standard
@@ -15,9 +16,11 @@ class RepoFileViewController: UIViewController {
     var repo = ""
     var fileName = ""
     var file = RepoFileContent()
+    var mdFile = String()
     
     @IBOutlet var contentTextView: UITextView!
     @IBOutlet var contentImage: UIImageView!
+    @IBOutlet var contentWebView: WKWebView!
     @IBOutlet var bottomTextViewConstraint: NSLayoutConstraint!
     
     override func viewDidLoad() {
@@ -32,8 +35,12 @@ class RepoFileViewController: UIViewController {
         hideKeyboardOnTap()
         
         NetworkManager.shared.delegate = self
-        if file.content == nil {
-            NetworkManager.shared.getRepoFileContent(user: user, repo: repo, file: fileName)
+        if file.content == nil && mdFile == "" {
+            if fileName.contains(".md") {
+                NetworkManager.shared.getRepoMDFileContent(user: user, repo: repo, file: fileName)
+            } else {
+                NetworkManager.shared.getRepoFileContent(user: user, repo: repo, file: fileName)
+            }
         }
     }
     
@@ -89,8 +96,6 @@ extension RepoFileViewController: NetworkManagerDelegate {
                 } else if let content = String(data: decodedData, encoding: .utf8) {
                     if fileName.contains(".txt") {
                         contentTextView.text = content
-                    } else if fileName.contains(".md") {
-                        contentTextView.text = content
                     } else {
                         let highlightr = Highlightr()
                         highlightr?.setTheme(to: "paraiso-dark")
@@ -106,6 +111,36 @@ extension RepoFileViewController: NetworkManagerDelegate {
                     contentTextView.text = "Contenido no disponible"
                 }
                 
+            default:
+                guard let error = dataModel as? ErrorResponse else { return }
+                presentSimpleAlert(title: "Error", message: "\(error.message)")
+            }
+            
+        case .getRepoMDFileContent:
+            switch code {
+            case .success, .accepted:
+                let body = (dataModel as? String) ?? String()
+                let html = """
+                <!doctype html>
+                <html lang="es">
+                <head>
+                    <title>\(fileName)</title>
+                    <meta charset="utf-8">
+                    <meta name="viewport" content="width=device-width">
+                    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/github-markdown-css/4.0.0/github-markdown.min.css" />
+                    </head>
+                    <body>
+                        \(body)
+                    </body>
+                </html>
+                """
+                
+                mdFile = html
+                
+                contentTextView.isHidden = true
+                contentWebView.isHidden = false
+                contentWebView.loadHTMLString(mdFile, baseURL: nil)
+                contentWebView.scrollView.bounces = false
             default:
                 guard let error = dataModel as? ErrorResponse else { return }
                 presentSimpleAlert(title: "Error", message: "\(error.message)")

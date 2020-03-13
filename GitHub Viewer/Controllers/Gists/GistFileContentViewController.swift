@@ -8,12 +8,15 @@
 
 import UIKit
 import Highlightr
+import WebKit
+import Down
 
 class GistFileContentViewController: UIViewController {
     public var content = ""
     public var gistTitle = ""
     
     @IBOutlet var contentTextView: UITextView!
+    @IBOutlet var contentWebView: WKWebView!
     @IBOutlet var bottomTextViewConstraint: NSLayoutConstraint!
     
     override func viewDidLoad() {
@@ -28,7 +31,27 @@ class GistFileContentViewController: UIViewController {
         if gistTitle.contains(".txt") {
             contentTextView.text = content
         } else if gistTitle.contains(".md") {
-            contentTextView.text = content
+            let down = Down(markdownString: content)
+            let body = try? down.toHTML()
+            let html = """
+            <!doctype html>
+            <html lang="es">
+            <head>
+                <title>\(gistTitle)</title>
+                <meta charset="utf-8">
+                <meta name="viewport" content="width=device-width">
+                <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/github-markdown-css/4.0.0/github-markdown.min.css" />
+            </head>
+            <body>
+                \(body ?? "")
+            </body>
+            </html>
+            """
+            
+            contentTextView.isHidden = true
+            contentWebView.isHidden = false
+            contentWebView.loadHTMLString(html, baseURL: nil)
+            contentWebView.scrollView.bounces = false
         } else {
             let highlightr = Highlightr()
             highlightr?.setTheme(to: "paraiso-dark")

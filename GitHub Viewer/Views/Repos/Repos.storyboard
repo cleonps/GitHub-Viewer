@@ -107,16 +107,28 @@
                                     <constraint firstAttribute="height" constant="400" id="wST-Op-BV5"/>
                                 </constraints>
                             </imageView>
+                            <wkWebView hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="MUg-vR-29N">
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="725"/>
+                                <color key="backgroundColor" red="0.36078431370000003" green="0.38823529410000002" blue="0.4039215686" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <wkWebViewConfiguration key="configuration">
+                                    <audiovisualMediaTypes key="mediaTypesRequiringUserActionForPlayback" none="YES"/>
+                                    <wkPreferences key="preferences"/>
+                                </wkWebViewConfiguration>
+                            </wkWebView>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <constraints>
                             <constraint firstItem="kuE-xr-MsC" firstAttribute="trailing" secondItem="0fL-kZ-cJl" secondAttribute="trailing" constant="10" id="2uZ-Cl-lee"/>
                             <constraint firstItem="0fL-kZ-cJl" firstAttribute="top" secondItem="kuE-xr-MsC" secondAttribute="top" constant="10" id="3Bn-iO-DIW"/>
+                            <constraint firstItem="MUg-vR-29N" firstAttribute="top" secondItem="kuE-xr-MsC" secondAttribute="top" id="G5I-eB-pOQ"/>
+                            <constraint firstItem="MUg-vR-29N" firstAttribute="leading" secondItem="kuE-xr-MsC" secondAttribute="leading" id="Nbu-FE-WnQ"/>
                             <constraint firstItem="BKs-AI-jI5" firstAttribute="top" secondItem="kuE-xr-MsC" secondAttribute="top" constant="10" id="TSa-F6-27B"/>
                             <constraint firstItem="0fL-kZ-cJl" firstAttribute="leading" secondItem="kuE-xr-MsC" secondAttribute="leading" constant="10" id="arb-CQ-iRL"/>
                             <constraint firstItem="BKs-AI-jI5" firstAttribute="leading" secondItem="kuE-xr-MsC" secondAttribute="leading" constant="10" id="fGD-vv-s5p"/>
+                            <constraint firstItem="kuE-xr-MsC" firstAttribute="trailing" secondItem="MUg-vR-29N" secondAttribute="trailing" id="gSa-hj-sc3"/>
                             <constraint firstItem="kuE-xr-MsC" firstAttribute="trailing" secondItem="BKs-AI-jI5" secondAttribute="trailing" constant="10" id="gTc-Xr-0Mo"/>
                             <constraint firstItem="kuE-xr-MsC" firstAttribute="bottom" secondItem="BKs-AI-jI5" secondAttribute="bottom" constant="10" id="lku-ru-zev"/>
+                            <constraint firstItem="kuE-xr-MsC" firstAttribute="bottom" secondItem="MUg-vR-29N" secondAttribute="bottom" id="yLr-pC-fPy"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="kuE-xr-MsC"/>
                     </view>
@@ -125,6 +137,7 @@
                         <outlet property="bottomTextViewConstraint" destination="lku-ru-zev" id="b3J-va-NYW"/>
                         <outlet property="contentImage" destination="0fL-kZ-cJl" id="2xH-Dq-aiN"/>
                         <outlet property="contentTextView" destination="BKs-AI-jI5" id="V5l-eK-Y8v"/>
+                        <outlet property="contentWebView" destination="MUg-vR-29N" id="8hp-QW-dbR"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="EuR-1v-zte" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
