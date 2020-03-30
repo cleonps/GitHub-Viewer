@@ -9,7 +9,6 @@
 import UIKit
 
 extension UITableView {
-    
     public enum CellNames: String {
         case gist = "GistCell"
     }

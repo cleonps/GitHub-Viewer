@@ -128,7 +128,7 @@ extension ProfileViewController: NetworkManagerDelegate {
         case .success, .accepted:
             switch endpoint {
             case .login:
-                guard let userData = dataModel as? UserResponse else { return }
+                guard let userData = dataModel as? UserData else { return }
                 
                 let name = userData.name
                 let blog = userData.blog

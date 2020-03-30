@@ -8,7 +8,7 @@
 
 import Foundation
 
-struct GistResponse: Codable {
+struct GistData: Codable {
     let id: String
     let files: FileList
     let accessLevel: Bool

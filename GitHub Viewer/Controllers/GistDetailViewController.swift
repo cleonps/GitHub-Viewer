@@ -13,9 +13,9 @@ protocol GistDetailViewControllerDelegate: AnyObject {
 }
 
 class GistDetailViewController: UIViewController {
-    var gistTitle = ""
-    var gistFiles = ""
-    weak var delegate: GistDetailViewControllerDelegate?
+    public var gistTitle = ""
+    public var gistFiles = ""
+    public weak var delegate: GistDetailViewControllerDelegate?
     
     @IBOutlet var titleLabel: UILabel!
     @IBOutlet var filesLabel: UILabel!

@@ -8,7 +8,7 @@
 
 import Foundation
 
-enum StatusCodes: Int {
+public enum StatusCodes: Int {
     case internalServerError = 500
     case notFound = 404
     case forbidden = 403

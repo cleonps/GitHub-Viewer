@@ -13,10 +13,10 @@ import WebKit
 class RepoFileViewController: UIViewController {
     let userDefaults = UserDefaults.standard
     lazy var user = userDefaults.string(forKey: UserDefaults.Keys.user)!
-    var repo = ""
-    var fileName = ""
-    var file = RepoFileContent()
-    var mdFile = String()
+    public var repo = ""
+    public var fileName = ""
+    private var file = RepoFileContent()
+    private var mdFile = String()
     
     @IBOutlet var contentTextView: UITextView!
     @IBOutlet var contentImage: UIImageView!

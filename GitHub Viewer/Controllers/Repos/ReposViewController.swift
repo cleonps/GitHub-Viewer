@@ -9,9 +9,9 @@
 import UIKit
 
 class ReposViewController: UITableViewController {
-    var refresher = UIRefreshControl()
-    var repos = [ReposResponse]()
-    var repo = ""
+    private var refresher = UIRefreshControl()
+    private var repos = [RepoData]()
+    private var repo = ""
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -108,7 +108,7 @@ extension ReposViewController: NetworkManagerDelegate {
         case .getRepos:
             switch code {
             case .success, .accepted:
-                repos = (dataModel as? [ReposResponse]) ?? []
+                repos = (dataModel as? [RepoData]) ?? []
                 repos = repos.sorted(by: { !$0.isPrivate && $1.isPrivate })
                 tableView.reloadData()
             default:

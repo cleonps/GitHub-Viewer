@@ -13,11 +13,11 @@ class RepoContentsViewController: UIViewController {
     let userDefaults = UserDefaults.standard
     
     lazy var user = userDefaults.string(forKey: .user)!
-    var repo = ""
-    var isSubdirectory = false
-    var fileList = [RepoFileInfo]()
-    var fileName = ""
-    var path = ""
+    public var repo = ""
+    private var isSubdirectory = false
+    private var fileList = [RepoFileInfo]()
+    private var fileName = ""
+    private var path = ""
     
     @IBOutlet var repoFilesTableView: UITableView!
     @IBOutlet var titleLabel: UILabel!
@@ -44,14 +44,6 @@ class RepoContentsViewController: UIViewController {
         }
     }
     
-    @objc private func refreshData(_ sender: Any) {
-        if isSubdirectory {
-            NetworkManager.shared.getRepoSubContents(user: user, repo: repo, file: path)
-        } else {
-            NetworkManager.shared.getRepoContents(user: user, repo: repo)
-        }
-    }
-    
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         switch segue.identifier {
         case Segues.repoFile.rawValue:
@@ -60,6 +52,14 @@ class RepoContentsViewController: UIViewController {
             destinationVC.fileName = fileName
         default:
             return
+        }
+    }
+    
+    @objc private func refreshData(_ sender: Any) {
+        if isSubdirectory {
+            NetworkManager.shared.getRepoSubContents(user: user, repo: repo, file: path)
+        } else {
+            NetworkManager.shared.getRepoContents(user: user, repo: repo)
         }
     }
 }

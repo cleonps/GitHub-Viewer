@@ -14,9 +14,6 @@ protocol NetworkManagerDelegate: class {
     func response(withError error: String, endpoint: Router)
 }
 
-extension NetworkManagerDelegate {
-}
-
 class NetworkManager {
     static let shared = NetworkManager()
     lazy var authorization = HTTPHeader.authorization(username: "", password: "")
@@ -31,22 +28,22 @@ extension NetworkManager {
     func login(email: String, password: String) {
         authorization = HTTPHeader.authorization(username: email, password: password)
         let route = Router.login
-        handleRequest(route: route, validModel: UserResponse.self)
+        handleRequest(route: route, validModel: UserData.self)
     }
     
     func getGists(user: String) {
         let route = Router.getGists(username: user)
-        handleRequest(route: route, validModel: [GistResponse].self)
+        handleRequest(route: route, validModel: [GistData].self)
     }
     
     func getGistFiles(for gistId: String) {
         let route = Router.getGistFiles(gistId: gistId)
-        handleRequest(route: route, validModel: GistResponse.self)
+        handleRequest(route: route, validModel: GistData.self)
     }
     
     func getRepoList() {
         let route = Router.getRepos
-        handleRequest(route: route, validModel: [ReposResponse].self)
+        handleRequest(route: route, validModel: [RepoData].self)
     }
     
     func getRepoContents(user: String, repo: String) {

@@ -92,7 +92,7 @@ extension GistFilesViewController: NetworkManagerDelegate {
         case .getGistFiles:
             switch code {
             case .success, .accepted:
-                guard let gistResponse = dataModel as? GistResponse else { return }
+                guard let gistResponse = dataModel as? GistData else { return }
                 gistFiles = gistResponse.files.files.map { $1 }
                 gistDescription = gistResponse.description
                 

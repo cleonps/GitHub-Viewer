@@ -12,7 +12,7 @@ class GistsViewController: UIViewController {
     let refresher = UIRefreshControl()
     let userDefaults = UserDefaults.standard
     
-    private var gists: [GistResponse] = []
+    private var gists = [GistData]()
     private var username = ""
     private var idGist = ""
     private var alertIsPresented = false
@@ -161,7 +161,7 @@ extension GistsViewController: NetworkManagerDelegate {
         case .getGists:
             switch code {
             case .success, .accepted:
-                gists = (dataModel as? [GistResponse]) ?? []
+                gists = (dataModel as? [GistData]) ?? []
                 gists = gists.sorted(by: { $0.accessLevel && !$1.accessLevel })
                 gistListTableView.reloadData()
             default:

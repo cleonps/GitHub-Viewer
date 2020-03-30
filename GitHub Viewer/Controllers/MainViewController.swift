@@ -19,7 +19,7 @@ class MainViewController: UIViewController {
     let userDefaults = UserDefaults.standard
     let keychain = KeychainWrapper.standard
     
-    var shouldCallAPI = true
+    private var shouldCallAPI = true
     
     @IBOutlet var logoWidthConstraint: NSLayoutConstraint!
     @IBOutlet var emailTextField: UITextField!
@@ -139,7 +139,7 @@ extension MainViewController: NetworkManagerDelegate {
     func response<T: Codable>(dataModel: T, endpoint: Router, code: StatusCodes) {
         switch code {
         case .success, .accepted:
-            guard let userData = dataModel as? UserResponse else { return }
+            guard let userData = dataModel as? UserData else { return }
             self.shouldCallAPI = true
             presentSimpleAlert(title: "Sesión Iniciada", message: "Bienvenido \(userData.login)") {
                 let user = userData.login
