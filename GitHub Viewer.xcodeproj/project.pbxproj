@@ -21,6 +21,8 @@
 		352F012C23D3740900177F99 /* GitHub_ViewerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 352F012B23D3740900177F99 /* GitHub_ViewerTests.swift */; };
 		352F013C23D393AC00177F99 /* Home.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 352F013B23D393AC00177F99 /* Home.storyboard */; };
 		352F013E23D3954200177F99 /* GistsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 352F013D23D3954200177F99 /* GistsViewController.swift */; };
+		353FB8872471C1DA009E102E /* Secrets.swift in Sources */ = {isa = PBXBuildFile; fileRef = 353FB8862471C1DA009E102E /* Secrets.swift */; };
+		353FB8892471DF5F009E102E /* String+URLEncoder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 353FB8882471DF5F009E102E /* String+URLEncoder.swift */; };
 		3563A0D123F3323C0019032F /* GistFilesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3563A0D023F3323C0019032F /* GistFilesViewController.swift */; };
 		3563A0D323F333080019032F /* GistFile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3563A0D223F333080019032F /* GistFile.swift */; };
 		3563A0D523F366FD0019032F /* UIView+Styles.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3563A0D423F366FD0019032F /* UIView+Styles.swift */; };
@@ -32,6 +34,7 @@
 		35A046B623EFC34E00695516 /* UserDefaults+Keys.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35A046B523EFC34E00695516 /* UserDefaults+Keys.swift */; };
 		35A046B823EFCD7D00695516 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35A046B723EFCD7D00695516 /* ProfileViewController.swift */; };
 		35AF0FFB24120E3100304C07 /* GistDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35AF0FFA24120E3100304C07 /* GistDetailViewController.swift */; };
+		35E20EF0247140E2003123BB /* Authorization.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35E20EEF247140E2003123BB /* Authorization.swift */; };
 		35FBA06724325484006CFCB7 /* ViewController+Identifiers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35FBA06624325484006CFCB7 /* ViewController+Identifiers.swift */; };
 		369EDBB650A920B06333521B /* Pods_GitHub_Viewer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C42107511D6B9EB9B49D87F6 /* Pods_GitHub_Viewer.framework */; };
 		B634313123F4653200C4C9A2 /* RepoData.swift in Sources */ = {isa = PBXBuildFile; fileRef = B634313023F4653200C4C9A2 /* RepoData.swift */; };
@@ -83,6 +86,8 @@
 		352F012D23D3740900177F99 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		352F013B23D393AC00177F99 /* Home.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Home.storyboard; sourceTree = "<group>"; };
 		352F013D23D3954200177F99 /* GistsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GistsViewController.swift; sourceTree = "<group>"; };
+		353FB8862471C1DA009E102E /* Secrets.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Secrets.swift; sourceTree = "<group>"; };
+		353FB8882471DF5F009E102E /* String+URLEncoder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+URLEncoder.swift"; sourceTree = "<group>"; };
 		3563A0D023F3323C0019032F /* GistFilesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GistFilesViewController.swift; sourceTree = "<group>"; };
 		3563A0D223F333080019032F /* GistFile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GistFile.swift; sourceTree = "<group>"; };
 		3563A0D423F366FD0019032F /* UIView+Styles.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Styles.swift"; sourceTree = "<group>"; };
@@ -94,6 +99,7 @@
 		35A046B523EFC34E00695516 /* UserDefaults+Keys.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UserDefaults+Keys.swift"; sourceTree = "<group>"; };
 		35A046B723EFCD7D00695516 /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
 		35AF0FFA24120E3100304C07 /* GistDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GistDetailViewController.swift; sourceTree = "<group>"; };
+		35E20EEF247140E2003123BB /* Authorization.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Authorization.swift; sourceTree = "<group>"; };
 		35FBA06624325484006CFCB7 /* ViewController+Identifiers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ViewController+Identifiers.swift"; sourceTree = "<group>"; };
 		5BC557D89DD444967A0294FA /* Pods_GitHub_ViewerTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_GitHub_ViewerTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		9D58476241FA177BA0D0079A /* Pods-GitHub Viewer.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GitHub Viewer.debug.xcconfig"; path = "Target Support Files/Pods-GitHub Viewer/Pods-GitHub Viewer.debug.xcconfig"; sourceTree = "<group>"; };
@@ -202,6 +208,7 @@
 		352F013623D378C200177F99 /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				35E20EEF247140E2003123BB /* Authorization.swift */,
 				357BB5EB23D3DE7400605AA8 /* UserData.swift */,
 				357BB5ED23D3DEA700605AA8 /* ErrorResponse.swift */,
 				B6EB182E23D78F01002607BF /* GistData.swift */,
@@ -244,6 +251,7 @@
 				35058C2023D3D20C0015A90B /* NetworkManager.swift */,
 				35058C2223D3D3540015A90B /* Router.swift */,
 				357BB5E923D3DAEB00605AA8 /* StatusCodes.swift */,
+				353FB8862471C1DA009E102E /* Secrets.swift */,
 			);
 			path = APIs;
 			sourceTree = "<group>";
@@ -259,6 +267,7 @@
 				3563A0D423F366FD0019032F /* UIView+Styles.swift */,
 				B6F132642412C4DA00D3175D /* UITabBarController+Rotation.swift */,
 				B68108F224005D32003D7282 /* AudioToolboxUtilities.swift */,
+				353FB8882471DF5F009E102E /* String+URLEncoder.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -525,6 +534,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				35058C2123D3D20C0015A90B /* NetworkManager.swift in Sources */,
+				353FB8872471C1DA009E102E /* Secrets.swift in Sources */,
 				B6F132652412C4DA00D3175D /* UITabBarController+Rotation.swift in Sources */,
 				3563A0D123F3323C0019032F /* GistFilesViewController.swift in Sources */,
 				B634313123F4653200C4C9A2 /* RepoData.swift in Sources */,
@@ -538,6 +548,7 @@
 				35058C2323D3D3540015A90B /* Router.swift in Sources */,
 				352F013E23D3954200177F99 /* GistsViewController.swift in Sources */,
 				B693CF4223F4BD990091F329 /* RepoFileViewController.swift in Sources */,
+				35E20EF0247140E2003123BB /* Authorization.swift in Sources */,
 				35FBA06724325484006CFCB7 /* ViewController+Identifiers.swift in Sources */,
 				B693CF4023F484310091F329 /* RepoFileInfo.swift in Sources */,
 				35AF0FFB24120E3100304C07 /* GistDetailViewController.swift in Sources */,
@@ -554,6 +565,7 @@
 				352F011723D3740800177F99 /* SceneDelegate.swift in Sources */,
 				357BB5EC23D3DE7400605AA8 /* UserData.swift in Sources */,
 				B68108F324005D32003D7282 /* AudioToolboxUtilities.swift in Sources */,
+				353FB8892471DF5F009E102E /* String+URLEncoder.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

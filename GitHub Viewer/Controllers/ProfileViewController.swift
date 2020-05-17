@@ -37,10 +37,9 @@ class ProfileViewController: UIViewController {
             setupProfileImage()
         }
         
-        let user = (userDefaults.value(forKey: .user) as? String)!
-        let password = keychain.string(forKey: .password)!
+        let token = keychain.string(forKey: .token)!
         NetworkManager.shared.delegate = self
-        NetworkManager.shared.login(email: user, password: password)
+        NetworkManager.shared.login(token: token)
     }
     
     private func setupProfileImage() {

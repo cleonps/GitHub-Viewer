@@ -16,7 +16,7 @@ protocol NetworkManagerDelegate: class {
 
 class NetworkManager {
     static let shared = NetworkManager()
-    lazy var authorization = HTTPHeader.authorization(username: "", password: "")
+    lazy var authorization = HTTPHeader.authorization(bearerToken: "")
     weak var delegate: NetworkManagerDelegate?
     
     private init() {}
@@ -25,8 +25,13 @@ class NetworkManager {
 // MARK: API Calls
 extension NetworkManager {
     
-    func login(email: String, password: String) {
-        authorization = HTTPHeader.authorization(username: email, password: password)
+    func getToken(client: String, secret: String, code: String) {
+        let route = Router.getToken(client: client.urlEncoded, secret: secret.urlEncoded, code: code.urlEncoded)
+        handleRequest(route: route, validModel: Authorization.self)
+    }
+    
+    func login(token: String) {
+        authorization = HTTPHeader.authorization(bearerToken: token)
         let route = Router.login
         handleRequest(route: route, validModel: UserData.self)
     }

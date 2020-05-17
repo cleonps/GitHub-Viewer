@@ -9,27 +9,21 @@
 import UIKit
 import Alamofire
 import SwiftKeychainWrapper
-
-private enum Field: Int {
-    case email = 1
-    case password = 2
-}
+import SafariServices
 
 class MainViewController: UIViewController {
     let userDefaults = UserDefaults.standard
     let keychain = KeychainWrapper.standard
-    
-    private var shouldCallAPI = true
+    private var shouldOAUTH = true
     
     @IBOutlet var logoWidthConstraint: NSLayoutConstraint!
-    @IBOutlet var emailTextField: UITextField!
-    @IBOutlet var passwordTextField: UITextField!
     @IBOutlet var loginButton: UIButton!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         view.isHidden = true
+        NotificationCenter.default.addObserver(self, selector: #selector(getToken), name: NSNotification.Name(rawValue: "CodeObtained"), object: nil)
     }
     
     override func viewDidDisappear(_ animated: Bool) {
@@ -40,97 +34,66 @@ class MainViewController: UIViewController {
         super.viewDidAppear(false)
         
         if checkIfUserExists() {
-            let user = userDefaults.string(forKey: UserDefaults.Keys.user)!
-            let password = keychain.string(forKey: .password)!
-            UIView.setAnimationsEnabled(false)
-            NetworkManager.shared.authorization = HTTPHeader.authorization(username: user, password: password)
+            let token = keychain.string(forKey: .token)!
+            NetworkManager.shared.authorization = HTTPHeader.authorization(bearerToken: token)
             performSegue(withIdentifier: .home)
         } else {
             view.isHidden = false
-            setupTextFields()
-            setupDelegates()
+            NetworkManager.shared.delegate = self
             loginButton.roundButton()
             hideKeyboardOnTap()
         }
     }
     
-    override func dismissKeyboard() {
-        super.dismissKeyboard()
-        
-        DispatchQueue.main.asyncAfter(deadline: .now() + .milliseconds(1)) {
-            self.logoWidthConstraint.constant = 200
-            UIView.animate(withDuration: 0.5) {
-                self.view.layoutIfNeeded()
-            }
+    @objc func getToken() {
+        if let code = keychain.string(forKey: .code),
+            let client = Secrets.GitHub.clientId,
+            let secret = Secrets.GitHub.clientSecret {
+            NetworkManager.shared.getToken(client: client, secret: secret, code: code)
+        } else {
+            shouldOAUTH = true
         }
     }
     
     @IBAction func loginButtonPressed(_ sender: UIButton? = nil) {
-        if shouldCallAPI {
-            shouldCallAPI = false
+        if let url = fetchOAuthURL(), shouldOAUTH {
+            shouldOAUTH = false
+            let safariVC = SFSafariViewController(url: url)
             
-            if validateData() {
-                NetworkManager.shared.login(email: emailTextField.text!, password: passwordTextField.text!)
-            } else {
-                presentSimpleAlert(title: "Error", message: "Por favor llene todos los campos")
-                shouldCallAPI = true
-            }
+            present(safariVC, animated: true)
+        }
+    }
+    
+    private func fetchOAuthURL() -> URL? {
+        if let clientID = Secrets.GitHub.clientId {
+            let bundle = "GHViewer://oauth"
+            let scope = "repo gist"
+            let baseURL = "https://github.com/login/oauth/authorize/"
+            let url = URL(string: "\(baseURL)?client_id=\(clientID)&redirect_uri=\(bundle.urlEncoded)&scope=\(scope.urlEncoded)")!
+            
+            return url
+        } else {
+            return nil
         }
     }
     
     private func checkIfUserExists() -> Bool {
-        let userIsSet = userDefaults.string(forKey: UserDefaults.Keys.user) != nil ? true : false
-        let passwordIsSet = keychain.string(forKey: .password) != nil ? true : false
-        return userIsSet && passwordIsSet
+        let userIsSet = userDefaults.string(forKey: UserDefaults.Keys.user) != nil
+        let tokenIsSet = keychain.string(forKey: .token) != nil
+        return userIsSet && tokenIsSet
     }
     
-    private func setupDelegates() {
-        emailTextField.delegate = self
-        passwordTextField.delegate = self
-        NetworkManager.shared.delegate = self
-    }
-    
-    private func setupTextFields() {
-        emailTextField.tag = Field.email.rawValue
-        passwordTextField.tag = Field.password.rawValue
-    }
-    
-    private func validateData() -> Bool {
-        return emailTextField.text != "" && passwordTextField.text != ""
-    }
-    
-}
-
-extension MainViewController: UITextFieldDelegate {
-    func textFieldDidBeginEditing(_ textField: UITextField) {
-        self.logoWidthConstraint.constant = 1
-        UIView.animate(withDuration: 0.5) {
-            self.view.layoutIfNeeded()
-        }
-    }
-    
-    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-        guard let field = Field(rawValue: textField.tag) else { return true }
-        
-        switch field {
-        case .email:
-            passwordTextField.becomeFirstResponder()
-        case .password:
-            textField.resignFirstResponder()
-            loginButtonPressed()
-            dismissKeyboard()
-        }
-        
-        return false
-    }
 }
 
 extension MainViewController: NetworkManagerDelegate {
     func response(withError error: String, endpoint: Router) {
         switch endpoint {
         case .login:
-            shouldCallAPI = true
-            presentSimpleAlert(title: "Error", message: error)
+            shouldOAUTH = true
+            presentSimpleAlert(title: "Error al iniciar sesión", message: error)
+        case .getToken:
+            shouldOAUTH = true
+            presentSimpleAlert(title: "Error al obtener token", message: error)
         default:
             break
         }
@@ -139,11 +102,20 @@ extension MainViewController: NetworkManagerDelegate {
     func response<T: Codable>(dataModel: T, endpoint: Router, code: StatusCodes) {
         switch code {
         case .success, .accepted:
-            guard let userData = dataModel as? UserData else { return }
-            self.shouldCallAPI = true
-            presentSimpleAlert(title: "Sesión Iniciada", message: "Bienvenido \(userData.login)") {
+            switch endpoint {
+            case .getToken:
+                guard let authorization = dataModel as? Authorization else { return }
+                
+                if keychain.set(authorization.access_token, forKey: .token) {
+                    NetworkManager.shared.login(token: authorization.access_token)
+                }
+                
+            case .login:
+                guard let userData = dataModel as? UserData else { return }
+                
+                shouldOAUTH = true
+                
                 let user = userData.login
-                let password = self.passwordTextField.text!
                 let avatar = userData.avatar_url
                 let name = userData.name
                 let blog = userData.blog
@@ -154,26 +126,26 @@ extension MainViewController: NetworkManagerDelegate {
                 let followers = userData.followers
                 let following = userData.following
                 
-                // Validate password and save profile data
-                if self.keychain.set(password, forKey: .password) {
-                    self.userDefaults.setValue(user, forKey: .user)
-                    self.userDefaults.setValue(avatar, forKey: .avatarURL)
-                    self.userDefaults.setValue(name, forKey: .name)
-                    self.userDefaults.setValue(blog, forKey: .blog)
-                    self.userDefaults.setValue(location, forKey: .location)
-                    self.userDefaults.setValue(email, forKey: .email)
-                    self.userDefaults.setValue(publicRepos, forKey: .publicRepos)
-                    self.userDefaults.setValue(publicGists, forKey: .publicGists)
-                    self.userDefaults.setValue(followers, forKey: .followers)
-                    self.userDefaults.setValue(following, forKey: .following)
-                    
-                    self.emailTextField.text = ""
-                    self.passwordTextField.text = ""
-                    
-                    self.performSegue(withIdentifier: .home)
-                }
+                // Save profile data
+                self.userDefaults.setValue(user, forKey: .user)
+                self.userDefaults.setValue(avatar, forKey: .avatarURL)
+                self.userDefaults.setValue(name, forKey: .name)
+                self.userDefaults.setValue(blog, forKey: .blog)
+                self.userDefaults.setValue(location, forKey: .location)
+                self.userDefaults.setValue(email, forKey: .email)
+                self.userDefaults.setValue(publicRepos, forKey: .publicRepos)
+                self.userDefaults.setValue(publicGists, forKey: .publicGists)
+                self.userDefaults.setValue(followers, forKey: .followers)
+                self.userDefaults.setValue(following, forKey: .following)
+                
+                self.performSegue(withIdentifier: .home)
+                
+            default:
+                break
             }
+            
         default:
+            shouldOAUTH = true
             guard let error = dataModel as? ErrorResponse else { return }
             presentSimpleAlert(title: "Error", message: error.message)
         }

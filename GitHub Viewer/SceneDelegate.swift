@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import SwiftKeychainWrapper
 
 class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     
@@ -18,6 +19,31 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         // If using a storyboard, the `window` property will automatically be initialized and attached to the scene.
         // This delegate does not imply the connecting scene or session are new (see `application:configurationForConnectingSceneSession` instead).
         guard let _ = (scene as? UIWindowScene) else { return }
+    }
+    
+    @available(iOS 13.0, *)
+    func scene(_ scene: UIScene, openURLContexts URLContexts: Set<UIOpenURLContext>) {
+        guard let url = URLContexts.first?.url else {
+            return
+        }
+        
+        self.window?.rootViewController?.dismiss(animated: true)
+        
+        guard let components = URLComponents(url: url, resolvingAgainstBaseURL: true), let items = components.queryItems else {
+            return
+        }
+       
+        self.window?.rootViewController?.dismiss(animated: true)
+       
+        if let code = items.first, code.name == "code", let value = code.value {
+            if !KeychainWrapper.standard.set(value, forKey: .code) {
+                return
+            }
+        }
+        
+        NotificationCenter.default.post(name: NSNotification.Name("CodeObtained"), object: nil)
+        
+        return
     }
 
     @available(iOS 13.0, *)

@@ -7,11 +7,12 @@
 //
 
 import UIKit
+import SwiftKeychainWrapper
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
     
-//    var window: UIWindow?
+    var window: UIWindow?
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         
@@ -24,6 +25,27 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         }
         
         return true
+    }
+    
+    func application(_ app: UIApplication, open url: URL, options: [UIApplication.OpenURLOptionsKey : Any] = [:]) -> Bool {
+        print(url)
+        guard let components = URLComponents(url: url, resolvingAgainstBaseURL: true), let items = components.queryItems else {
+            return false
+        }
+        
+        self.window?.rootViewController?.dismiss(animated: true)
+        
+        if let code = items.first, code.name == "code", let value = code.value {
+            if !KeychainWrapper.standard.set(value, forKey: .code) {
+                return false
+            }
+            
+            NotificationCenter.default.post(name: NSNotification.Name("CodeObtained"), object: nil)
+            
+            return true
+        }
+        
+        return false
     }
 
     // MARK: UISceneSession Lifecycle

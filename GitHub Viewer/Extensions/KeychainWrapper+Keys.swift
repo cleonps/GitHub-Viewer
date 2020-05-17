@@ -11,7 +11,8 @@ import SwiftKeychainWrapper
 
 extension KeychainWrapper {
     public enum Keys: String, CaseIterable {
-        case password
+        case code
+        case token
     }
     
     public func set(_ value: String, forKey key: KeychainWrapper.Keys, withAccessibility accessibility: KeychainItemAccessibility? = nil) -> Bool {

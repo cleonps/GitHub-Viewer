@@ -12,6 +12,7 @@ import Alamofire
 enum Router: URLRequestConvertible {
     static let baseURL = "https://api.github.com/"
     
+    case getToken(client: String, secret: String, code: String)
     case login
     case getGists(username: String)
     case getGistFiles(gistId: String)
@@ -22,6 +23,8 @@ enum Router: URLRequestConvertible {
     
     var path: String {
         switch self {
+        case .getToken(let client, let secret, let code):
+            return "https://github.com/login/oauth/access_token?client_id=\(client)&client_secret=\(secret)&code=\(code)"
         case .login:
             return "user"
         case .getGists(let username):
@@ -43,6 +46,8 @@ enum Router: URLRequestConvertible {
         switch self {
         case .login, .getGists, .getGistFiles, .getRepos, .getRepoContents, .getRepoFileContent, .getRepoMDFileContent:
             return .get
+        case .getToken:
+            return .post
         }
     }
     
@@ -58,12 +63,17 @@ enum Router: URLRequestConvertible {
                 NetworkManager.shared.authorization,
                 .accept("application/vnd.github.v3+json")
             ])
+        case .getToken:
+            return HTTPHeaders([
+                .accept("application/json")
+            ])
         }
+        
     }
     
     func asURLRequest() throws -> URLRequest {
         let url = try Router.baseURL.asURL()
-        var urlRequest = URLRequest(url: url.appendingPathComponent(path))
+        var urlRequest = path.contains("http") ? URLRequest(url: URL(string: path)!) : URLRequest(url: url.appendingPathComponent(path))
         urlRequest.headers = headers
         urlRequest.httpMethod = method.rawValue
         return urlRequest

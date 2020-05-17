@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15705" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16096" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15706"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16087"/>
         <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -24,47 +24,15 @@
                                     <constraint firstAttribute="width" secondItem="ra9-vh-j15" secondAttribute="height" multiplier="1:1" id="oOD-NH-iuK"/>
                                 </constraints>
                             </imageView>
-                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="fcO-GA-RnT">
-                                <rect key="frame" x="20.5" y="324" width="373" height="62.5"/>
-                                <subviews>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Usuario o correo" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="HaY-53-6r9">
-                                        <rect key="frame" x="0.0" y="0.0" width="373" height="23.5"/>
-                                        <fontDescription key="fontDescription" name="Avenir-Heavy" family="Avenir" pointSize="17"/>
-                                        <nil key="textColor"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
-                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="4q2-PW-ygu">
-                                        <rect key="frame" x="0.0" y="28.5" width="373" height="34"/>
-                                        <fontDescription key="fontDescription" name="Avenir-Book" family="Avenir" pointSize="14"/>
-                                        <textInputTraits key="textInputTraits" textContentType="email"/>
-                                    </textField>
-                                </subviews>
-                            </stackView>
-                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="voy-71-i04">
-                                <rect key="frame" x="20.5" y="401.5" width="373" height="62.5"/>
-                                <subviews>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Contraseña" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ce9-Mj-F3Q">
-                                        <rect key="frame" x="0.0" y="0.0" width="373" height="23.5"/>
-                                        <fontDescription key="fontDescription" name="Avenir-Heavy" family="Avenir" pointSize="17"/>
-                                        <nil key="textColor"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
-                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Jfn-Td-seq">
-                                        <rect key="frame" x="0.0" y="28.5" width="373" height="34"/>
-                                        <fontDescription key="fontDescription" name="Avenir-Book" family="Avenir" pointSize="14"/>
-                                        <textInputTraits key="textInputTraits" secureTextEntry="YES" textContentType="password"/>
-                                    </textField>
-                                </subviews>
-                            </stackView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7dg-9r-E1L">
-                                <rect key="frame" x="107" y="494" width="200" height="37"/>
+                                <rect key="frame" x="82" y="334" width="250" height="37"/>
                                 <color key="backgroundColor" name="CellBackground"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="200" id="Gvi-dS-YqW"/>
+                                    <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="250" id="Gvi-dS-YqW"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" name="Avenir-Heavy" family="Avenir" pointSize="18"/>
                                 <color key="tintColor" name="TintColor"/>
-                                <state key="normal" title="Iniciar Sesión"/>
+                                <state key="normal" title="Inicia sesión con GitHub"/>
                                 <connections>
                                     <action selector="loginButtonPressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="RYu-DR-p7m"/>
                                 </connections>
@@ -72,24 +40,16 @@
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <constraints>
-                            <constraint firstItem="fcO-GA-RnT" firstAttribute="width" secondItem="8bC-Xf-vdC" secondAttribute="width" multiplier="0.9" id="FjT-72-kcG"/>
-                            <constraint firstItem="voy-71-i04" firstAttribute="top" secondItem="fcO-GA-RnT" secondAttribute="bottom" constant="15" id="K6u-fV-sW0"/>
+                            <constraint firstItem="7dg-9r-E1L" firstAttribute="top" secondItem="ra9-vh-j15" secondAttribute="bottom" constant="50" id="Ikv-ed-BEk"/>
                             <constraint firstItem="7dg-9r-E1L" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="PmC-Vn-mt3"/>
                             <constraint firstItem="ra9-vh-j15" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="40" id="QgA-M6-Xfu"/>
                             <constraint firstItem="ra9-vh-j15" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="WkQ-Ax-wIW"/>
-                            <constraint firstItem="voy-71-i04" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="Xop-cO-CV4"/>
-                            <constraint firstItem="7dg-9r-E1L" firstAttribute="top" secondItem="voy-71-i04" secondAttribute="bottom" constant="30" id="bXY-PI-2SV"/>
-                            <constraint firstItem="fcO-GA-RnT" firstAttribute="top" secondItem="ra9-vh-j15" secondAttribute="bottom" constant="40" id="d0x-KQ-oK2"/>
-                            <constraint firstItem="fcO-GA-RnT" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="gze-zO-2BP"/>
-                            <constraint firstItem="voy-71-i04" firstAttribute="width" secondItem="8bC-Xf-vdC" secondAttribute="width" multiplier="0.9" id="mS4-ye-2g7"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
                     <connections>
-                        <outlet property="emailTextField" destination="4q2-PW-ygu" id="2UQ-Xc-exB"/>
                         <outlet property="loginButton" destination="7dg-9r-E1L" id="dzK-zU-2Qo"/>
                         <outlet property="logoWidthConstraint" destination="o0l-dT-1p7" id="e3q-iz-HSk"/>
-                        <outlet property="passwordTextField" destination="Jfn-Td-seq" id="RW1-67-pfc"/>
                         <segue destination="NGE-JE-mNb" kind="presentation" identifier="loginHomeSegue" modalPresentationStyle="fullScreen" id="Ofo-ww-pqU"/>
                     </connections>
                 </viewController>
@@ -112,7 +72,7 @@
             <color red="0.80000000000000004" green="0.80000000000000004" blue="0.80000000000000004" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
         <namedColor name="TintColor">
-            <color red="0.011764705882352941" green="0.58039215686274515" blue="0.16078431372549021" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color red="0.0078431372549019607" green="0.29411764705882354" blue="0.082352941176470587" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
     </resources>
 </document>
