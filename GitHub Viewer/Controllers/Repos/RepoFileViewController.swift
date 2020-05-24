@@ -14,6 +14,7 @@ class RepoFileViewController: UIViewController {
     let userDefaults = UserDefaults.standard
     lazy var user = userDefaults.string(forKey: UserDefaults.Keys.user)!
     public var repo = ""
+    public var path = ""
     public var fileName = ""
     private var file = RepoFileContent()
     private var mdFile = String()
@@ -26,20 +27,17 @@ class RepoFileViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        navigationItem.title = fileName
+        configureNavBar()
+        contentTextView.isEditable = false
     }
     
     override func viewDidAppear(_ animated: Bool) {
-        let kbObserver = UIResponder.keyboardWillShowNotification
-        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow), name: kbObserver, object: nil)
-        hideKeyboardOnTap()
-        
         NetworkManager.shared.delegate = self
         if file.content == nil && mdFile == "" {
             if fileName.contains(".md") {
-                NetworkManager.shared.getRepoMDFileContent(user: user, repo: repo, file: fileName)
+                NetworkManager.shared.getRepoMDFileContent(user: user, repo: repo, file: path)
             } else {
-                NetworkManager.shared.getRepoFileContent(user: user, repo: repo, file: fileName)
+                NetworkManager.shared.getRepoFileContent(user: user, repo: repo, file: path)
             }
         }
     }
@@ -49,22 +47,20 @@ class RepoFileViewController: UIViewController {
         UIDevice.current.setValue(value, forKey: "orientation")
     }
     
-    @objc func keyboardWillShow(_ notification: Notification) {
-        if let keyboardFrame: NSValue = notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue {
-            let keyboardRectangle = keyboardFrame.cgRectValue
-            let keyboardHeight = keyboardRectangle.height
-            bottomTextViewConstraint.constant = keyboardHeight - ((self.navigationController?.view.subviews[1].bounds.height) ?? 0)
-        }
-    }
-    
-    deinit {
-        NotificationCenter.default.removeObserver(self, name: UIResponder.keyboardWillShowNotification, object: nil)
-    }
-    
-    override func dismissKeyboard() {
-        super.dismissKeyboard()
+    private func configureNavBar() {
+        let copyButton = UIBarButtonItem(title: "Copiar", style: .plain, target: self, action: #selector(copyAll))
+        let copyFont = UIFont(name: "Avenir-book", size: 16)!
+        let copyColor = UIColor(named: "TintColor")!
+        let copyAttributes: [NSAttributedString.Key: Any] = [.foregroundColor: copyColor, .font: copyFont]
+        copyButton.setTitleTextAttributes(copyAttributes, for: .normal)
         
-        bottomTextViewConstraint.constant = 10
+        navigationItem.rightBarButtonItem = copyButton
+        navigationItem.title = fileName
+    }
+    
+    @objc func copyAll() {
+        UIPasteboard.general.string = contentTextView.text
+        presentSimpleAlert(title: "Portapapeles", message: "Texto copiado")
     }
 }
 

@@ -18,12 +18,16 @@ class RepoContentsViewController: UIViewController {
     private var fileList = [RepoFileInfo]()
     private var fileName = ""
     private var path = ""
+    private var sentFileName = ""
+    private var sentPath = ""
     
     @IBOutlet var repoFilesTableView: UITableView!
     @IBOutlet var titleLabel: UILabel!
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        navigationItem.title = fileName != "" ? fileName : repo
         
         repoFilesTableView.register(nibName: .gist, cellName: .gist)
         repoFilesTableView.refreshControl = refresher
@@ -49,7 +53,8 @@ class RepoContentsViewController: UIViewController {
         case Segues.repoFile.rawValue:
             guard let destinationVC = segue.destination as? RepoFileViewController else { return }
             destinationVC.repo = repo
-            destinationVC.fileName = fileName
+            destinationVC.path = sentPath
+            destinationVC.fileName = sentFileName
         default:
             return
         }
@@ -93,17 +98,16 @@ extension RepoContentsViewController: UITableViewDelegate, UITableViewDataSource
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let row = indexPath.row
         
+        sentPath = path + "/" + fileList[row].name
+        sentFileName = fileList[row].name
+        
         if fileList[row].type == FileType.file.rawValue {
-            if isSubdirectory {
-                fileName = path + "/" + fileList[row].name
-            } else {
-                fileName = fileList[row].name
-            }
             performSegue(withIdentifier: .repoFile)
         } else {
             guard let viewController = instantiateVC(storyboard: .repos, identifier: .reposList, controller: RepoContentsViewController.self) else { return }
             viewController.repo = repo
-            viewController.path = path + "/" + fileList[row].name
+            viewController.path = sentPath
+            viewController.fileName = sentFileName
             viewController.isSubdirectory = true
             self.navigationController?.pushViewController(viewController, animated: true)
         }
