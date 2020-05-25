@@ -12,16 +12,6 @@ extension UIView {
     
     public func roundButton() {
         let fancyButton = self.layer
-        var color = UIColor.black.withAlphaComponent(0.25).cgColor
-        
-        if #available(iOS 13.0, *) {
-            color = UIColor.label.withAlphaComponent(0.25).cgColor
-        }
-        
-        fancyButton.shadowColor = color
-        fancyButton.shadowOffset = CGSize(width: 0.0, height: 3.0)
-        fancyButton.shadowOpacity = 1.0
-        fancyButton.shadowRadius = 0.0
         fancyButton.masksToBounds = false
         fancyButton.cornerRadius = 10
     }
@@ -33,16 +23,6 @@ extension UIView {
     
     public func roundView() {
         let fancyView = self.layer
-        var color = UIColor.black.withAlphaComponent(0.25).cgColor
-        
-        if #available(iOS 13.0, *) {
-            color = UIColor.label.withAlphaComponent(0.25).cgColor
-        }
-        
-        fancyView.shadowColor = color
-        fancyView.shadowOffset = CGSize(width: 3, height: 3)
-        fancyView.shadowOpacity = 1.0
-        fancyView.shadowRadius = 2.0
         fancyView.masksToBounds = false
         fancyView.cornerRadius = 5
     }
