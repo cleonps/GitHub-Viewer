@@ -14,6 +14,7 @@ class RepoContentsViewController: UIViewController {
     
     lazy var user = userDefaults.string(forKey: .user)!
     public var repo = ""
+    public var repoDescription = ""
     private var isSubdirectory = false
     private var fileList = [RepoFileInfo]()
     private var fileName = ""
@@ -33,8 +34,11 @@ class RepoContentsViewController: UIViewController {
         repoFilesTableView.refreshControl = refresher
         refresher.addTarget(self, action: #selector(refreshData(_:)), for: .valueChanged)
         
-        titleLabel.roundView()
-        titleLabel.text = repo
+        if repoDescription != "" {
+            titleLabel.text = repoDescription
+        } else {
+            titleLabel.isHidden = true
+        }
     }
     
     override func viewDidAppear(_ animated: Bool) {

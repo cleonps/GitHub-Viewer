@@ -11,7 +11,8 @@ import UIKit
 class ReposViewController: UITableViewController {
     private var refresher = UIRefreshControl()
     private var repos = [RepoData]()
-    private var repo = ""
+    private var sentRepo = ""
+    private var sentDescription = ""
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -37,7 +38,8 @@ class ReposViewController: UITableViewController {
         switch segue.identifier {
         case Segues.repoContents.rawValue:
             guard let destinationVC = segue.destination as? RepoContentsViewController else { return }
-            destinationVC.repo = repo
+            destinationVC.repo = sentRepo
+            destinationVC.repoDescription = sentDescription
         default:
             return
         }
@@ -72,7 +74,7 @@ extension ReposViewController {
         stringFormatter.dateFormat = "HH:mm:ss '-' dd-MM-yyyy"
         let lastUpdate = "Actualizado: \(stringFormatter.string(from: stringDate))"
         
-        let repoDescription = description != "" ? "Descripción: \(description)" : ""
+        let repoDescription = description != "" ? "\(description)" : ""
         
         cell.cellImage.image = image.withRenderingMode(.alwaysTemplate)
         cell.padlockImage.image = imageLock.withRenderingMode(.alwaysTemplate)
@@ -86,7 +88,8 @@ extension ReposViewController {
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let row = indexPath.row
-        repo = repos[row].name
+        sentRepo = repos[row].name
+        sentDescription = repos[row].description ?? ""
         performSegue(withIdentifier: .repoContents)
     }
 }

@@ -22,6 +22,7 @@ extension UIViewController {
                 actionHandler!()
             }
         }
+        action.setValue(UIColor(named: "TintColor"), forKey: "titleTextColor")
         alert.addAction(action)
         present(alert, animated: true)
     }

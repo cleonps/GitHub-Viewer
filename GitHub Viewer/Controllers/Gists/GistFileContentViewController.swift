@@ -67,19 +67,34 @@ class GistFileContentViewController: UIViewController {
     }
     
     private func configureNavBar() {
-        let copyButton = UIBarButtonItem(title: "Copiar", style: .plain, target: self, action: #selector(copyAll))
-        let copyFont = UIFont(name: "Avenir-book", size: 16)!
-        let copyColor = UIColor(named: "TintColor")!
-        let copyAttributes: [NSAttributedString.Key: Any] = [.foregroundColor: copyColor, .font: copyFont]
-        copyButton.setTitleTextAttributes(copyAttributes, for: .normal)
+        var rightButtonText = "Copiar"
         
-        navigationItem.rightBarButtonItem = copyButton
+        if gistTitle.contains(".md") {
+            rightButtonText = "Seleccionar"
+        }
+        
+        let rightButton = UIBarButtonItem(title: rightButtonText, style: .plain, target: self, action: #selector(rightAction))
+        let rightButtonFont = UIFont(name: "Avenir-book", size: 16)!
+        let rightButtonColor = UIColor(named: "TintColor")!
+        let rightButtonAttributes: [NSAttributedString.Key: Any] = [
+            .foregroundColor: rightButtonColor,
+            .font: rightButtonFont
+        ]
+        rightButton.setTitleTextAttributes(rightButtonAttributes, for: .normal)
+        rightButton.setTitleTextAttributes(rightButtonAttributes, for: .selected)
+        rightButton.setTitleTextAttributes(rightButtonAttributes, for: .highlighted)
+        
+        navigationItem.rightBarButtonItem = rightButton
         self.navigationItem.title = gistTitle
     }
     
-    @objc func copyAll() {
-        UIPasteboard.general.string = contentTextView.text
-        presentSimpleAlert(title: "Portapapeles", message: "Texto copiado")
+    @objc func rightAction() {
+        if gistTitle.contains(".md") {
+            contentWebView.selectAll(self)
+        } else {
+            UIPasteboard.general.string = contentTextView.text
+            presentSimpleAlert(title: "Texto copiado al portapapeles", message: "")
+        }
     }
     
 }

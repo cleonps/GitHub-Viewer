@@ -34,7 +34,7 @@ class RepoFileViewController: UIViewController {
     override func viewDidAppear(_ animated: Bool) {
         NetworkManager.shared.delegate = self
         if file.content == nil && mdFile == "" {
-            if fileName.contains(".md") {
+            if fileName.contains(".md") || fileName.contains(".gif") || fileName.contains(".svg") {
                 NetworkManager.shared.getRepoMDFileContent(user: user, repo: repo, file: path)
             } else {
                 NetworkManager.shared.getRepoFileContent(user: user, repo: repo, file: path)
@@ -48,19 +48,37 @@ class RepoFileViewController: UIViewController {
     }
     
     private func configureNavBar() {
-        let copyButton = UIBarButtonItem(title: "Copiar", style: .plain, target: self, action: #selector(copyAll))
-        let copyFont = UIFont(name: "Avenir-book", size: 16)!
-        let copyColor = UIColor(named: "TintColor")!
-        let copyAttributes: [NSAttributedString.Key: Any] = [.foregroundColor: copyColor, .font: copyFont]
-        copyButton.setTitleTextAttributes(copyAttributes, for: .normal)
+        var rightButtonText = "Copiar"
         
-        navigationItem.rightBarButtonItem = copyButton
+        if fileName.contains(".md") || fileName.contains(".gif") || fileName.contains(".svg") {
+            rightButtonText = "Seleccionar"
+        }
+        
+        let rightButton = UIBarButtonItem(title: rightButtonText, style: .plain, target: self, action: #selector(rightAction))
+        let rightButtonFont = UIFont(name: "Avenir-book", size: 16)!
+        let rightButtonColor = UIColor(named: "TintColor")!
+        let rightButtonAttributes: [NSAttributedString.Key: Any] = [
+            .foregroundColor: rightButtonColor,
+            .font: rightButtonFont
+        ]
+        rightButton.setTitleTextAttributes(rightButtonAttributes, for: .normal)
+        rightButton.setTitleTextAttributes(rightButtonAttributes, for: .selected)
+        rightButton.setTitleTextAttributes(rightButtonAttributes, for: .highlighted)
+        
+        navigationItem.rightBarButtonItem = rightButton
         navigationItem.title = fileName
     }
     
-    @objc func copyAll() {
-        UIPasteboard.general.string = contentTextView.text
-        presentSimpleAlert(title: "Portapapeles", message: "Texto copiado")
+    @objc func rightAction() {
+        if fileName.contains(".png") || fileName.contains(".jpg") || fileName.contains(".jpeg") {
+            UIPasteboard.general.image = contentImage.image
+            presentSimpleAlert(title: "Imagen copiada al portapapeles", message: "")
+        } else if fileName.contains(".md") || fileName.contains(".gif") || fileName.contains(".svg") {
+            contentWebView.selectAll(self)
+        } else {
+            UIPasteboard.general.string = contentTextView.text
+            presentSimpleAlert(title: "Texto copiado al portapapeles", message: "")
+        }
     }
 }
 
@@ -83,7 +101,7 @@ extension RepoFileViewController: NetworkManagerDelegate {
                 let encodedData = file.content!
                 let decodedData = Data(base64Encoded: encodedData, options: .ignoreUnknownCharacters)!
                 
-                if fileName.contains(".png") || fileName.contains(".jpg") || fileName.contains(".jpeg") || fileName.contains(".gif") || fileName.contains(".svg") {
+                if fileName.contains(".png") || fileName.contains(".jpg") || fileName.contains(".jpeg") {
                     let image = UIImage(data: decodedData)
                     contentImage.image = image
                     contentImage.contentMode = .scaleAspectFit
